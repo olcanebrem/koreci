@@ -4,10 +4,10 @@
     "base_url": "https://pinwheel-astro.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
+    "favicon": "/public/favicon.svg",
+    "logo": "/public/favicon.svg",
     "logo_width": "147",
-    "logo_height": "31",
+    "logo_height": "50",
     "logo_text": "Pinwheel"
   },
 

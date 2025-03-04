@@ -7,12 +7,21 @@ import Testimonial from "@/layouts/components/Testimonial.astro";
 import Cta from "@/layouts/partials/Cta.astro";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
-
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import config from "@/config/config.json";
+import Blog from "@/components/Blog.astro"; // Blog component
 const homepage = (await getEntry(
   "homepage",
   "-index"
 )) as CollectionEntry<"homepage">;
 const { banner, key_features, service, testimonial } = homepage.data;
+
+// Blog verilerini al
+const posts = await getSinglePage("blog");
+const sortedPosts = sortByDate(posts);
+const recentPost = sortedPosts.filter((item) => !item.data.featured);
+const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
 
 <Base>
@@ -20,5 +29,14 @@ const { banner, key_features, service, testimonial } = homepage.data;
   <KeyFeatures key_features={key_features} />
   <Service service={service} />
   <Testimonial testimonial={testimonial} />
+
+  <!-- Recent Posts Bölümü -->
+  <section class="recent-posts">
+    <div class="container">
+      <h2 class="h4 mb-4">Recent Posts</h2>
+      <Blog posts={currentPosts} />
+    </div>
+  </section>
+
   <Cta />
 </Base>

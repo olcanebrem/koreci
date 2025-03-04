@@ -1,4 +1,118 @@
 User-agent: *
+Disallow: /admin/          # Yönetim panelini engelle
+Disallow: /login/          # Giriş sayfasını engelle
+Disallow: /test/           # Test veya geliştirme dizinini engelle
+Disallow: /wp-admin/       # WordPress admin panelini engelle (eğer WP kullanıyorsanız)
+Disallow: /*?*             # Dinamik parametreli URL’leri engelle (ör. /page?sort=asc)
+Allow: /                   # Ana sayfaya izin ver
+Allow: /blog/              # Blog gibi önemli dizinlere izin ver
+Allow: /urunler/           # Ürün sayfalarına izin ver
+Allow: /contact/           # Ürün sayfalarına izin ver
+
+# Meşru arama motoru botlarına izin ver
+User-agent: Googlebot
 Allow: /
 
-Disallow: /api/*
+User-agent: Bingbot
+Allow: /
+
+# Spam botları engelle
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://www.koreci.art/sitemap.xml  # Site haritasını belirt
+
+# Meşru Arama Motoru Botlarına İzin Ver
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yahoo
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Kötü Niyetli ve Spam Botları Engelle
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: SeznamBot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: linkdexbot
+Disallow: /
+
+User-agent: sistrix
+Disallow: /
+
+User-agent: UptimeRobot
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+User-agent: Xenu
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: SiteSucker
+Disallow: /
+
+User-agent: wget
+Disallow: /
+
+User-agent: curl
+Disallow: /
