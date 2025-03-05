@@ -17,7 +17,7 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
 ---
-
+<body id="app_id" >
 <header class="header">
   <nav class="navbar container">
     <!-- logo -->
@@ -119,7 +119,7 @@ const { pathname } = Astro.url;
     </div>
   </nav>
 </header>
-
+</body>
 <script is:inline>
   document.querySelectorAll(".dropdown-button").forEach((button) => {
     button.addEventListener("click", (e) => {

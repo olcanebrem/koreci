@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Banner from "@/layouts/components/Banner.astro";
+import Slider from "@/layouts/components/Slider.astro";
 import KeyFeatures from "@/layouts/components/KeyFeatures.astro";
 import Service from "@/layouts/components/Service.astro";
 import Testimonial from "@/layouts/components/Testimonial.astro";
@@ -15,7 +16,7 @@ const homepage = (await getEntry(
   "homepage",
   "-index"
 )) as CollectionEntry<"homepage">;
-const { banner, key_features, service, testimonial } = homepage.data;
+const { slider, banner, key_features, service, testimonial } = homepage.data;
 
 // Blog verilerini al
 const posts = await getSinglePage("blog");
@@ -25,6 +26,7 @@ const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
 
 <Base>
+  <Slider slider={slider} />
   <Banner banner={banner} />
   <KeyFeatures key_features={key_features} />
   <Service service={service} />

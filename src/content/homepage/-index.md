@@ -1,4 +1,13 @@
 ---
+slider:
+  - title: "Slide 1 Title"
+    image: "public/images/slider-image.jpg"
+  - title: "Slide 2 Title"
+    image: "public/images/slider-image.jpg"
+  - title: "Slide 3 Title"
+    image: "public/images/slider-image.jpg"
+
+
 banner:
   title: "Scale design & dev operations with Avocode Enterprise"
   content: "A fully integrated suite of authentication & authoriz products, Stytch’s platform removes the headache of."

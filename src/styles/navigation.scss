@@ -12,13 +12,15 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .header {
-  @apply sticky top-0 z-50  bg-white py-6 transition-all duration-300 lg:bg-transparent;
+  @apply sticky top-0 z-50  bg-white py-6 transition-all duration-300 lg:bg-transparent ;
+  
 
   &-sticky {
     @apply bg-white shadow;
   }
 }
-
+.navbar-container {
+}
 // navbar items
 .navbar {
   @apply relative flex flex-wrap items-center justify-between;
