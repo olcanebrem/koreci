@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Pinwheel Astro",
-    "base_url": "https://pinwheel-astro.vercel.app",
+    "title": "KORECİ.ART",
+    "base_url": "https://olcanebrem.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/public/favicon.svg",
-    "logo": "/public/favicon.svg",
+    "favicon": "/favicon.svg",
+    "logo": "/koreci.svg",
     "logo_width": "147",
-    "logo_height": "50",
-    "logo_text": "Pinwheel"
+    "logo_height": "75",
+    "logo_text": "koreci"
   },
 
   "settings": {
@@ -17,7 +17,7 @@
   },
 
   "call_to_action": {
-    "title": "Helping teams in the world with focus",
+    "title": "Helping te world with focus",
     "description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
     "button": {
       "label": "Download The Theme",
