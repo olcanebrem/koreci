@@ -6,7 +6,7 @@ description: ""
 image: ""
 buttons:
   - label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    link: "https://olcanebrem.com/"
     enable: true
   - label: Learn More
     link: "#"
@@ -18,7 +18,7 @@ counter:
   - name: "Customers"
     number: 25
     measurement: M
-    color: "#A3A1FB"
+    color: "#00B7EB"
   - name: "Customers"
     number: 440
     measurement: M
@@ -26,11 +26,11 @@ counter:
   - name: "Customers"
     number: 50
     measurement: K
-    color: "#FE6019"
+    color: "#1E90FF"
   - name: "Customers"
     number: 20
     measurement: K
-    color: "#FEC163"
+    color: "#00B7EB"
 
 # Gallery
 gallery:
@@ -86,4 +86,4 @@ members:
       image: "/images/users/user-3.png"
 ---
 
-Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies ligula sed magna dictum porta. Lorem
+

@@ -24,15 +24,20 @@
 </div>
 
 <script>
-  const slider = document.querySelector('.slider');
-  const slides = document.querySelectorAll('.slide');
-  const prevBtn = document.querySelector('.prev');
-  const nextBtn = document.querySelector('.next');
-  const dots = document.querySelectorAll('.dot');
-  let currentIndex = 0;
+  function initializeSlider() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
 
-  // Null kontrolü
-  if (slider && prevBtn && nextBtn) {
+    // Null kontrolü
+    if (!slider || !prevBtn || !nextBtn) {
+      console.error('Slider elemanları bulunamadı.');
+      return () => {}; // Temizleme fonksiyonu olarak boş bir fonksiyon döndür
+    }
+
     function updateSlider() {
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
       dots.forEach((dot, index) => {
@@ -41,25 +46,45 @@
       });
     }
 
-    prevBtn.addEventListener('click', () => {
+    // Olay dinleyicileri
+    const prevHandler = () => {
       currentIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
       updateSlider();
-    });
+    };
 
-    nextBtn.addEventListener('click', () => {
+    const nextHandler = () => {
       currentIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
       updateSlider();
-    });
+    };
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
+    const dotHandlers = Array.from(dots).map((dot, index) => {
+      const handler = () => {
         currentIndex = index;
         updateSlider();
-      });
+      };
+      dot.addEventListener('click', handler);
+      return handler;
     });
 
+    prevBtn.addEventListener('click', prevHandler);
+    nextBtn.addEventListener('click', nextHandler);
+
     updateSlider(); // İlk yüklemede slider’ı başlat
-  } else {
-    console.error('Slider elemanları bulunamadı.');
+
+    // Temizleme fonksiyonu: Olay dinleyicilerini kaldır
+    return () => {
+      prevBtn.removeEventListener('click', prevHandler);
+      nextBtn.removeEventListener('click', nextHandler);
+      dots.forEach((dot, index) => {
+        dot.removeEventListener('click', dotHandlers[index]);
+      });
+    };
   }
+
+  // Sayfanın her yüklenmesinde (View Transitions dahil) çalıştır
+  document.addEventListener('astro:page-load', () => {
+    const cleanup = initializeSlider();
+    // Sayfadan ayrıldığında temizleme yap (isteğe bağlı)
+    document.addEventListener('astro:before-preparation', cleanup, { once: true });
+  });
 </script>

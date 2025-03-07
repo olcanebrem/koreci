@@ -6,54 +6,19 @@ const { title, button, image, content } = banner;
 ---
 
 <section class="section banner relative">
-
-<!-- Marquee Kapsayıcı -->
-<div class="relative mx-auto overflow-hidden py-2 max-w">
-  <!-- Gradient Overlay’ler -->
-  <div class="absolute inset-0 left-0 w-44 z-10 bg-gradient-to-r from-white via-transparent"></div>
-  <div class="absolute top-0 bottom-0 right-0 w-44 z-10 bg-gradient-to-l from-white via-transparent"></div>
-  <!-- Marquee Yazı -->
-  <div id="marquee-content" class="flex items-center animate-marquee font-black font-display gap-4 tracking-widest uppercase whitespace-nowrap">
-    <!-- İçerik buraya dinamik olarak eklenecek -->
+  <!-- Marquee Kapsayıcı -->
+  <!-- İlk Marquee (Üstteki "Spots Open" Yazısı) -->
+  <div class="relative mx-auto overflow-hidden py-2 max-w">
+    <!-- Gradient Overlay’ler -->
+    <div class="absolute inset-0 left-0 w-44 z-10 bg-gradient-to-r from-white via-transparent"></div>
+    <div class="absolute top-0 bottom-0 right-0 w-44 z-10 bg-gradient-to-l from-white via-transparent"></div>
+    <!-- Marquee Yazı -->
+    <div id="marquee-content" class="flex items-center animate-marquee font-black font-display gap-4 tracking-widest uppercase whitespace-nowrap">
+      <!-- İçerik buraya dinamik olarak eklenecek -->
+    </div>
   </div>
-</div>
 
-<script>
-  // Marquee içeriğini oluşturacak fonksiyon
-  function populateMarquee() {
-    const marqueeContent = document.getElementById("marquee-content");
-    if (!marqueeContent) return;
-
-    // Tek bir birim: "spots open ✺"
-    const createItem = () => {
-      const item = document.createElement("div");
-      item.className = "flex items-center gap-4";
-      item.innerHTML = `spots open <span class="hidden lg:inline">✺</span>`;
-      return item;
-    };
-
-    // Ekran genişliğine göre yeterli sayıda birim ekle
-    const itemCount = Math.ceil(window.innerWidth / 200) * 2; // Ekranı dolduracak kadar + fazladan
-    for (let i = 0; i < itemCount; i++) {
-      marqueeContent.appendChild(createItem());
-    }
-  }
-
-  // Sayfa yüklendiğinde ve pencere boyutu değiştiğinde çalıştır
-  window.addEventListener("load", populateMarquee);
-  window.addEventListener("resize", () => {
-    const marqueeContent = document.getElementById("marquee-content");
-    if (marqueeContent) {
-      marqueeContent.innerHTML = ""; // Eski içeriği temizle
-      populateMarquee(); // Yeni içerik ekle
-    }
-  });
-</script>
   <div class="container">
-    
-    
-    <!-- İlk Marquee (Üstteki "Spots Open" Yazısı) -->
-    
     <!-- İkinci Marquee (Dört Tabloyu Kaydırma) -->
     <div class="relative mx-auto overflow-hidden py-12 max-w-7xl h-full">
       <div class="flex animate-marquee gap-6">
@@ -70,7 +35,7 @@ const { title, button, image, content } = banner;
             <span class="block text-gray-400">CEO of Swift Designworks</span>
           </div>
         </div>
-    
+
         <!-- Tablo 2 -->
         <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
           <p class="text-[#ed772f] text-sm">
@@ -84,7 +49,7 @@ const { title, button, image, content } = banner;
             <span class="block text-gray-400">Founder of CodeCraft Studios</span>
           </div>
         </div>
-    
+
         <!-- Tablo 3 -->
         <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
           <p class="text-[#ef9335] text-sm">
@@ -98,7 +63,7 @@ const { title, button, image, content } = banner;
             <span class="block text-gray-400">Innovator at PixelPerfect Creations</span>
           </div>
         </div>
-    
+
         <!-- Tablo 4 -->
         <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
           <p class="text-gray-200 text-sm">
@@ -111,7 +76,7 @@ const { title, button, image, content } = banner;
             <span class="block text-gray-400">Co-Founder of SparkLynx Technologies</span>
           </div>
         </div>
-    
+
         <!-- Tekrarlayan Tablolar (Sürekli Kaydırma İçin) -->
         <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
           <p class="text-[#ed642c] text-sm">
@@ -163,11 +128,60 @@ const { title, button, image, content } = banner;
       </div>
     </div>
 
-  <Image
-    class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
-    alt="banner"
-    src="/images/banner-shape.png"
-    width={496}
-    height={466}
-  />
+    <Image
+      class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
+      alt="banner"
+      src="/images/banner-shape.png"
+      width={496}
+      height={466}
+    />
+  </div>
 </section>
+
+<script>
+  function initializeMarquee() {
+    const marqueeContent = document.getElementById("marquee-content");
+    if (!marqueeContent) {
+      console.error('Marquee content element not found.');
+      return () => {}; // Temizleme fonksiyonu olarak boş bir fonksiyon döndür
+    }
+
+    // Marquee içeriğini oluşturacak fonksiyon
+    function populateMarquee() {
+      marqueeContent.innerHTML = ""; // Eski içeriği temizle
+      const createItem = () => {
+        const item = document.createElement("div");
+        item.className = "flex items-center gap-4";
+        item.innerHTML = `spots open <span class="hidden lg:inline">✺</span>`;
+        return item;
+      };
+
+      // Ekran genişliğine göre yeterli sayıda birim ekle
+      const itemCount = Math.ceil(window.innerWidth / 200) * 2; // Ekranı dolduracak kadar + fazladan
+      for (let i = 0; i < itemCount; i++) {
+        marqueeContent.appendChild(createItem());
+      }
+    }
+
+    // İlk yüklemede çalıştır
+    populateMarquee();
+
+    // Pencere boyutu değiştiğinde güncelle
+    const resizeHandler = () => {
+      populateMarquee();
+    };
+    window.addEventListener("resize", resizeHandler);
+
+    // Temizleme fonksiyonu
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }
+
+  // Sayfanın her yüklenmesinde (View Transitions dahil) çalıştır
+  document.addEventListener('astro:page-load', () => {
+    const cleanup = initializeMarquee();
+    // Sayfadan ayrıldığında temizleme yap
+    document.addEventListener('astro:before-preparation', cleanup, { once: true });
+  });
+</script>
