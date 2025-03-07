@@ -1,3 +1,8 @@
+// Genel taşma önleme (acil durum için)
+body {
+  @apply overflow-x-hidden; // Sayfanın tamamında yatay kaydırmayı engelle
+}
+
 // section style
 .section {
   @apply py-16;

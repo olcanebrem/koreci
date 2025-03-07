@@ -22,7 +22,7 @@ const { homepage_tab, our_service } = service;
             {item.image && (
               <div class="relative">
                 <Image
-                  class="w-full object-contain"
+                  class="w-full max-w-full object-contain"
                   alt="service"
                   width={667}
                   height={498}
@@ -45,8 +45,8 @@ const { homepage_tab, our_service } = service;
                 width={700}
                 title={item.title}
                 video_id={item.video.video_id}
-                video_width="w-[700px]"
-                video_height="h-[370px]"
+                video_width="w-full max-w-[700px]" // Sabit genişlik yerine dinamik
+                video_height="h-auto" // Yükseklik otomatik
               />
             )}
           </div>
