@@ -718,3 +718,44 @@ select:invalid {
 .bb-8 {
   max-width: 50px;
 }
+
+.gradient-grid {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  background-image: 
+  radial-gradient(circle, #0000, #fff0 99%),
+  repeating-linear-gradient(
+      0deg, 
+      #01010100 0 1px, 
+      #b1b1b110 1px 6px
+  ),
+  repeating-linear-gradient(
+      0deg, 
+      #0000001c 0 2px, 
+      #2f86ff00 1px 6px
+  ),
+  linear-gradient(90deg, #fff0, #fff0);
+}
+.font-display {
+  font-family: Basement,sans-serif;
+  font-weight: 700
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+      font-family:InterVariable,sans-serif
+  }
+}
+
+@font-face {
+  font-family: Basement;
+  src: url(../fonts/blacksansblackwebfont);
+  src: url(../fonts/blacksansblackwebfont?#iefix)format("embedded-opentype"),url(../fonts/blacksansblackwebfont.otf)format("woff2"),url(../fonts/blacksansblackwebfont.otf)format("otf");
+  font-weight: 400;
+  font-style: normal;
+  descent-override:0%}
+.text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+}
