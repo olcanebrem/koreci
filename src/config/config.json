@@ -17,19 +17,19 @@
   },
 
   "call_to_action": {
-    "title": "Helping te world with focus",
-    "description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
+    "title": "KORECİ.ART",
+    "description": "Koreci sanat okulu.",
     "button": {
-      "label": "Download The Theme",
-      "link": "https://themefisher.com/astro-themes/pinwheel-astro"
+      "label": "tıkla!",
+      "link": "https://olcanebrem.com"
     }
   },
 
   "params": {
     "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
-    "email": "info@andromeda.io",
+    "email": "info@koreci.art",
     "location": "Bakırköy/İstanbul",
-    "phone": "+90506 122 4792",
+    "phone": "+905061224792",
     "contact_form_action": "#",
     "copyright": "Copyright © 2025"
   },

@@ -123,18 +123,18 @@ testimonial:
       rating: three
       content: Our platform helps build secure onboarding authentica experiences & engage your users. We build .
     - author: David Cameron
-      avatar: "/images/users/user-5.png"
+      avatar: "/images/users/user-7.png"
       organization: meta limited
       rating: five
       content: Our platform helps build secure onboarding authentica experiences & engage your users. We build .
     - author: David Cameron
-      avatar: "/images/users/user-5.png"
+      avatar: "/images/users/user-8.png"
       organization: meta limited
       rating: five
       content: Our platform helps build secure onboarding authentica experiences & engage your users. We build .
-    - author: David Cameron
-      avatar: "/images/users/user-5.png"
-      organization: meta limited
-      rating: five
-      content: Our platform helps build secure onboarding authentica experiences & engage your users. We build .
+    - author: Oğuz Alper Öktem
+      avatar: "/images/users/user-9.png"
+      organization: ceo martı
+      rating: four
+      content: Taksicilerin korkulu rüyası. Doblo sevdalısı. We build .
 ---
