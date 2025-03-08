@@ -1,0 +1,24 @@
+---
+const apiKey = import.meta.env.GOOGLE_MAPS_API_KEY;
+const location = { lat: 41.0082, lng: 28.9784 };
+const mapSrc = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+---
+
+<section class="map-section">
+  <div id="map" class="h-[400px] w-full"></div>
+  <script is:inline src={mapSrc}></script>
+  <script is:inline>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: { lat: {location.lat}, lng: {location.lng} },
+      });
+      new google.maps.Marker({ position: { lat: {location.lat}, lng: {location.lng} }, map: map });
+    }
+  </script>
+</section>
+
+<style>
+  .map-section { @apply w-full; }
+  #map { @apply h-[400px] w-full; }
+</style>

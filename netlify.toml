@@ -4,6 +4,8 @@ command = "yarn build"
 
 [build.environment]
 NODE_VERSION = "18"
+GOOGLE_MAPS_API_KEY = "your_api_key_here"
 
 [[headers]]
 for = "/*" # This defines which paths this specific [[headers]] block will cover.
+

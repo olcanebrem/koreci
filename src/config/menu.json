@@ -14,16 +14,28 @@
     },
     {
       "name": "Galeri",
-      "url": "/galeri"
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Careers",
+          "url": "/careers"
+        },
+        {
+          "name": "Integrations",
+          "url": "/integrations"
+        },
+        {
+          "name": "Pricing",
+          "url": "/pricing"
+        },
+        {
+          "name": "Changelog",
+          "url": "/changelog"
+        }
+      ]
     },
-    {
-      "name": "Features",
-      "url": "/features"
-    },
-    {
-      "name": "How It Works",
-      "url": "/how-it-works"
-    },
+    
     {
       "name": "Pages",
       "url": "",
@@ -63,8 +75,8 @@
       "url": "/about"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
+      "name": "How It Works",
+      "url": "/how-it-works"
     },
     {
       "name": "Elements",
@@ -73,6 +85,10 @@
     {
       "name": "Changelog",
       "url": "/changelog"
+    },
+    {
+      "name": "Features",
+      "url": "/features"
     }
   ]
 }

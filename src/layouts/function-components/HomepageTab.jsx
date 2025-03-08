@@ -18,6 +18,7 @@ const HomepageTab = ({ homepage_tab }) => {
               }`}
             >
               <img className="w-full object-contain" src={item.image} />
+              
             </div>
           ))}
         </div>
