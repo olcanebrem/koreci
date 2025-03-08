@@ -1,24 +1,79 @@
 ---
 const apiKey = import.meta.env.GOOGLE_MAPS_API_KEY;
-const location = { lat: 41.0082, lng: 28.9784 };
-const mapSrc = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+if (!apiKey) throw new Error("GOOGLE_MAPS_API_KEY is not defined");
+const config = {
+  locations: [
+    {
+      title: "Sarıyer",
+      address1: "Sarıyer/İstanbul",
+      address2: "Türkiye",
+      coords: { lat: 41.17817959025185, lng: 29.041851081506355 },
+      placeId: "ChIJ11KoMiLgn0ARxE4ae9DKhjo",
+    },
+  ],
+  mapOptions: {
+    center: { lat: 41.17817959025185, lng: 29.041851081506355 }, // Sarıyer’e odaklan
+    fullscreenControl: true,
+    mapTypeControl: false,
+    streetViewControl: false,
+    zoom: 12,
+    zoomControl: true,
+    maxZoom: 17,
+    mapId: "", // Geçerli bir mapId yoksa boş bırak
+  },
+  mapsApiKey: apiKey,
+  capabilities: { input: false, autocomplete: false, directions: false, distanceMatrix: false, details: false, actions: false },
+};
+const configJson = JSON.stringify(config).replace(/'/g, "\\'");
 ---
 
+<gmpx-api-loader key={apiKey} solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
+
 <section class="map-section">
-  <div id="map" class="h-[400px] w-full"></div>
-  <script is:inline src={mapSrc}></script>
-  <script is:inline>
-    function initMap() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: { lat: {location.lat}, lng: {location.lng} },
-      });
-      new google.maps.Marker({ position: { lat: {location.lat}, lng: {location.lng} }, map: map });
-    }
+  <div class="h-[400px] w-full">
+    <gmpx-store-locator data-config={configJson}></gmpx-store-locator>
+  </div>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', async () => {
+      await customElements.whenDefined('gmpx-store-locator');
+      const locator = document.querySelector('gmpx-store-locator');
+      const config = JSON.parse(locator.dataset.config);
+      locator.configureFromQuickBuilder(config);
+    });
   </script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
 </section>
 
 <style>
-  .map-section { @apply w-full; }
-  #map { @apply h-[400px] w-full; }
+  :global(html, body) {
+    height: 100%;
+    margin: 0;
+  }
+
+  :global(gmpx-store-locator) {
+    width: 100%;
+    height: 100%;
+    --gmpx-color-surface: #fff;
+    --gmpx-color-on-surface: #212121;
+    --gmpx-color-on-surface-variant: #757575;
+    --gmpx-color-primary: #1967d2;
+    --gmpx-color-outline: #e0e0e0;
+    --gmpx-fixed-panel-width-row-layout: 28.5em;
+    --gmpx-fixed-panel-height-column-layout: 65%;
+    --gmpx-font-family-base: "Roboto", sans-serif;
+    --gmpx-font-family-headings: "Roboto", sans-serif;
+    --gmpx-font-size-base: 0.875rem;
+    --gmpx-hours-color-open: #188038;
+    --gmpx-hours-color-closed: #d50000;
+    --gmpx-rating-color: #ffb300;
+    --gmpx-rating-color-empty: #e0e0e0;
+  }
+
+  .map-section {
+    @apply w-full;
+  }
+
+  .map-section > div {
+    @apply h-[400px] w-full;
+  }
 </style>
