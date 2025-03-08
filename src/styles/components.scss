@@ -42,7 +42,9 @@ body {
 
 // tab
 .tab {
-  @apply overflow-hidden rounded-lg border border-border;
+  @apply overflow-hidden rounded-lg border  bg-gray-100 ;
+  //@apply m-2; // 1rem (16px) margin
+  @apply p-8; // 1rem (16px) padding
   &-nav {
     @apply flex border-b border-border bg-theme-light;
     @apply m-0 #{!important};
@@ -714,7 +716,10 @@ select:invalid {
     }
   }
 }
-
+.avatar-img {
+  @apply h-full w-full rounded-full ;
+  
+}
 .auth-banner-carousel {
   .swiper-slide {
     width: 100% !important;

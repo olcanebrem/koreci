@@ -57,6 +57,7 @@ key_features:
 service:
   homepage_tab:
     title: Prevent failure from to impacting your reputation
+    alt: Prevent failure from to impacting your reputation
     description: Our platform helps you build secure onboarding authentication experiences that retain and engage your users. We build the infrastructure, you can.
     tab_list:
       - title: Habit building essential choose habit
