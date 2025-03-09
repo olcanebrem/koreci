@@ -10,4 +10,4 @@ NODE_VERSION = "18"
 for = "/*" # This defines which paths this specific [[headers]] block will cover.
 
 [functions]
-  directory = "netlify/functions"
+directory = "netlify/functions"
