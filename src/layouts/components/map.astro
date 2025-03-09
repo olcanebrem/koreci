@@ -1,14 +1,29 @@
 ---
 import { getCollection } from "astro:content";
 
-// Netlify Function'dan veri çek
 const fetchMapData = async () => {
-  const response = await fetch(`${import.meta.env.URL}/api/getMapData`);
-  if (!response.ok) throw new Error("Failed to fetch map data");
+  // Netlify Function URL'sini dinamik olarak belirle
+  const baseUrl = import.meta.env.URL || 'http://localhost:4321'; // Yerel test için varsayılan
+  const functionPath = import.meta.env.NETLIFY ? '/.netlify/functions/getMapData' : '/api/getMapData';
+  const url = `${baseUrl}${functionPath}`;
+
+  console.log("Fetching map data from:", url); // Hata ayıklama için
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch map data: ${response.statusText}`);
   return await response.json();
 };
 
-const config = await fetchMapData();
+let config;
+try {
+  config = await fetchMapData();
+} catch (error) {
+  console.error("Error fetching map data:", error);
+  config = {
+    locations: [], // Hata durumunda varsayılan değer
+    mapOptions: { center: { lat: 0, lng: 0 }, zoom: 1 },
+    capabilities: { input: false, autocomplete: false, directions: false, distanceMatrix: false, details: false, actions: false },
+  };
+}
 const configJson = JSON.stringify(config).replace(/'/g, "\\'");
 ---
 
