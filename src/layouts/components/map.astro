@@ -12,22 +12,20 @@ const config = {
     },
   ],
   mapOptions: {
-    center: { lat: 41.17817959025185, lng: 29.041851081506355 }, // Sarıyer’e odaklan
+    center: { lat: 41.17817959025185, lng: 29.041851081506355 },
     fullscreenControl: true,
     mapTypeControl: false,
     streetViewControl: false,
     zoom: 12,
     zoomControl: true,
     maxZoom: 17,
-    mapId: "", // Geçerli bir mapId yoksa boş bırak
+    mapId: "",
   },
   mapsApiKey: apiKey,
   capabilities: { input: false, autocomplete: false, directions: false, distanceMatrix: false, details: false, actions: false },
 };
 const configJson = JSON.stringify(config).replace(/'/g, "\\'");
 ---
-
-<gmpx-api-loader key={apiKey} solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
 
 <section class="map-section">
   <div class="h-[400px] w-full">

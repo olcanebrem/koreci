@@ -5,7 +5,8 @@ import Base from "@/layouts/Base.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
-import Map from "@/components/map.astro";
+import Map from "@/components/Map.astro";
+import Map_Layout from "@/layouts/Map_Layout.astro";
 
 const entry = (await getEntry(
   "contact",
@@ -18,18 +19,18 @@ const page_data = {
   content: entry.body,
 };
 ---
-
 <Base
-  title={contact.title}
-  meta_title={contact.meta_title}
-  description={contact.description}
-  image={contact.image}
+title={contact.title}
+meta_title={contact.meta_title}
+description={contact.description}
+image={contact.image}
 >
-  <section class="page-hero pb-6 pt-16">
-    <div class="container">
-      <PageHeader page_data={page_data} />
-    </div>
-  </section>
+<section class="page-hero pb-6 pt-16">
+  <div class="container">
+    <PageHeader page_data={page_data} />
+  </div>
+</section>
+<Map_Layout/>
 <Map/>
   <section class="section pt-0">
     <div class="container">
