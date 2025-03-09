@@ -1,29 +1,14 @@
 ---
-const apiKey = import.meta.env.GOOGLE_MAPS_API_KEY;
-if (!apiKey) throw new Error("GOOGLE_MAPS_API_KEY is not defined");
-const config = {
-  locations: [
-    {
-      title: "Sarıyer",
-      address1: "Sarıyer/İstanbul",
-      address2: "Türkiye",
-      coords: { lat: 41.17817959025185, lng: 29.041851081506355 },
-      placeId: "ChIJ11KoMiLgn0ARxE4ae9DKhjo",
-    },
-  ],
-  mapOptions: {
-    center: { lat: 41.17817959025185, lng: 29.041851081506355 },
-    fullscreenControl: true,
-    mapTypeControl: false,
-    streetViewControl: false,
-    zoom: 12,
-    zoomControl: true,
-    maxZoom: 17,
-    mapId: "",
-  },
-  mapsApiKey: apiKey,
-  capabilities: { input: false, autocomplete: false, directions: false, distanceMatrix: false, details: false, actions: false },
+import { getCollection } from "astro:content";
+
+// Netlify Function'dan veri çek
+const fetchMapData = async () => {
+  const response = await fetch(`${import.meta.env.URL}/api/getMapData`);
+  if (!response.ok) throw new Error("Failed to fetch map data");
+  return await response.json();
 };
+
+const config = await fetchMapData();
 const configJson = JSON.stringify(config).replace(/'/g, "\\'");
 ---
 
@@ -33,10 +18,21 @@ const configJson = JSON.stringify(config).replace(/'/g, "\\'");
   </div>
   <script type="module">
     document.addEventListener('DOMContentLoaded', async () => {
-      await customElements.whenDefined('gmpx-store-locator');
-      const locator = document.querySelector('gmpx-store-locator');
-      const config = JSON.parse(locator.dataset.config);
-      locator.configureFromQuickBuilder(config);
+      try {
+        await customElements.whenDefined('gmpx-store-locator');
+        const locator = document.querySelector('gmpx-store-locator');
+        if (!locator) throw new Error("gmpx-store-locator element not found");
+
+        const rawConfig = locator.dataset.config;
+        console.log("Raw config data:", rawConfig);
+        const config = JSON.parse(rawConfig);
+        console.log("Parsed config:", config);
+
+        locator.configureFromQuickBuilder(config);
+        console.log("Locator configured successfully");
+      } catch (error) {
+        console.error("Error initializing locator:", error);
+      }
     });
   </script>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
