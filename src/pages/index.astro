@@ -12,6 +12,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import config from "@/config/config.json";
 import Blog from "@/components/Blog.astro"; // Blog component
+import MapLayout from "@/layouts/Map_Layout.astro";
 const homepage = (await getEntry(
   "homepage",
   "-index"
@@ -26,6 +27,7 @@ const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
 
 <Base>
+  <MapLayout/>
   <Slider />
   <Banner banner={banner} />
   <KeyFeatures key_features={key_features} />
