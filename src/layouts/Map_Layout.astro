@@ -2,16 +2,10 @@
 
 ---
 
-<html lang="en">
- 
-  <body>
-    <!-- Tek bir <gmpx-api-loader> instance'ı -->
-    <gmpx-api-loader key={import.meta.env.GOOGLE_MAPS_API_KEY} solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
-    
-    <main>
-      <slot />
-    </main>
-    
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
-  </body>
-</html>
+<!-- key özniteliği kaldırıldı, çünkü config içinde sağlanıyor -->
+<gmpx-api-loader solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
+<main>
+  <slot />
+</main>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+</body>
