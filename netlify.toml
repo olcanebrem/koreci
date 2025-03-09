@@ -5,7 +5,7 @@
 
 [build.environment]
 NODE_VERSION = "18"
-
+GOOGLE_MAPS_API_KEY = "AIzaSyBIP2Zn6M8J58Z0AhQt6qubAfxZBWDYCJg"
 [[headers]]
 for = "/*" # This defines which paths this specific [[headers]] block will cover.
 

@@ -1,94 +1,33 @@
 ---
-import { getCollection } from "astro:content";
-
-const fetchMapData = async () => {
-  const baseUrl = import.meta.env.URL || 'http://localhost:8888'; // netlify dev için
-  // Netlify dev ve prod ortamını doğru tespit et
-  const isNetlifyDev = process.env.NETLIFY_DEV === 'true' || import.meta.env.NETLIFY;
-  const functionPath = isNetlifyDev ? '/.netlify/functions/getMapData' : '/api/getMapData';
-  const url = `${baseUrl}${functionPath}`;
-
-  console.log("Fetching map data from:", url);
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch map data: ${response.status} ${response.statusText}`);
-    }
-    const data = await response.json();
-    console.log("Fetched config:", data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching map data:", error);
-    return {
-      locations: [],
-      mapOptions: { center: { lat: 0, lng: 0 }, zoom: 1 },
-      capabilities: { input: false, autocomplete: false, directions: false, distanceMatrix: false, details: false, actions: false },
-    };
-  }
-};
-
-let config = await fetchMapData();
-console.log("Final config before JSON.stringify:", config);
-const configJson = JSON.stringify(config).replace(/'/g, "\\'");
-console.log("Config JSON:", configJson);
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+const address = "İstanbul, Türkiye";
+const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(address)}`;
 ---
 
-<section class="map-section">
-  <div class="h-[400px] w-full">
-    <gmpx-store-locator data-config={configJson}></gmpx-store-locator>
-  </div>
-  <script type="module">
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        await customElements.whenDefined('gmpx-store-locator');
-        const locator = document.querySelector('gmpx-store-locator');
-        if (!locator) throw new Error("gmpx-store-locator element not found");
+<html>
+  <head>
+    <script async src="https://maps.googleapis.com/maps/api/js?key={apiKey}&callback=initMap"></script>
+  </head>
+  <body>
+    <h1>Google Maps API ile Astro</h1>
+    
+    <iframe
+      width="600"
+      height="450"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      src={mapSrc}>
+    </iframe>
 
-        const rawConfig = locator.dataset.config;
-        console.log("Raw config data from DOM:", rawConfig);
-        const config = JSON.parse(rawConfig);
-        console.log("Parsed config from DOM:", config);
-
-        locator.configureFromQuickBuilder(config);
-        console.log("Locator configured successfully");
-      } catch (error) {
-        console.error("Error initializing locator:", error);
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 41.0082, lng: 28.9784 },
+          zoom: 10,
+        });
       }
-    });
-  </script>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
-</section>
-
-<style>
-  :global(html, body) {
-    height: 100%;
-    margin: 0;
-  }
-
-  :global(gmpx-store-locator) {
-    width: 100%;
-    height: 100%;
-    --gmpx-color-surface: #fff;
-    --gmpx-color-on-surface: #212121;
-    --gmpx-color-on-surface-variant: #757575;
-    --gmpx-color-primary: #1967d2;
-    --gmpx-color-outline: #e0e0e0;
-    --gmpx-fixed-panel-width-row-layout: 28.5em;
-    --gmpx-fixed-panel-height-column-layout: 65%;
-    --gmpx-font-family-base: "Roboto", sans-serif;
-    --gmpx-font-family-headings: "Roboto", sans-serif;
-    --gmpx-font-size-base: 0.875rem;
-    --gmpx-hours-color-open: #188038;
-    --gmpx-hours-color-closed: #d50000;
-    --gmpx-rating-color: #ffb300;
-    --gmpx-rating-color-empty: #e0e0e0;
-  }
-
-  .map-section {
-    @apply w-full;
-  }
-
-  .map-section > div {
-    @apply h-[400px] w-full;
-  }
-</style>
+    </script>
+    
+  </body>
+</html>

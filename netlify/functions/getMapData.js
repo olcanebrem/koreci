@@ -1,45 +1,30 @@
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-  if (!apiKey) {
+  const { query } = event.queryStringParameters;
+
+  if (!query) {
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "API key is not defined" }),
+      statusCode: 400,
+      body: JSON.stringify({ error: "Query parametresi eksik" }),
     };
   }
 
-  const config = {
-    locations: [
-      {
-        title: "Sarıyer",
-        address1: "Sarıyer/İstanbul",
-        address2: "Türkiye",
-        coords: { lat: 41.17817959025185, lng: 29.041851081506355 },
-        placeId: "ChIJ11KoMiLgn0ARxE4ae9DKhjo",
-      },
-    ],
-    mapOptions: {
-      center: { lat: 41.17817959025185, lng: 29.041851081506355 },
-      fullscreenControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      zoom: 12,
-      zoomControl: true,
-      maxZoom: 17,
-      mapId: "",
-    },
-    mapsApiKey: apiKey,
-    capabilities: {
-      input: false,
-      autocomplete: false,
-      directions: false,
-      distanceMatrix: false,
-      details: false,
-      actions: false,
-    },
-  };
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+    query
+  )}&key=${apiKey}`;
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(config),
-  };
-};
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Google Maps API isteği başarısız oldu." }),
+    };
+  }
+}
