@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
       maxZoom: 17,
       mapId: "",
     },
-    mapsApiKey: apiKey, // API anahtarını config’e ekle
+    mapsApiKey: apiKey,
     capabilities: {
       input: false,
       autocomplete: false,

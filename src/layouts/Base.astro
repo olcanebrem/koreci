@@ -8,7 +8,7 @@ import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
-import MapLayout from "./Map_Layout.astro";
+import Map from "@/components/Map.astro"
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -33,7 +33,6 @@ const { title, meta_title, description, image, noindex, canonical } =
 <!doctype html>
 <html lang="en">
   <head>
-    <MapLayout/>
   
     <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->

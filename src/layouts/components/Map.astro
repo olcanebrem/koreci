@@ -2,8 +2,10 @@
 import { getCollection } from "astro:content";
 
 const fetchMapData = async () => {
-  const baseUrl = import.meta.env.URL || 'http://localhost:4321';
-  const functionPath = import.meta.env.NETLIFY ? '/.netlify/functions/getMapData' : '/api/getMapData';
+  const baseUrl = import.meta.env.URL || 'http://localhost:8888'; // netlify dev için
+  // Netlify dev ve prod ortamını doğru tespit et
+  const isNetlifyDev = process.env.NETLIFY_DEV === 'true' || import.meta.env.NETLIFY;
+  const functionPath = isNetlifyDev ? '/.netlify/functions/getMapData' : '/api/getMapData';
   const url = `${baseUrl}${functionPath}`;
 
   console.log("Fetching map data from:", url);
@@ -12,7 +14,9 @@ const fetchMapData = async () => {
     if (!response.ok) {
       throw new Error(`Failed to fetch map data: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+    const data = await response.json();
+    console.log("Fetched config:", data);
+    return data;
   } catch (error) {
     console.error("Error fetching map data:", error);
     return {
@@ -24,7 +28,9 @@ const fetchMapData = async () => {
 };
 
 let config = await fetchMapData();
+console.log("Final config before JSON.stringify:", config);
 const configJson = JSON.stringify(config).replace(/'/g, "\\'");
+console.log("Config JSON:", configJson);
 ---
 
 <section class="map-section">
@@ -39,9 +45,9 @@ const configJson = JSON.stringify(config).replace(/'/g, "\\'");
         if (!locator) throw new Error("gmpx-store-locator element not found");
 
         const rawConfig = locator.dataset.config;
-        console.log("Raw config data:", rawConfig);
+        console.log("Raw config data from DOM:", rawConfig);
         const config = JSON.parse(rawConfig);
-        console.log("Parsed config:", config);
+        console.log("Parsed config from DOM:", config);
 
         locator.configureFromQuickBuilder(config);
         console.log("Locator configured successfully");
