@@ -6,7 +6,6 @@ functions = "netlify/functions"
 [build.environment]
 NODE_VERSION = "18"
 GOOGLE_MAPS_API_KEY = "AIzaSyBIP2Zn6M8J58Z0AhQt6qubAfxZBWDYCJg"
-GOOGLE_MAPS_MAP_ID= "ChIJ11KoMiLgn0ARxE4ae9DKhjo"
 [[headers]]
 for = "/*" # This defines which paths this specific [[headers]] block will cover.
 
