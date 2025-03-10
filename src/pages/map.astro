@@ -1,36 +1,34 @@
 ---
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 if (!apiKey) {
-  console.error("Google Maps API anahtarı bulunamadı. Lütfen .env dosyasında PUBLIC_GOOGLE_MAPS_API_KEY tanımlayın.");
+  console.error("Google Maps API anahtarı bulunamadı. Üretim ortamında ortam değişkenini kontrol edin.");
 }
+
+// Önceki konumu tanımla
+const location = { lat: 37.7749, lng: -122.4194 };
 ---
 
 <div id="map" class="map-container"></div>
+<script async defer src={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`}></script>
 
-<script define:vars={{ apiKey }}>
-  // API anahtarını kontrol et
-  if (!apiKey) {
-    console.error("API anahtarı istemci tarafında undefined. .env dosyası doğru mu?");
-    return;
-  }
-
-  // Google Maps scriptini dinamik olarak ekle
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-
-  // Harita başlatma fonksiyonu
+<script>
   window.initMap = function () {
+    // Haritayı başlat
     const map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: 37.7749, lng: -122.4194 }, // Örnek koordinat
+      center: { lat: 37.7749, lng: -122.4194 }, // Önceki konum
       zoom: 12,
       styles: [
         { featureType: "water", elementType: "geometry", stylers: [{ color: "#e9e9e9" }] },
         { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
         { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
       ],
+    });
+
+    // Marker ekle
+    const marker = new google.maps.Marker({
+      position: { lat: 37.7749, lng: -122.4194 }, // Önceki konum
+      map: map,
+      title: "Burası!", // Marker üzerine gelindiğinde görünecek metin (isteğe bağlı)
     });
   };
 </script>
