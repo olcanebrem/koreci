@@ -1,6 +1,5 @@
-exports.handler = async (event, context) => {
+exports.handler = async () => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-
   if (!apiKey) {
     return {
       statusCode: 500,
@@ -14,19 +13,12 @@ exports.handler = async (event, context) => {
     mapId: process.env.GOOGLE_MAPS_MAP_ID || "DEMO_MAP_ID",
   };
 
-  // Harita script'ini sunucu tarafında oluştur ve proxy yap
-  const mapScript = `
-    <script type="module" async src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=maps,marker&v=beta"></script>
-  `;
-
   return {
     statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      mapConfig: mapConfig,
-      mapScript: mapScript, // Script'i istemciye gömülü olarak gönder
+      mapConfig,
+      mapScript: `<script async src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap"></script>`,
     }),
   };
 };
