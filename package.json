@@ -1,8 +1,8 @@
 {
-  "name": "pinwheel-astro",
+  "name": "koreci",
   "version": "3.0.0",
-  "description": "Astro and Tailwindcss boilerplate",
-  "author": "themefisher",
+  "description": "KORECİ ART SCHOOL",
+  "author": "olcanebrem",
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {
@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "start": "astro dev"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
