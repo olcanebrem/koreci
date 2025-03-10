@@ -1,14 +1,9 @@
 ---
-let mapData = null;
-
-try {
-  const res = await fetch('/functions/map');  // API'den harita verilerini alıyoruz
-  if (res.ok) {
-    mapData = await res.json();
-  }
-} catch (error) {
-  console.error("Harita verisi yüklenemedi!", error);
-}
+// Build zamanında varsayılan değerler
+const defaultMapConfig = {
+  center: { lat: 41.1814, lng: 29.0385 },
+  zoom: 14,
+};
 ---
 
 <html lang="en">
@@ -20,27 +15,64 @@ try {
   </head>
   <body>
     <h1>Google Maps API with Astro</h1>
-
     <div id="map" style="width: 100%; height: 500px;"></div>
 
     <script>
-      if (mapData) {
-        // Google Maps API script'ini dinamik olarak ekliyoruz
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${mapData.apiKey}&libraries=places&v=beta`;
-        script.async = true;
-        script.onload = () => {
-          initMap(mapData.mapConfig);
+      document.addEventListener('DOMContentLoaded', async () => {
+        const fetchMapData = async () => {
+          const url = '/.netlify/functions/map';
+          console.log('Fetching map data from:', url);
+          try {
+            const response = await fetch(url, { mode: 'cors' });
+            if (!response.ok) {
+              throw new Error(`Failed to fetch map data: ${response.status} ${response.statusText}`);
+            }
+            const data = await response.json();
+            console.log('Fetched data:', data);
+            if (!data.mapConfig || !data.mapScript) {
+              throw new Error('Invalid data structure from server');
+            }
+            return data;
+          } catch (error) {
+            console.error('Error fetching map data:', error);
+            return {
+              mapConfig: {
+                center: { lat: 41.1814, lng: 29.0385 },
+                zoom: 14,
+              },
+              mapScript: null, // API anahtarı olmadan script yüklenmeyecek
+            };
+          }
         };
-        document.head.appendChild(script);
+
+        const { mapConfig, mapScript } = await fetchMapData();
+        if (mapScript) {
+          const script = document.createElement('script');
+          script.src = mapScript.match(/src="([^"]+)"/)[1]; // mapScript'ten URL'yi çıkar
+          script.async = true;
+          script.onload = () => {
+            initMap(mapConfig);
+          };
+          script.onerror = () => {
+            console.error('Failed to load Google Maps API script');
+          };
+          document.head.appendChild(script);
+        } else {
+          console.warn('No valid mapScript, using fallback');
+          initMap(mapConfig); // Fallback ile haritayı yükle
+        }
 
         function initMap(mapConfig) {
-          new google.maps.Map(document.getElementById("map"), {
+          if (!window.google || !window.google.maps) {
+            console.error('Google Maps API is not loaded');
+            return;
+          }
+          new google.maps.Map(document.getElementById('map'), {
             center: mapConfig.center,
             zoom: mapConfig.zoom,
           });
         }
-      }
+      });
     </script>
   </body>
 </html>
