@@ -1,7 +1,8 @@
 ---
-const defaultMapConfig = {
-  center: { lat: 41.1814, lng: 29.0385 }, // Varsayılan konum (İstanbul)
-  zoom: 14, // Varsayılan zoom seviyesi
+const apiKey = import.meta.env.GOOGLE_MAPS_API_KEY; // .env dosyasından API anahtarını al
+const mapConfig = {
+  center: { lat: 41.1814, lng: 29.0385 },
+  zoom: 14,
 };
 ---
 <html lang="en">
@@ -17,20 +18,26 @@ const defaultMapConfig = {
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // Varsayılan harita yapılandırması
-        const mapConfig = { center: { lat: 41.1814, lng: 29.0385 }, zoom: 14 };
+        // API Anahtarını env'den alıyoruz
+        const apiKey = "{{ import.meta.env.GOOGLE_MAPS_API_KEY }}"; // Burada API anahtarını almak için Astro değişkeni kullanıyoruz
         
         // Google Maps API script'ini dinamik olarak yükle
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap&v=weekly`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=weekly`;
         script.async = true;
         script.defer = true;
+
+        // Google Maps API yüklendikten sonra haritayı başlat
+        script.onload = () => {
+          initMap(mapConfig);
+        };
+
         document.head.appendChild(script);
 
         // Google Maps yüklendiğinde çağrılacak fonksiyon
-        window.initMap = () => {
+        function initMap(mapConfig) {
           const map = new google.maps.Map(document.getElementById('map'), mapConfig);
-        };
+        }
       });
     </script>
   </body>
