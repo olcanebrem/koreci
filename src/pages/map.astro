@@ -40,17 +40,20 @@ const defaultMapConfig = {
                 center: { lat: 41.1814, lng: 29.0385 },
                 zoom: 14,
               },
-              mapScript: null, // API anahtarı olmadan script yüklenmeyecek
+              mapScript: null,
             };
           }
         };
 
         const { mapConfig, mapScript } = await fetchMapData();
+
         if (mapScript) {
           const script = document.createElement('script');
-          script.src = mapScript.match(/src="([^"]+)"/)[1]; // mapScript'ten URL'yi çıkar
+          script.src = mapScript.match(/src="([^"]+)"/)[1];
           script.async = true;
+          script.defer = true;
           script.onload = () => {
+            console.log('Google Maps API loaded successfully');
             initMap(mapConfig);
           };
           script.onerror = () => {
@@ -58,8 +61,7 @@ const defaultMapConfig = {
           };
           document.head.appendChild(script);
         } else {
-          console.warn('No valid mapScript, using fallback');
-          initMap(mapConfig); // Fallback ile haritayı yükle
+          console.warn('No valid mapScript, skipping map initialization');
         }
 
         function initMap(mapConfig) {
