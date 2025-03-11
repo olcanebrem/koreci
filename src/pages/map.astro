@@ -2005,7 +2005,7 @@ const lottieAnimationData = {
   window.initMap = function () {
     const map = new google.maps.Map(document.getElementById('map'), {
       center: location,
-      zoom: 14,
+      zoom: 16,
       mapId: mapId,
       styles: [
         { featureType: "water", elementType: "geometry", stylers: [{ color: "#e9e9e9" }] },
@@ -2030,15 +2030,17 @@ const lottieAnimationData = {
         animationData: lottieAnimationData,
       });
 
-      // Animasyon boyutunu ayarla
-      animation.addEventListener('DOMLoaded', () => {
-        const svgElement = markerContainer.querySelector('svg');
-        if (svgElement) {
-          svgElement.style.width = '60px';
-          svgElement.style.height = '80px';
-          console.log('Animasyon yüklendi');
-        }
-      });
+      // Animasyon boyutunu 2 katına çıkar
+animation.addEventListener("DOMLoaded", () => {
+  const svgElement = markerContainer.querySelector("svg");
+  if (svgElement) {
+    svgElement.style.width = "240px"; // 120 * 2
+    svgElement.style.height = "380px"; // 190 * 2
+    svgElement.style.transform = "translate(-50%, -50%)"; // Konumu değiştirmez
+    console.log("Animasyon büyütüldü");
+  }
+});
+
     } else {
       console.error('Lottie tanımlı değil');
     }
@@ -2052,6 +2054,7 @@ const lottieAnimationData = {
     });
 
     console.log('Marker oluşturuldu:', marker);
+    
   };
 </script>
 
