@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro'; // Varsa layout dosyanızı import edin
+---
+
+<Layout>
+  <h1>Lottie Animasyon Örneği</h1>
+  <!-- Animasyonun görüneceği bir container -->
+  <div id="lottie-container" style="width: 300px; height: 300px;"></div>
+
+  <!-- Lottie-web ile animasyonu yüklemek için script -->
+  <script>
+    import lottie from 'lottie-web';
+    document.addEventListener('DOMContentLoaded', () => {
+      lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Animasyonun yerleştirileceği element
+        renderer: 'svg', // SVG, canvas veya html olarak render edebilirsiniz
+        loop: true, // Animasyonun tekrar etmesi için
+        autoplay: true, // Otomatik oynatma
+        path: '/animations/koreci_marker.json' // Public klasöründeki dosya yolu
+      });
+    });
+  </script>
+</Layout>
