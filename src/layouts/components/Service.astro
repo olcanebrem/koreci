@@ -5,7 +5,8 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Map from "@/pages/map.astro";
- 
+
+import About from "@/layouts/components/About.astro";
 
 type Props = {
   service: CollectionEntry<"homepage">["data"]["service"];
@@ -16,22 +17,24 @@ const { homepage_tab, our_service } = service;
 
 <section class="section services">
   <div class="container">
+    <About />
     <HomepageTab client:load homepage_tab={homepage_tab} />
     {
       our_service.map((item, index) => (
-        <div class="gx-5 row mt-12 items-center lg:mt-0">
+        <div class="gx-5 row mt-12 items-center lg:mt-0 pb-8">
+          {" "}
+          {/* Alt padding eklendi */}
           <div class={`lg:col-7 ${index % 2 === 0 ? "order-0" : "order-1"}`}>
             {item.image && (
               <div class="relative">
-                
                 <Image
                   class="absolute bottom-6 left-1/2 -z-[1] -translate-x-1/2"
                   src="/images/shape-2.png"
                   alt=""
                   height={147}
                   width={151}
-                  />
-                  <Map/>
+                />
+                <Map />
               </div>
             )}
             {item.video && (
@@ -42,8 +45,8 @@ const { homepage_tab, our_service } = service;
                 width={700}
                 title={item.title}
                 video_id={item.video.video_id}
-                video_width="w-full max-w-[700px]" // Sabit genişlik yerine dinamik
-                video_height="h-auto" // Yükseklik otomatik
+                video_width="w-full max-w-[700px]"
+                video_height="h-auto"
               />
             )}
           </div>

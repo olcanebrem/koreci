@@ -1,45 +1,71 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Anasayfa",
       "url": "/"
     },
     {
-      "name": "About",
-      "url": "/about"
-    },
-    {
-      "name": "Blog",
-      "url": "/blog"
-    },
-    {
-      "name": "Galeri",
-      "url": "",
+      "name": "Koreci",
+      "url": "/about",
       "hasChildren": true,
       "children": [
         {
-          "name": "Careers",
-          "url": "/careers"
+          "name": "Hakkımızda",
+          "url": "/about"
         },
         {
-          "name": "Integrations",
-          "url": "/integrations"
+          "name": "Başarılar",
+          "url": "/successes"
         },
         {
-          "name": "Pricing",
-          "url": "/pricing"
+          "name": "Öğrenci Yorumları",
+          "url": "/comments"
+        }
+      ]
+    },
+    {
+      "name": "Eğitimler",
+      "url": "/learning",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "GSF Hazırlık Kursları",
+          "url": "/gsf_hazirlik"
         },
         {
-          "name": "Changelog",
-          "url": "/changelog"
+          "name": "Yurt Dışı Portfolyo Hazırlık",
+          "url": "/comments"
+        },
+        {
+          "name": "Resim Kursu",
+          "url": "/resim_kursu"
+        },
+        {
+          "name": "Hobi",
+          "url": "/comments"
+        }
+      ]
+    },
+    {
+      "name": "Galeri",
+      "url": "/gallery",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Fotoğraflar",
+          "url": "/photos"
+        },
+        {
+          "name": "Videolar",
+          "url": "/videos"
         }
       ]
     },
     
     {
-      "name": "Pages",
+      "name": "Yetenek Sınavları",
       "url": "",
-      "hasChildren": true,
+      "hasChildren": false,
       "children": [
         {
           "name": "Careers",
@@ -64,18 +90,22 @@
       ]
     },
     {
-      "name": "Contact",
+      "name": "İletişim",
       "url": "/contact"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog"
     }
   ],
-
+  
   "footer": [
     {
       "name": "About",
       "url": "/about"
     },
     {
-      "name": "How It Works",
+      "name": "KVKK",
       "url": "/how-it-works"
     },
     {
