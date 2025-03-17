@@ -1072,3 +1072,218 @@ select:invalid {
   }
 }
 
+// Sayfa wrapper'ı
+.page-wrapper {
+  max-width: 1200px; // Maksimum genişlik değeri
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-md-12, .col-sm-12, .col-xs-12 {
+  padding: 0 15px;
+  width: 100%;
+}
+
+.shop {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+// Galeri stilleri
+.thumb-gallery {
+  position: relative;
+
+  .owl-carousel {
+    position: relative;
+
+    .owl-stage-outer {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .owl-item {
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+    }
+
+    .owl-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+
+      .owl-prev, .owl-next {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
+}
+
+// Ürün detayları kutusu
+.product-details-box {
+  padding-left: 30px;
+
+  .product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .product-short-desc {
+    margin-bottom: 20px;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .product-actions {
+    margin-top: 20px;
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+
+      &.butn-dark {
+        background-color: #333;
+        color: #fff;
+
+        &:hover {
+          background-color: #555;
+        }
+      }
+
+      &.btn-success {
+        background-color: #28a745;
+        color: #fff;
+
+        &:hover {
+          background-color: #218838;
+        }
+      }
+    }
+  }
+}
+
+// Tab stilleri
+.tabs {
+  margin-top: 30px;
+
+  .nav-tabs {
+    border-bottom: 2px solid #ddd;
+    display: flex;
+
+    li {
+      margin-right: 10px;
+
+      a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        border-radius: 5px 5px 0 0;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-bottom: none;
+
+        &:hover {
+          background-color: #eee;
+        }
+
+        &.active {
+          background-color: #fff;
+          border-bottom: 2px solid #fff;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+    background-color: #fff;
+
+    .product-desc-area {
+      p {
+        margin-bottom: 15px;
+      }
+
+      h2, h4 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      ul, ol {
+        margin-bottom: 15px;
+        padding-left: 20px;
+
+        li {
+          margin-bottom: 5px;
+        }
+      }
+
+      blockquote {
+        margin: 20px 0;
+        padding: 10px 20px;
+        background-color: #f9f9f9;
+        border-left: 5px solid #ddd;
+        color: #555;
+
+        a {
+          color: #007bff;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
