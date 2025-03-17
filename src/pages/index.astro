@@ -25,11 +25,9 @@ const sortedPosts = sortByDate(posts);
 const recentPost = sortedPosts.filter((item) => !item.data.featured);
 const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
-
 <Base>
   <Slider />
   <Banner banner={banner} />
-  
   <KeyFeatures key_features={key_features} />
   <Service service={service} />
   <Testimonial testimonial={testimonial} />

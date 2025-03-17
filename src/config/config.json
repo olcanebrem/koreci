@@ -12,7 +12,7 @@
   },
 
   "settings": {
-    "pagination": 6,
+    "pagination": 3,
     "summary_length": 100
   },
 
@@ -26,7 +26,7 @@
   },
 
   "params": {
-    "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
+    "footer_description": "Vizyoner, Dijital, İnovatif Eğitim.",
     "email": "info@koreci.art",
     "location": "Bakırköy/İstanbul",
     "phone": "+905061224792",

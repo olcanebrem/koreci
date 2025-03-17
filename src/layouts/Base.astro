@@ -8,6 +8,7 @@ import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
+import BackgroundGradient from "./components/BackgroundGradient.astro";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -159,6 +160,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    <BackgroundGradient/>
     <TwSizeIndicator />
     <Header />
     <main id="main-content">
@@ -166,4 +168,6 @@ const { title, meta_title, description, image, noindex, canonical } =
     </main>
     <Footer />
   </body>
+</html>
+
 </html>

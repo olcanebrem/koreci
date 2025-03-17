@@ -614,6 +614,7 @@ select:invalid {
 
 .text-container {
   @apply mx-auto lg:max-w-[412px];
+  
 }
 
 .blockquote {
@@ -753,10 +754,18 @@ select:invalid {
   linear-gradient(90deg, #fff0, #fff0);
 }
 .font-display {
-  font-family: Basement,sans-serif;
-  font-weight: 700
-}
+  font-family: Basement, sans-serif;
+  font-weight: 500;
+  color: #b0d6ff;
+  font-size: 8rem; /* Daha küçük bir font boyutu */
+  line-height: 0.7; /* Satır aralığı ayarı */
+  }
 
+  .koreci-container {
+    column-count: 1; /* 3 sütun oluşturur */
+    column-gap: 700px; /* Sütunlar arası boşluk */
+    font-size: 2.3em; /* Yazı boyutu (isteğe bağlı) */
+  }
 @supports (font-variation-settings: normal) {
   :root {
       font-family:InterVariable,sans-serif
@@ -888,7 +897,7 @@ select:invalid {
           border-left: 4px solid #007bff;
           padding-left: 1rem;
           color: #333;
-          margin: 1.5rem 0;
+          margin: 1.5rem  10;
         }
       }
     }
@@ -945,7 +954,8 @@ select:invalid {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px;
+  margin: 1rem;
+  padding-top: 1rem;
 }
 
 .col-sm-5, .col-sm-7 {
@@ -969,6 +979,7 @@ select:invalid {
     flex: 0 0 100%; // Mobilde tam genişlik
     max-width: 100%;
   }
+  
 }
 
 // Galeri stilleri
@@ -1287,3 +1298,27 @@ select:invalid {
 
 
 
+.animate-marquee {
+  max-width: 1000px; // Maksimum genişlik 1000 piksel
+  margin: 0 auto; // Ortalamak için (isteğe bağlı)
+
+  @media (max-width: 1000px) {
+    max-width: 100%; // 1000 pikselden küçük ekranlarda tam genişlik
+  }
+
+  .slider {
+    // Slider'ın diğer stilleri
+  }
+
+  .slide {
+    // Slide'ların diğer stilleri
+  }
+
+  .prev, .next {
+    // Önceki/Sonraki butonların stilleri
+  }
+
+  .dot {
+    // Noktaların stilleri
+  }
+}
