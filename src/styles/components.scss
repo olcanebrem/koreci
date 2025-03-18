@@ -5,7 +5,8 @@ body {
 
 // section style
 .section {
-  @apply py-16;
+  @apply pt-12;
+  z-index: 5;
 }
 
 // container
@@ -476,6 +477,7 @@ select:invalid {
   &-footer {
     @apply border-t border-border pb-0 pt-6;
   }
+  
 }
 
 //tag
@@ -509,6 +511,7 @@ select:invalid {
     }
   }
 }
+
 
 .filter-btn {
   @apply m-3 rounded-3xl border border-[#A9A9A9] text-dark;
@@ -736,36 +739,29 @@ select:invalid {
 }
 
 .gradient-grid {
-  height: 400px;
-  display: flex;
+  height: 300px;
   justify-content: center;
-  background-image: 
-  radial-gradient(circle, #0000, #fff0 99%),
-  repeating-linear-gradient(
-      0deg, 
-      #01010100 0 1px, 
-      #b1b1b110 1px 6px
-  ),
-  repeating-linear-gradient(
-      0deg, 
-      #0000001c 0 2px, 
-      #2f86ff00 1px 6px
-  ),
-  linear-gradient(90deg, #fff0, #fff0);
+
+}
+.koreci-container {
+  width: 100%; /* Ekranın tam genişliğini kapla */
+  box-sizing: border-box; /* Padding ve border'ı genişliğe dahil et */
+  column-count: 1; /* Tek sütun */
+  column-gap: clamp(20px, 10vw, 700px); /* Sütun aralığı: Min 20px, Ideal 10vw, Max 700px */
+  font-size: clamp(10rem, 0.2vw, 0.3rem); /* Yazı boyutu: Min 1.2rem, Ideal 5vw, Max 2.3rem */
+  line-height: 0.8; /* Satır aralığı */
+  padding: 20px; /* İç boşluk */
+  margin: 0; /* Margin'i sıfırla */
+  overflow: hidden;
 }
 .font-display {
   font-family: Basement, sans-serif;
   font-weight: 500;
   color: #b0d6ff;
-  font-size: 8rem; /* Daha küçük bir font boyutu */
+  font-size: 8rem; /* Başlangıç font boyutu */
   line-height: 0.7; /* Satır aralığı ayarı */
-  }
+}
 
-  .koreci-container {
-    column-count: 1; /* 3 sütun oluşturur */
-    column-gap: 700px; /* Sütunlar arası boşluk */
-    font-size: 2.3em; /* Yazı boyutu (isteğe bağlı) */
-  }
 @supports (font-variation-settings: normal) {
   :root {
       font-family:InterVariable,sans-serif
@@ -1322,3 +1318,24 @@ select:invalid {
     // Noktaların stilleri
   }
 }
+.circle-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
+}
+
+

@@ -10,6 +10,7 @@ import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
 import BackgroundGradient from "./components/BackgroundGradient.astro";
 
+
 // font families
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -160,10 +161,12 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    
     <BackgroundGradient/>
     <TwSizeIndicator />
     <Header />
     <main id="main-content">
+      
       <slot />
     </main>
     <Footer />
