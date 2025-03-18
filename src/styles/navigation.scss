@@ -1,42 +1,47 @@
-// navbar toggler
-input#nav-toggle:checked ~ label#show-button {
-  @apply hidden;
-}
+// Değişkenler
+$glass-background: rgba(255, 255, 255, 0.2); // Şeffaf beyaz arka plan
+$glass-blur: 10px; // Bulanıklık derecesi
+$glass-border: 1px solid rgba(255, 255, 255, 0.3); // Şeffaf kenarlık
+$glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); // Gölge efekti
 
-input#nav-toggle:checked ~ label#hide-button {
-  @apply flex lg:hidden;
-}
-
-input#nav-toggle:checked ~ #nav-menu {
-  @apply block lg:flex;
-}
-
+// Header Stilleri
 .header {
-  @apply sticky top-0 z-50  bg-white py-6 transition-all duration-300 lg:bg-transparent ;
-  
+  @apply sticky top-0 z-50 py-6 transition-all duration-300;
+  background: $glass-background; // Şeffaf arka plan
+  backdrop-filter: blur($glass-blur); // Buzlu cam efekti
+  border-bottom: $glass-border; // Şeffaf kenarlık
+  box-shadow: $glass-shadow; // Hafif gölge
 
   &-sticky {
-    @apply bg-white shadow;
+    @apply bg-white shadow; // Sticky durumunda arka plan beyaz ve gölgeli
   }
 }
+
+// Navbar Container
 .navbar-container {
+  // İhtiyaca göre stil eklenebilir
 }
-// navbar items
+
+// Navbar
 .navbar {
   @apply relative flex flex-wrap items-center justify-between;
 }
 
+// Navbar Brand
 .navbar-brand {
   @apply text-xl font-semibold text-dark;
+
   image {
     @apply max-h-full max-w-full;
   }
 }
 
+// Navbar Nav
 .navbar-nav {
   @apply text-center lg:text-left;
 }
 
+// Nav Link
 .nav-link {
   @apply block p-3 py-2 text-[15px] text-dark transition hover:text-primary md:px-2 lg:inline-block;
 
@@ -49,18 +54,35 @@ input#nav-toggle:checked ~ #nav-menu {
   }
 }
 
+// Nav Dropdown
 .nav-dropdown {
   @apply mr-0;
 }
 
+// Nav Dropdown List
 .nav-dropdown-list {
-  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary/25 bg-primary/5 px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
+  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid border-primary/25 bg-primary/5 px-4 py-3 shadow-sm duration-300 lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
 }
 
+// Nav Dropdown Item
 .nav-dropdown-item {
   @apply mb-1;
 }
 
+// Nav Dropdown Link
 .nav-dropdown-link {
   @apply min-w-[150px] py-1 text-sm font-medium text-dark transition hover:text-primary;
+}
+
+// Nav Toggler
+input#nav-toggle:checked ~ label#show-button {
+  @apply hidden;
+}
+
+input#nav-toggle:checked ~ label#hide-button {
+  @apply flex lg:hidden;
+}
+
+input#nav-toggle:checked ~ #nav-menu {
+  @apply block lg:flex;
 }

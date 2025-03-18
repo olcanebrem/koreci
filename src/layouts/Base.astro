@@ -9,7 +9,7 @@ import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
 import BackgroundGradient from "./components/BackgroundGradient.astro";
-
+import Slider from '@/components/Slider.astro';
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -165,8 +165,8 @@ const { title, meta_title, description, image, noindex, canonical } =
     <BackgroundGradient/>
     <TwSizeIndicator />
     <Header />
+    <Slider />
     <main id="main-content">
-      
       <slot />
     </main>
     <Footer />

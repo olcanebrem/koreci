@@ -19,8 +19,8 @@ banner:
 
 ##key features
 key_features:
-  title: "The Highlighting Part Of Our Solution"
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin.
+  title: "Yenilikçi ve İnovatif Modül"
+  description: 
   feature_list:
     - icon: "map" #icon package react-feather-icon [https://feathericons.com/]
       title: Live Caption
@@ -39,9 +39,9 @@ key_features:
 #service
 service:
   homepage_tab:
-    title: Prevent failure from to impacting your reputation
+    title: Dijital dünyadan geri kalmayın!
     alt: Prevent failure from to impacting your reputation
-    description: Our platform helps you build secure onboarding authentication experiences that retain and engage your users. We build the infrastructure, you can.
+    description: Stüdyomuz size öğrenmeniz gerekenleri en güncel metodlarla uzman kadrosuyla birlikte aktarır.
     tab_list:
       - title: Habit building essential choose habit
         icon: "lock" #icon package react-feather-icon [https://feathericons.com/]
@@ -54,7 +54,7 @@ service:
         image: "/images/sells-by-country.png"
 
   our_service:
-    - title: Accept payments any country in this whole universe
+    - title: Bursluluk imkanlarından faydalanın
       desctiption: Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies ligula sed
       image: "/images/collaboration.png"
       list:
@@ -73,7 +73,7 @@ service:
 
 #testimonial
 testimonial:
-  title: Our customers have nice things to say about us
+  title: Hadi bizi bir de müşterilerimizden dinleyin.
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin.
   testimonial_list:
     - author: David Cameron
@@ -120,5 +120,5 @@ testimonial:
       avatar: "/images/users/user-9.png"
       organization: ceo martı
       rating: four
-      content: Taksicilerin korkulu rüyası. Doblo sevdalısı. We build .
+      content: Taksicilerin korkulu rüyası. Doblo sevdalısı.
 ---

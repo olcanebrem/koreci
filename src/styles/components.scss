@@ -7,11 +7,14 @@ body {
 .section {
   @apply pt-12;
   z-index: 5;
+  background: #2e006b4c;
 }
 
 // container
 .container {
   @apply mx-auto max-w-[1202px] px-3;
+  border-bottom-right-radius: 2ch;
+  border-bottom-left-radius: 2ch;
 }
 
 // form style
@@ -348,6 +351,7 @@ select:invalid {
   &-author-avatar {
     @apply mx-auto -mt-12 h-[90px] w-[90px] -translate-y-5 rounded-full p-0.5;
   }
+  
 }
 .review-rating {
   &.five {
@@ -414,8 +418,10 @@ select:invalid {
 
 //services
 .services {
+  
   .tab-nav {
     @apply inline-block;
+    
   }
 
   .tab-nav-item {
@@ -741,10 +747,13 @@ select:invalid {
 .gradient-grid {
   height: 300px;
   justify-content: center;
+  overflow:visible;
+  padding-bottom: 55rem;
 
 }
 .koreci-container {
   width: 100%; /* Ekranın tam genişliğini kapla */
+  //max-height:map-values($map:content );
   box-sizing: border-box; /* Padding ve border'ı genişliğe dahil et */
   column-count: 1; /* Tek sütun */
   column-gap: clamp(20px, 10vw, 700px); /* Sütun aralığı: Min 20px, Ideal 10vw, Max 700px */
@@ -752,14 +761,16 @@ select:invalid {
   line-height: 0.8; /* Satır aralığı */
   padding: 20px; /* İç boşluk */
   margin: 0; /* Margin'i sıfırla */
-  overflow: hidden;
+  overflow:hidden;
+  z-index: 1;
+  
 }
 .font-display {
   font-family: Basement, sans-serif;
-  font-weight: 500;
-  color: #b0d6ff;
-  font-size: 8rem; /* Başlangıç font boyutu */
-  line-height: 0.7; /* Satır aralığı ayarı */
+  font-weight: 50;
+  color: #b0d6ff43;
+  font-size :500%; /* Başlangıç font boyutu */
+  line-height: 1; /* Satır aralığı ayarı */
 }
 
 @supports (font-variation-settings: normal) {
@@ -875,6 +886,7 @@ select:invalid {
       border: 1px solid #ddd;
       border-top: none;
       background-color: #fff;
+      z-index: 4;
 
       .course-details, .course-schedule-details {
         h2 {
@@ -952,6 +964,10 @@ select:invalid {
   flex-wrap: wrap;
   margin: 1rem;
   padding-top: 1rem;
+  .container{
+    border-radius:2cap;
+    background: #2e006b4c;
+  } 
 }
 
 .col-sm-5, .col-sm-7 {

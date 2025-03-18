@@ -1,6 +1,5 @@
 ---
 import PageHeader from "@/components/PageHeader.astro";
-import Shape from "@/components/Shape.astro";
 import Base from "@/layouts/Base.astro";
 import IntegrateMedia from "@/layouts/function-components/IntegrateMedia";
 import Cta from "@/layouts/partials/Cta.astro";
@@ -26,7 +25,6 @@ const page_data = {
   description={integrationsIndex.data.description}
   image={integrationsIndex.data.image}
 >
-  <Shape />
   <section class="page-hero pb-14 pt-16">
     <div class="container">
       <PageHeader page_data={page_data} />

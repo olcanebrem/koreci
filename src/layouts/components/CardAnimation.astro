@@ -1,5 +1,5 @@
 ---
-import Slider from './Slider.astro';
+
 interface Props {
   layers: number;
   cardsPerLayer: number[];
@@ -32,8 +32,11 @@ const getImagePath = (index: number) => {
 
 <div class="cardi-container">
     
-    <Slider />
-
+    
+    <!-- Logo -->
+  <div class="cardi-layer">
+    <img src="/images/koreci_applogo.png" alt="Logo" />
+  </div>
 
 
   {Array.from({ length: layers }).map((_, layerIndex) => {
@@ -79,9 +82,12 @@ const getImagePath = (index: number) => {
 .cardi-container {
   position: relative;
   width: 100vw;
-  height: 300px;
+  height: 500px;
   justify-content: center;
   align-items: center;
+  //overflow: hidden;
+  padding-bottom: 30rem;
+  
 }
 
 .cardi-layer {
@@ -95,6 +101,21 @@ const getImagePath = (index: number) => {
   border-radius: 50%;
   animation: rotateLayer calc(50s - (var(--layer) * 3s)) infinite linear;
   z-index: var(--z-index); // Katman için dinamik z-index
+  .logo {
+  position: absolute; // Logoyu mutlak konumlandır
+  top: 50%; // Dikeyde ortala
+  left: 50%; // Yatayda ortala
+  transform: translate(-50%, -50%); // Tam merkeze hizala
+  z-index: 999; // Logoyu en üstte tut
+  width: 100px; // Logo genişliği (isteğe bağlı)
+  height: 100px; // Logo yüksekliği (isteğe bağlı)
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; // Logonun oranlarını koru
+}
 }
 
 .cardi-wrapper {

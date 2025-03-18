@@ -1,7 +1,6 @@
 ---
 import Blog from "@/components/Blog.astro";
 import PageHeader from "@/components/PageHeader.astro";
-import Shape from "@/components/Shape.astro";
 import BlogCategories from "@/components/blog/BlogCategories.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
@@ -12,7 +11,6 @@ const categories = await getTaxonomy("blog", "categories");
 ---
 
 <Base title={"categories"}>
-  <Shape />
   <section class="page-hero pb-14 pt-16">
     <div class="container">
       <PageHeader page_data={{ title: "Categories" }} />
