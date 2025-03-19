@@ -20,7 +20,7 @@ banner:
 ##key features
 key_features:
   title: "Yenilikçi ve İnovatif Modül"
-  description: 
+  description: ""
   feature_list:
     - icon: "map" #icon package react-feather-icon [https://feathericons.com/]
       title: Live Caption
