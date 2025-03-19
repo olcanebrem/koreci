@@ -46,7 +46,7 @@ body {
 
 // tab
 .tab {
-  @apply overflow-hidden rounded-lg border bg-gray-100;
+  @apply overflow-hidden rounded-lg border  backdrop-brightness-150;
   //@apply m-2; // 1rem (16px) margin
   @apply p-8; // 1rem (16px) padding
 
@@ -75,6 +75,7 @@ body {
       @apply p-8;
       p {
         @apply mb-0;
+        
       }
       &.active {
         @apply block;
@@ -170,12 +171,6 @@ body {
   font-size: 1.6rem;
 }
 
-.accordion-icon {
-  width: 0.78em;
-  height: 0.78em;
-  transform: rotate(0deg);
-  transition: transform 0.2s ease;
-}
 
 .accordion-content {
   max-height: 0;
@@ -183,9 +178,16 @@ body {
   padding: 0 1rem;
 }
 
-.accordion.active .accordion-icon {
-  transform: rotate(180deg);
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
 }
+
+.accordion.active .accordion-body {
+  max-height: 500px; /* Yüksekliği ihtiyacınıza göre ayarlayın */
+}
+
 
 .accordion.active .accordion-content {
   max-height: 100vh;
@@ -244,6 +246,9 @@ select:invalid {
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text;
+  @apply prose-p:bg-slate-50;
+  @apply prose-p:rounded-md;
+  @apply prose-p:p-4;
   @apply prose-blockquote:px-4 prose-blockquote:py-1 prose-blockquote:text-dark;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded-md;
@@ -568,9 +573,7 @@ select:invalid {
 .panel {
   @apply relative border-b border-border py-4 pl-7 pr-4;
 
-  .accordion-button {
-    @apply py-2;
-  }
+ 
 
   &-body {
     p + p {
@@ -682,25 +685,7 @@ select:invalid {
   
 }
 
-.faqs {
-  .accordion-icon {
-    @apply -rotate-90;
-  }
 
-  .accordion.active {
-    .accordion-icon {
-      @apply rotate-0;
-    }
-
-    .accordion-content {
-      @apply pb-6 pt-1;
-
-      p + p {
-        @apply mt-6;
-      }
-    }
-  }
-}
 
 .features-tab-panel {
   @apply hidden;
@@ -767,10 +752,10 @@ select:invalid {
 }
 .font-display {
   font-family: Basement, sans-serif;
-  font-weight: 50;
+  font-weight: 10;
   color: #b0d6ff43;
-  font-size :500%; /* Başlangıç font boyutu */
-  line-height: 1; /* Satır aralığı ayarı */
+  font-size :10em; /* Başlangıç font boyutu */
+  line-height: 2; /* Satır aralığı ayarı */
 }
 
 @supports (font-variation-settings: normal) {
@@ -1318,21 +1303,6 @@ select:invalid {
     max-width: 100%; // 1000 pikselden küçük ekranlarda tam genişlik
   }
 
-  .slider {
-    // Slider'ın diğer stilleri
-  }
-
-  .slide {
-    // Slide'ların diğer stilleri
-  }
-
-  .prev, .next {
-    // Önceki/Sonraki butonların stilleri
-  }
-
-  .dot {
-    // Noktaların stilleri
-  }
 }
 .circle-container {
   position: relative;

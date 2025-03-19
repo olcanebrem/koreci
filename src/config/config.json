@@ -5,9 +5,9 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/favicon.svg",
-    "logo": "/koreci.svg",
-    "logo_width": "147",
-    "logo_height": "75",
+    "logo": "/logo.png",
+    "logo_width": "100",
+    "logo_height": "70",
     "logo_text": "koreci"
   },
 

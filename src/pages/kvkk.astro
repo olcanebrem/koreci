@@ -1,0 +1,150 @@
+---
+import Base from "@/layouts/Base.astro";
+import config from "@/config/config.json";
+
+const { email, location, phone } = config.params;
+---
+<html>
+    <Base>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVKK - Koreci Sanat Okulu</title>
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const accordions = document.querySelectorAll(".accordion");
+
+        accordions.forEach((accordion) => {
+            const header = accordion.querySelector(".accordion-header");
+
+            header.addEventListener("click", function () {
+                const content = accordion.querySelector(".accordion-body");
+
+                // Açık olanları kapatma
+                accordions.forEach((item) => {
+                    if (item !== accordion) {
+                        item.classList.remove("active");
+                        item.querySelector(".accordion-body").style.maxHeight = null;
+                    }
+                });
+
+                // Aç/kapa işlemi
+                if (accordion.classList.contains("active")) {
+                    accordion.classList.remove("active");
+                    content.style.maxHeight = null;
+                } else {
+                    accordion.classList.add("active");
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+    });
+</script>
+
+<body class="overflow-x-hidden ">
+    <section class="section tab">
+        <div class="container content">
+            <h1 class="text-h1-sm md:text-h1 text-dark">Kişisel Verilerin Korunması ve Gizlilik Politikası</h1>
+            <p class=" text-text">Koreci Sanat Okulu olarak, kişisel verilerinizin gizliliğine ve korunmasına önem veriyoruz. Bu kapsamda, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") çerçevesinde veri sorumlusu olarak, kişisel verilerinizin hukuka uygun olarak işlenmesi ve gizliliğinin sağlanması amacıyla gerekli teknik ve idari tedbirleri alıyoruz.</p>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container accordion">
+            <div class="accordion-header">
+                <span>Kişisel Verilerin Toplanması ve İşlenmesi</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <p class="prose">Sanat okulumuz aşağıdaki kişisel verileri işleyebilir:</p>
+                <ul class="list-disc ml-5">
+                    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, T.C. kimlik numarası</li>
+                    <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, ikamet adresi</li>
+                    <li><strong>Eğitim Bilgileri:</strong> Kayıtlı olduğunuz dersler, eğitim geçmişiniz</li>
+                    <li><strong>Finansal Bilgiler:</strong> Ödeme ve fatura bilgileri</li>
+                    <li><strong>Görsel ve İşitsel Veriler:</strong> Sanat çalışmalarınız, etkinliklerde kaydedilen görüntüler</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container accordion">
+            <div class="accordion-header">
+                <span>Kişisel Verilerin İşlenme Amaçları</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <p class="prose">Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                <ul class="list-disc ml-5">
+                    <li>Kayıt ve eğitim süreçlerinin yürütülmesi</li>
+                    <li>Ödeme ve faturalandırma işlemlerinin gerçekleştirilmesi</li>
+                    <li>Etkinlik ve organizasyonların planlanması</li>
+                    <li>Pazarlama ve tanıtım faaliyetleri (onay doğrultusunda)</li>
+                    <li>Resmî yükümlülüklerin yerine getirilmesi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container accordion">
+            <div class="accordion-header">
+                <span>Kişisel Verilerin Aktarılması</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <p class="prose">Kanunlarla izin verilen durumlar haricinde, kişisel verileriniz üçüncü kişilerle paylaşılmaz. Ancak yasal zorunluluklar ve hizmet sağlayıcılarla yalnızca ilgili hizmetleri yerine getirmek amacıyla paylaşılabilir.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container accordion">
+            <div class="accordion-header">
+                <span>Kişisel Verilerin Saklanma Süresi</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <p class="prose">Kişisel verileriniz, ilgili mevzuatta belirtilen süre boyunca saklanacak ve bu süre sonunda silinecek, yok edilecek veya anonim hale getirilecektir.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container accordion">
+            <div class="accordion-header">
+                <span>Veri Sahibi Olarak Haklarınız</span>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <p class="prose">KVKK’nın 11. maddesi kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul class="list-disc ml-5">
+                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                    <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+                    <li>Verilerin amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                    <li>Yanlış veya eksik işlenen verilerin düzeltilmesini isteme</li>
+                    <li>Verilerin silinmesini veya yok edilmesini talep etme</li>
+                    <li>Otomatik sistemlerle analiz edilen verilerinizin aleyhinize bir sonuca yol açması halinde itiraz etme</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section pb-12">
+        <div class="container content ">
+            <h2 class=" text-dark">İletişim</h2>
+            <p class=" text-text">Kişisel verilerinizle ilgili her türlü soru ve talepleriniz için bizimle iletişime geçebilirsiniz:</p>
+            <p class="">Koreci Sanat Okulu</p>
+            <p class="">Adres: {location}</p>
+            <p class="">E-posta: <a href={email} class="text-link">{email}</a></p>
+            <p class="">Telefon: {phone}</p>
+            <p class="text-sm text-gray">Bu politika, Koreci Sanat Okulu tarafından güncellenebilir ve en güncel haliyle yayınlandığı tarih itibariyle geçerlidir.</p>
+        </div>
+    </section>
+    
+</body>
+
+</html>
+
