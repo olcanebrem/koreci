@@ -9,8 +9,8 @@ import { onMount } from 'astro';
   </div>
 
   <!-- Maksimum 5 layer baştan oluştur -->
-  {Array.from({ length: 5 }).map((_, layerIndex) => {
-    const totalCards = [10, 12, 14, 16, 18][layerIndex];
+  {Array.from({ length: 3 }).map((_, layerIndex) => {
+    const totalCards = [8, 6, 8][layerIndex];
     const diameter = 300 + layerIndex * 260;
     const zIndexValue = 5 - layerIndex;
     return (

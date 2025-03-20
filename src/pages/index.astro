@@ -15,8 +15,6 @@ import Blog from "@/components/Blog.astro"; // Blog component
 import MapLayout from "@/layouts/Map_Layout.astro";
 import CardAnimation from '@/components/CardAnimation.astro';
 
-const layers = 3; // Toplam katman sayısı
-const cardsPerLayer = [5, 6, 10]; // Her katman için kart sayısı
 const homepage = (await getEntry(
   "homepage",
   "-index"
@@ -30,7 +28,7 @@ const recentPost = sortedPosts.filter((item) => !item.data.featured);
 const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
 <Base>
-  <CardAnimation layers={layers} cardsPerLayer={cardsPerLayer} />
+  <CardAnimation/>
   <Banner banner={banner} />
   <KeyFeatures key_features={key_features} />
   <Service service={service} />
