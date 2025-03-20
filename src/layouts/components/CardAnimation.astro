@@ -10,7 +10,7 @@ import { onMount } from 'astro';
 
   <!-- Maksimum 5 layer baştan oluştur -->
   {Array.from({ length: 5 }).map((_, layerIndex) => {
-    const totalCards = [5,7,8,9,11][layerIndex]; // Örnek maksimum kart sayıları
+    const totalCards = [10, 12, 14, 16, 18][layerIndex];
     const diameter = 300 + layerIndex * 260;
     const zIndexValue = 5 - layerIndex;
     return (
@@ -77,21 +77,17 @@ import { onMount } from 'astro';
       const visibleLayers = getDynamicLayers();
       console.log('Visible Layers:', visibleLayers);
 
-      // Tüm layer'ları seç (logo hariç)
       const layers = container.querySelectorAll('.cardi-layer:not([data-layer="logo"])');
       layers.forEach((layer, index) => {
         if (index < visibleLayers) {
-          layer.style.display = 'block'; // Görünür yap
+          layer.style.display = 'block';
         } else {
-          layer.style.display = 'none'; // Gizle
+          layer.style.display = 'none';
         }
       });
     };
 
-    // İlk yüklemede güncelle
     updateLayers();
-
-    // Resize ile güncelle
     window.addEventListener('resize', () => {
       console.log('Window resized!');
       updateLayers();
@@ -102,10 +98,17 @@ import { onMount } from 'astro';
 </script>
 
 <style lang="scss">
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Sadece yatay kaydırmayı engelle */
+}
+
 .cardi-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,13 +118,15 @@ import { onMount } from 'astro';
   position: absolute;
   width: var(--diameter);
   height: var(--diameter);
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 2px dashed rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   animation: rotateLayer calc(50s - (var(--layer) * 3s)) infinite linear;
   z-index: var(--z-index);
+  max-width: 100vw; /* Yatayda ekranı aşmasını engelle */
+  
 }
 
 .cardi-wrapper {
