@@ -11,36 +11,6 @@ const { email, location, phone } = config.params;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KVKK - Koreci Sanat Okulu</title>
 </head>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const accordions = document.querySelectorAll(".accordion");
-
-        accordions.forEach((accordion) => {
-            const header = accordion.querySelector(".accordion-header");
-
-            header.addEventListener("click", function () {
-                const content = accordion.querySelector(".accordion-body");
-
-                // Açık olanları kapatma
-                accordions.forEach((item) => {
-                    if (item !== accordion) {
-                        item.classList.remove("active");
-                        item.querySelector(".accordion-body").style.maxHeight = null;
-                    }
-                });
-
-                // Aç/kapa işlemi
-                if (accordion.classList.contains("active")) {
-                    accordion.classList.remove("active");
-                    content.style.maxHeight = null;
-                } else {
-                    accordion.classList.add("active");
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        });
-    });
-</script>
 
 <body class="overflow-x-hidden ">
     <section class="section tab">
@@ -144,6 +114,36 @@ const { email, location, phone } = config.params;
         </div>
     </section>
     
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const accordions = document.querySelectorAll(".accordion");
+    
+            accordions.forEach((accordion) => {
+                const header = accordion.querySelector(".accordion-header");
+    
+                header.addEventListener("click", function () {
+                    const content = accordion.querySelector(".accordion-body");
+    
+                    // Açık olanları kapatma
+                    accordions.forEach((item) => {
+                        if (item !== accordion) {
+                            item.classList.remove("active");
+                            item.querySelector(".accordion-body").style.maxHeight = null;
+                        }
+                    });
+    
+                    // Aç/kapa işlemi
+                    if (accordion.classList.contains("active")) {
+                        accordion.classList.remove("active");
+                        content.style.maxHeight = null;
+                    } else {
+                        accordion.classList.add("active");
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
