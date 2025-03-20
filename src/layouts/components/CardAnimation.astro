@@ -35,7 +35,7 @@ import { onMount } from 'astro';
                 '--position-angle': `${positionAngle}deg`,
                 '--radius': `${radius}px`,
               }}
-            >
+              >
               <div
                 class="cardi"
                 style={{
@@ -98,86 +98,83 @@ import { onMount } from 'astro';
 </script>
 
 <style lang="scss">
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* Sadece yatay kaydırmayı engelle */
-}
+  /* cardi-container sabit ve yatay kaydırmayı engelle */
+  .cardi-container {
+    position: absolute; /* Sayfanın üstünde sabit kalır */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Tam ekran yüksekliği */
+    overflow: hidden; /* Hem yatay hem dikey kaydırmayı engelle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Diğer içeriklerin üzerinde olmasını sağla */
+  }
 
-.cardi-container {
-  position: relative;
-  width: 100vw;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .cardi-layer {
+    position: absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: rotateLayer calc(50s - (var(--layer) * 3s)) infinite linear;
+    z-index: var(--z-index);
+    max-width: 100vw; /* Yatayda ekranı aşmasını engelle */
+  }
 
-.cardi-layer {
-  position: absolute;
-  width: var(--diameter);
-  height: var(--diameter);
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  animation: rotateLayer calc(50s - (var(--layer) * 3s)) infinite linear;
-  z-index: var(--z-index);
-  max-width: 100vw; /* Yatayda ekranı aşmasını engelle */
-  
-}
+  .cardi-wrapper {
+    position: absolute;
+    width: 225px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--position-angle)) 
+      translateX(var(--radius)) 
+      translate(-50%, -50%);
+    z-index: var(--z-index);
+  }
 
-.cardi-wrapper {
-  position: absolute;
-  width: 225px;
-  height: 300px;
-  top: 50%;
-  left: 50%;
-  transform: 
-    translate(-50%, -50%) 
-    rotate(var(--position-angle)) 
-    translateX(var(--radius)) 
-    translate(-50%, -50%);
-  z-index: var(--z-index);
-}
-
-.cardi {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform: rotate(var(--tilt-angle));
-  animation: rotateCardi calc(50s - (var(--layer) * 1s)) infinite linear reverse;
-  transition: transform 0.3s ease;
-
-  img {
+  .cardi {
+    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(var(--tilt-angle));
+    animation: rotateCardi calc(50s - (var(--layer) * 1s)) infinite linear reverse;
+    transition: transform 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+      transform: rotate(var(--tilt-angle)) scale(1.2);
+      z-index: 10;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.785);
+    }
+
+    @media (max-width: 1200px) { width: 200px; height: 250px; }
+    @media (max-width: 992px) { width: 180px; height: 220px; }
+    @media (max-width: 768px) { width: 150px; height: 200px; }
+    @media (max-width: 576px) { width: 120px; height: 160px; }
   }
 
-  &:hover {
-    transform: rotate(var(--tilt-angle)) scale(1.2);
-    z-index: 10;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.785);
+  @keyframes rotateLayer {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
-  @media (max-width: 1200px) { width: 200px; height: 250px; }
-  @media (max-width: 992px) { width: 180px; height: 220px; }
-  @media (max-width: 768px) { width: 150px; height: 200px; }
-  @media (max-width: 576px) { width: 120px; height: 160px; }
-}
-
-@keyframes rotateLayer {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes rotateCardi {
-  from { transform: rotate(var(--tilt-angle)); }
-  to { transform: rotate(calc(var(--tilt-angle) + 360deg)); }
-}
+  @keyframes rotateCardi {
+    from { transform: rotate(var(--tilt-angle)); }
+    to { transform: rotate(calc(var(--tilt-angle) + 360deg)); }
+  }
 </style>

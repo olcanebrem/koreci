@@ -1,23 +1,24 @@
+
 // Değişkenler
-$glass-background: rgba(255, 255, 255, 0.2); // Şeffaf beyaz arka plan
-$glass-blur: 10px; // Bulanıklık derecesi
-$glass-border: 1px solid rgba(255, 255, 255, 0.3); // Şeffaf kenarlık
-$glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); // Gölge efekti
+$glass-background: rgba(255, 255, 255, 0.2);
+$glass-blur: 10px;
+$glass-border: 1px solid rgba(255, 255, 255, 0.3);
+$glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
 // Header Stilleri
 .header {
   @apply sticky top-0 z-50 py-6 transition-all duration-300;
-  background: $glass-background; // Şeffaf arka plan
-  backdrop-filter: blur($glass-blur); // Buzlu cam efekti
-  border-bottom: $glass-border; // Şeffaf kenarlık
-  box-shadow: $glass-shadow; // Hafif gölge
+  background: $glass-background;
+  backdrop-filter: blur($glass-blur);
+  border-bottom: $glass-border;
+  box-shadow: $glass-shadow;
 
   &-sticky {
-    @apply bg-white shadow; // Sticky durumunda arka plan beyaz ve gölgeli
+    @apply bg-white shadow;
   }
 }
 
-// Navbar Container
+// Diğer stiller...
 .navbar-container {
   // İhtiyaca göre stil eklenebilir
 }
