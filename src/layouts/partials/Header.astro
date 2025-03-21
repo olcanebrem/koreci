@@ -134,31 +134,39 @@ const { pathname } = Astro.url;
 </header>
 </body>
 <script is:inline>
-  // Function to initialize dropdown functionality
   function initializeDropdowns() {
-    document.querySelectorAll(".dropdown-button").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const dropdown = e.currentTarget.querySelector(".nav-dropdown-list");
-        dropdown.classList.toggle("hidden");
-      });
+    const dropdownButtons = document.querySelectorAll(".dropdown-button");
+    if (dropdownButtons.length === 0) {
+      console.log("Hata: Dropdown butonları bulunamadı!");
+      return;
+    }
+    dropdownButtons.forEach((button) => {
+      // Mevcut olay dinleyicisini kaldırıp yeniden ekleyelim
+      button.removeEventListener("click", handleDropdownClick); // Önceki dinleyiciyi temizle
+      button.addEventListener("click", handleDropdownClick);
     });
   }
 
-  // Initialize dropdowns on page load
-  initializeDropdowns();
+  function handleDropdownClick(e) {
+    const dropdown = e.currentTarget.querySelector(".nav-dropdown-list");
+    if (dropdown) {
+      dropdown.classList.toggle("hidden");
+      console.log("Dropdown toggled:", dropdown.classList.contains("hidden") ? "kapalı" : "açık");
+      e.stopPropagation();
+    } else {
+      console.log("Hata: Dropdown listesi bulunamadı!");
+    }
+  }
 
-  // Re-initialize dropdowns after page navigation
-  document.addEventListener("astro:page-load", () => {
+  // İlk yükleme için
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOMContentLoaded tetiklendi");
     initializeDropdowns();
+  });
 
-    // Sticky header functionality
-    const header = document.querySelector(".header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 0) {
-        header.classList.add("header-sticky");
-      } else {
-        header.classList.remove("header-sticky");
-      }
-    });
+  // Astro sayfa geçişlerinde
+  document.addEventListener("astro:page-load", () => {
+    console.log("astro:page-load tetiklendi");
+    initializeDropdowns();
   });
 </script>

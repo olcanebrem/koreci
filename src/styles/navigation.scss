@@ -5,22 +5,21 @@ $glass-blur: 10px;
 $glass-border: 1px solid rgba(255, 255, 255, 0.3);
 $glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
-// Header Stilleri
 .header {
-  @apply sticky top-0 z-50 py-6 transition-all duration-300;
-  background: $glass-background;
-  backdrop-filter: blur($glass-blur);
-  border-bottom: $glass-border;
-  box-shadow: $glass-shadow;
-
-  &-sticky {
-    @apply bg-white shadow;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-// Diğer stiller...
-.navbar-container {
-  // İhtiyaca göre stil eklenebilir
+.header-sticky {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 // Navbar
