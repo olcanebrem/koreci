@@ -49,13 +49,14 @@ import '@/styles/gradient.scss';
 
 <style>
   .gradient-bg {
-    position: fixed; /* Tüm sayfayı kaplaması için fixed */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    z-index: -1; /* Arka planda kalması için */
-  }
+    z-index: -1;
+    overflow: hidden; /* Taşmayı engeller */
+}
 
   .gradients-container {
     position: absolute; /* gradient-bg içinde tam ekran */

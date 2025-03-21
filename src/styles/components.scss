@@ -2,7 +2,10 @@
 body {
   @apply overflow-x-hidden; // Sayfanın tamamında yatay kaydırmayı engelle
 }
-
+main#main-content {
+  width: 100%;
+  overflow-x: hidden; /* İçerik taşmasını engeller */
+}
 // section style
 .section {
   @apply pt-12;
@@ -10,11 +13,13 @@ body {
   background: #2e006b4c;
 }
 
-// container
 .container {
   @apply mx-auto max-w-[1202px] px-3;
-  border-bottom-right-radius: 2ch;
-  border-bottom-left-radius: 2ch;
+
+  @media (max-width: 600px) {
+      max-width: 100%;
+      padding: 0 10px;
+  }
 }
 
 // form style
@@ -728,11 +733,14 @@ select:invalid {
 .bb-8 {
   max-width: 50px;
 }
-
+.background-gradient {
+  width: 100%;
+  overflow: hidden;
+}
 .gradient-grid {
   height: 300px;
   justify-content: center;
-  overflow:visible;
+  overflow:hidden;
   padding-bottom: 55rem;
 
 }
@@ -904,7 +912,10 @@ select:invalid {
       color: #333;
       margin-bottom: 1rem;
     }
-
+    .slider {
+      max-width: 100%;
+      overflow: hidden;
+    }
     .course-item {
       text-align: center;
 
@@ -976,8 +987,16 @@ select:invalid {
     flex: 0 0 100%; // Mobilde tam genişlik
     max-width: 100%;
   }
-  
+   
+    body {
+        font-size: 14px; /* Mobilde font boyutunu küçült */
+    }
+    .container {
+        width: 100%; /* Mobilde genişliği sınırla */
+        padding: 10px; /* Padding'i ayarla */
+    }
 }
+
 
 // Galeri stilleri
 // Galeri stilleri
