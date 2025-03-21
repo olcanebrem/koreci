@@ -1,0 +1,180 @@
+---
+import { onMount } from 'astro';
+---
+
+<div id="cardi-container" class="cardi-container">
+  <!-- Logo -->
+  <div class="cardi-layer" data-layer="logo">
+    <img src="/images/koreci_applogo.png" alt="Logo" />
+  </div>
+
+  <!-- Maksimum 5 layer baştan oluştur -->
+  {Array.from({ length: 3 }).map((_, layerIndex) => {
+    const totalCards = [8, 6, 8][layerIndex];
+    const diameter = 300 + layerIndex * 260;
+    const zIndexValue = 5 - layerIndex;
+    return (
+      <div
+        class="cardi-layer"
+        data-layer={layerIndex}
+        style={{
+          '--diameter': `${diameter}px`,
+          '--layer': layerIndex,
+          '--z-index': zIndexValue,
+        }}
+      >
+        {Array.from({ length: totalCards }).map((_, cardIndex) => {
+          const angleStep = 360 / totalCards;
+          const positionAngle = angleStep * cardIndex;
+          const tiltAngle = -positionAngle;
+          const radius = 400 + layerIndex * 150;
+          return (
+            <div
+              class="cardi-wrapper"
+              style={{
+                '--position-angle': `${positionAngle}deg`,
+                '--radius': `${radius}px`,
+              }}
+              >
+              <div
+                class="cardi"
+                style={{
+                  '--tilt-angle': `${tiltAngle}deg`,
+                  '--layer': layerIndex,
+                  '--z-index': zIndexValue,
+                }}
+              >
+                <img src={`/images/users/user-${(cardIndex % 9) + 1}.png`} alt={`User ${cardIndex}`} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  })}
+</div>
+
+<script is:inline client:load>
+  console.log('Script loaded!');
+
+  function init() {
+    const container = document.getElementById('cardi-container');
+    if (!container) {
+      console.error('Container not found!');
+      return;
+    }
+
+    const getDynamicLayers = () => {
+      const width = window.innerWidth;
+      if (width < 576) return 1;
+      if (width < 768) return 2;
+      if (width < 992) return 3;
+      if (width < 1200) return 4;
+      return 5;
+    };
+
+    const updateLayers = () => {
+      const visibleLayers = getDynamicLayers();
+      console.log('Visible Layers:', visibleLayers);
+
+      const layers = container.querySelectorAll('.cardi-layer:not([data-layer="logo"])');
+      layers.forEach((layer, index) => {
+        if (index < visibleLayers) {
+          layer.style.display = 'block';
+        } else {
+          layer.style.display = 'none';
+        }
+      });
+    };
+
+    updateLayers();
+    window.addEventListener('resize', () => {
+      console.log('Window resized!');
+      updateLayers();
+    });
+  }
+
+  init();
+</script>
+
+<style lang="scss">
+  /* cardi-container sabit ve yatay kaydırmayı engelle */
+  .cardi-container {
+    position: absolute; /* Sayfanın üstünde sabit kalır */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Tam ekran yüksekliği */
+    overflow: hidden; /* Hem yatay hem dikey kaydırmayı engelle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Diğer içeriklerin üzerinde olmasını sağla */
+  }
+
+  .cardi-layer {
+    position: absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: rotateLayer calc(50s - (var(--layer) * 3s)) infinite linear;
+    z-index: var(--z-index);
+    max-width: 100vw; /* Yatayda ekranı aşmasını engelle */
+  }
+
+  .cardi-wrapper {
+    position: absolute;
+    width: 225px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--position-angle)) 
+      translateX(var(--radius)) 
+      translate(-50%, -50%);
+    z-index: var(--z-index);
+  }
+
+  .cardi {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(var(--tilt-angle));
+    animation: rotateCardi calc(50s - (var(--layer) * 1s)) infinite linear reverse;
+    transition: transform 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+      transform: rotate(var(--tilt-angle)) scale(1.2);
+      z-index: 10;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.785);
+    }
+
+    @media (max-width: 1200px) { width: 200px; height: 250px; }
+    @media (max-width: 992px) { width: 180px; height: 220px; }
+    @media (max-width: 768px) { width: 150px; height: 200px; }
+    @media (max-width: 576px) { width: 120px; height: 160px; }
+  }
+
+  @keyframes rotateLayer {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes rotateCardi {
+    from { transform: rotate(var(--tilt-angle)); }
+    to { transform: rotate(calc(var(--tilt-angle) + 360deg)); }
+  }
+</style>

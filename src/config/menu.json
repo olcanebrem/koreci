@@ -26,7 +26,7 @@
     {
       "name": "Eğitimler",
       "url": "/learning",
-      "hasChildren": false,
+      "hasChildren": true,
       "children": [
         {
           "name": "GSF Hazırlık Kursları",
@@ -106,7 +106,7 @@
     },
     {
       "name": "KVKK",
-      "url": "/how-it-works"
+      "url": "/kvkk"
     },
     {
       "name": "Elements",

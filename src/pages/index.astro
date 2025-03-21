@@ -13,6 +13,8 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import config from "@/config/config.json";
 import Blog from "@/components/Blog.astro"; // Blog component
 import MapLayout from "@/layouts/Map_Layout.astro";
+import CardAnimation from '@/components/CardAnimation.astro';
+
 const homepage = (await getEntry(
   "homepage",
   "-index"
@@ -25,11 +27,9 @@ const sortedPosts = sortByDate(posts);
 const recentPost = sortedPosts.filter((item) => !item.data.featured);
 const currentPosts = recentPost.slice(0, config.settings.pagination);
 ---
-
 <Base>
-  <Slider />
+  <CardAnimation/>
   <Banner banner={banner} />
-  
   <KeyFeatures key_features={key_features} />
   <Service service={service} />
   <Testimonial testimonial={testimonial} />
@@ -37,7 +37,7 @@ const currentPosts = recentPost.slice(0, config.settings.pagination);
   <!-- Recent Posts Bölümü -->
   <section class="recent-posts">
     <div class="container">
-      <h2 class="h4 mb-4">Recent Posts</h2>
+      <h2 class="h4 mb-4">En Yeni Gönderiler</h2>
       <Blog posts={currentPosts} />
     </div>
   </section>

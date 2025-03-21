@@ -5,14 +5,14 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/favicon.svg",
-    "logo": "/koreci.svg",
-    "logo_width": "147",
-    "logo_height": "75",
+    "logo": "/logo.png",
+    "logo_width": "100",
+    "logo_height": "70",
     "logo_text": "koreci"
   },
 
   "settings": {
-    "pagination": 6,
+    "pagination": 3,
     "summary_length": 100
   },
 
@@ -26,7 +26,7 @@
   },
 
   "params": {
-    "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
+    "footer_description": "Vizyoner, Dijital, İnovatif Eğitim.",
     "email": "info@koreci.art",
     "location": "Bakırköy/İstanbul",
     "phone": "+905061224792",

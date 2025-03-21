@@ -1,7 +1,6 @@
 ---
 import CareerSidebar from "@/components/career/CareerSidebar.astro";
 import PageHeader from "@/components/PageHeader.astro";
-import Shape from "@/components/Shape.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import similerItems from "@/lib/utils/similarItems";
@@ -40,7 +39,7 @@ const page_data = {
   description={post.data.description}
   image={post.data.image}
 >
-  <Shape />
+  
   <section class="page-hero pb-14 pt-16">
     <div class="container">
       <div class="page-hero-content mx-auto max-w-[883px] text-center">

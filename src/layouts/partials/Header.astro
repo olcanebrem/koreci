@@ -17,8 +17,21 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
 ---
-<body id="app_id" >
+<body id="app_id">
 <header class="header">
+  <script>
+  document.addEventListener("astro:page-load", () => {
+    const header = document.querySelector(".header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 0) {
+        header.classList.add("header-sticky");
+      } else {
+        header.classList.remove("header-sticky");
+      }
+    });
+  });
+
+  </script>
   <nav class="navbar container">
     <!-- logo -->
     <div class="order-0">
@@ -58,7 +71,7 @@ const { pathname } = Astro.url;
         main.map((menu) => (
           <>
             {menu.hasChildren ? (
-              <li class="nav-item nav-dropdown group relative cursor-pointer  dropdown-button">
+              <li class="nav-item nav-dropdown group relative cursor-pointer dropdown-button">
                 <span
                   class={`nav-link inline-flex items-center ${
                     menu.children?.map(({ url }) => url).includes(pathname) ||
@@ -121,17 +134,24 @@ const { pathname } = Astro.url;
 </header>
 </body>
 <script is:inline>
-  document.querySelectorAll(".dropdown-button").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const dropdown = e.target.nextElementSibling;
-      dropdown.classList.toggle(
-        dropdown.style === "hidden" ? "block" : "hidden"
-      );
+  // Function to initialize dropdown functionality
+  function initializeDropdowns() {
+    document.querySelectorAll(".dropdown-button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const dropdown = e.currentTarget.querySelector(".nav-dropdown-list");
+        dropdown.classList.toggle("hidden");
+      });
     });
-  });
+  }
 
-  //sticky header
+  // Initialize dropdowns on page load
+  initializeDropdowns();
+
+  // Re-initialize dropdowns after page navigation
   document.addEventListener("astro:page-load", () => {
+    initializeDropdowns();
+
+    // Sticky header functionality
     const header = document.querySelector(".header");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
