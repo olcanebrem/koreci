@@ -1,11 +1,16 @@
 ---
 import { onMount } from 'astro';
+
+// Cloudinary'den resim URL'lerini alın
+const userImages = Array.from({ length: 12 }, (_, index) => {
+  return `https://res.cloudinary.com/dbfehj6jo/image/upload/v1742572717/user-${index + 1}.png`;
+});
 ---
 
 <div id="cardi-container" class="cardi-container">
   <!-- Logo -->
   <div class="cardi-layer" data-layer="logo">
-    <img src="/images/koreci_applogo.png" alt="Logo" />
+    <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/v1742567930/koreci_applogo_hv475z.png" alt="Logo" />
   </div>
 
   <!-- Maksimum 5 layer baştan oluştur -->
@@ -44,7 +49,10 @@ import { onMount } from 'astro';
                   '--z-index': zIndexValue,
                 }}
               >
-                <img src={`/images/users/user-${(cardIndex % 9) + 1}.png`} alt={`User ${cardIndex}`} />
+                <img 
+                  src={userImages[cardIndex % userImages.length]} 
+                  alt={`User ${cardIndex}`} 
+                />
               </div>
             </div>
           );
@@ -96,6 +104,7 @@ import { onMount } from 'astro';
 
   init();
 </script>
+
 
 <style lang="scss">
   /* cardi-container sabit ve yatay kaydırmayı engelle */
