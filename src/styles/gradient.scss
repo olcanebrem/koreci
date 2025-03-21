@@ -15,7 +15,7 @@ html, body {
 /* Diğer stiller aynı kalabilir */
 
 :root {
-  --color-bg1: rgb(253, 57, 57);
+  --color-bg1: rgb(144, 255, 207);
   --color-bg2: rgb(6, 131, 255);
   --color1: 118, 113, 255;
   --color2: 121, 174, 255;
@@ -67,14 +67,32 @@ html, body {
   }
 
   .gradients-container {
-    filter: url(#goo) blur(40px);
+    filter: url(#goo) blur(0px);
     width: 100%;
     height: 100%;
     
     position: absolute; /* gradient-bg içinde tam ekran */
     top: 0;
     left: 0;
+    /* Varsayılan olarak tüm gradientleri göster (PC için) */
+ .g1,
+ .g2,
+ .g3,
+ .g4,
+ .g5 {
+  display: block;
+}
+
+/* Mobil cihazlar için sadece .g1 ve .g2'yi göster */
+@media (max-width: 768px) {
+   .g3,
+   .g4,
+   .g5 {
+    display: none;
   }
+}
+  }
+  
 
   .g1 {
     position: absolute;
