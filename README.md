@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/91f9a22e-7d51-4ca4-b325-976ab278f138/deploy-status)](https://app.netlify.com/sites/koreci/deploys)
 <h1 align=center>Pinwheel Astro</h1>
 <p align=center>Pinwheel is a free multipurpose SaaS theme built with Astro, TailwindCSS and TypeScript with 17+ pre-designed pages.</p>
 <h2 align="center"><a target="_blank" href="https://pinwheel-astro.vercel.app/" rel="nofollow"> 👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-pinwheel-astro-vercel-app/kmaxqwa7rx?form_factor=desktop"> Page Speed (95+) 🚀 </a>
@@ -15,8 +16,6 @@
   <a href="https://github.com/themefisher/pinwheel-astro/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/themefisher/bigspring-light-astro" alt="contributors"></a>
 </p>
-
-![pinwheel](https://demo.themefisher.com/thumbnails/pinwheel.png)
 
 <!-- small description -->
 
