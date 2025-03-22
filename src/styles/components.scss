@@ -774,12 +774,11 @@ select:invalid {
 
 @font-face {
   font-family: "Basement";
-  src: url("../fonts/blacksansblackwebfont.eot") format("embedded-opentype"), /* IE9 ve öncesi için */
-       url("../fonts/blacksansblackwebfont.woff2") format("woff2"), /* Modern tarayıcılar */
-       url("../fonts/blacksansblackwebfont.otf") format("opentype"); /* OTF desteği */
+  src: url("/fonts/blacksansblackwebfont.eot") format("embedded-opentype"),
+       url("/fonts/blacksansblackwebfont.woff2") format("woff2"),
+       url("/fonts/blacksansblackwebfont.otf") format("opentype"); /* OTF desteği */
   font-weight: 400;
   font-style: normal;
-  descent-override: 0%;
 }
 .course-container {
   padding: 2rem 0;
