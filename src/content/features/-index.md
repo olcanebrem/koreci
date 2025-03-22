@@ -9,7 +9,7 @@ banner:
   image: "/images/features-banner-img.png"
   button:
     label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    link: ""
     enable: true
 project_management:
   title: Build collaborative workspaces <br /> for your team
@@ -45,8 +45,8 @@ project_management:
       - Open transaction with more than currencies
       - Customer Service with 79 languages
     buttons:
-      - label: Download The Theme
-        link: "https://themefisher.com/astro-themes/pinwheel-astro"
+      - label:
+        link: ""
         enable: true
       - label: Learn More
         link: "#"

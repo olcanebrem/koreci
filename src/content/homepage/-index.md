@@ -14,8 +14,8 @@ banner:
   image: /images/banner-img.png
   button:
     enable: true
-    label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    label: 
+    link: ""
 
 ##key features
 key_features:

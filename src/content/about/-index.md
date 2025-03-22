@@ -44,8 +44,8 @@ gallery:
 features:
   title: The six core work <br /> drive everything do
   button:
-    label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    label: 
+    link: "koreci.art"
     enable: true
   features_list:
     - title: Accessibility
