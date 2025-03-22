@@ -16,3 +16,13 @@ for = "/*" # This defines which paths this specific [[headers]] block will cover
 
 [functions]
 directory = "netlify/functions"
+
+[context.production]
+  branch = "master"
+  command = "yarn build"
+  publish = "dist"
+
+[context.develop]
+  branch = "develop"
+  command = "yarn build:develop"
+  publish = "dist"
