@@ -5,10 +5,10 @@ meta_title: ""
 description: ""
 image: ""
 buttons:
-  - label: Download The Theme
+  - label: "Download The Theme"
     link: "https://olcanebrem.com/"
     enable: true
-  - label: Learn More
+  - label: "Learn More"
     link: "#"
     outline: true
     enable: true
@@ -44,7 +44,7 @@ gallery:
 features:
   title: The six core work <br /> drive everything do
   button:
-    label: 
+    label: "koreci.art"
     link: "koreci.art"
     enable: true
   features_list:

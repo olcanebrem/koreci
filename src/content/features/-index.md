@@ -45,7 +45,7 @@ project_management:
       - Open transaction with more than currencies
       - Customer Service with 79 languages
     buttons:
-      - label:
+      - label: "koreci.art"
         link: ""
         enable: true
       - label: Learn More
