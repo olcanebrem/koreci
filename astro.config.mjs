@@ -10,6 +10,9 @@ import config from "./src/config/config.json";
 
 // https://astro.build/config
 export default defineConfig({
+  server: {
+    port: 4000 // Farklı bir port kullan
+  },
   output: 'static',
   site: config.site.base_url ? "http://localhost:4321" : "https://koreci.art",
   base: config.site.base_path ? config.site.base_path : "src/",
@@ -23,7 +26,9 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    
+    server: {
+    port: 4000 // Farklı bir port kullan
+  }
       
     AutoImport({
       imports: [

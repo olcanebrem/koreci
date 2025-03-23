@@ -16,3 +16,5 @@ for = "/*" # This defines which paths this specific [[headers]] block will cover
 
 [functions]
 directory = "netlify/functions"
+[dev]
+targetPort = 3000
