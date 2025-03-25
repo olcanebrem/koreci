@@ -1,0 +1,28 @@
+---
+
+
+const { post } = Astro.props;
+---
+
+<article>
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold">{post.title}</h1>
+    <time class="text-gray-500">
+      {new Date(post.publishedAt).toLocaleDateString()}
+    </time>
+  </header>
+
+  {post.image && (
+    <img
+      src={post.image.url}
+      alt={post.image.alternativeText || post.title}
+      class="w-full mb-8 rounded-lg"
+      width="800"
+      height="450"
+    />
+  )}
+
+  <div class="prose max-w-none">
+    {post.content}
+  </div>
+</article>

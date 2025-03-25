@@ -1,0 +1,39 @@
+---
+const spaceId = import.meta.env.CONTENTFUL_SPACE_ID;
+const accessToken = import.meta.env.CONTENTFUL_ACCESS_TOKEN;
+const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=blog`;
+
+const response = await fetch(url);
+const data = await response.json();
+console.log(data); // API yanıtını kontrol et
+const items = data.items || []; // items boşsa boş dizi kullan
+const assets = data.includes?.Asset || []; // includes varsa Asset'e eriş
+---
+
+<html>
+  <head>
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Blog Yazıları</h1>
+    <ul>
+      {items.map((post) => {
+        // fields ve asset kontrolü ekle
+        if (!post.fields || !post.fields.image) {
+          return <li>Görsel bulunamadı</li>;
+        }
+
+        const image = assets.find((asset) => asset.sys.id === post.fields.image.sys.id);
+        const imageUrl = image ? image.fields.file.url : '';
+
+        return (
+          <li>
+            <h2>{post.fields.title}</h2>
+            <p>{post.fields.description}</p>
+            {imageUrl && <img src={imageUrl} alt={post.fields.title} />}
+          </li>
+        );
+      })}
+    </ul>
+  </body>
+</html>

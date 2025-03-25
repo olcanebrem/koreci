@@ -1,0 +1,28 @@
+---
+import Base from '@/layouts/Base.astro';
+import BlogPost from '@/components/BlogPost.astro';
+import { getBlogPosts } from 'lib/strapi';
+
+const { slug } = Astro.params;
+const post = await getBlogPosts();
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts(); // Should now work
+  if (!posts || !Array.isArray(posts)) {
+    console.error('Blog posts not found or invalid format');
+    return [];
+  }
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: {}
+  }));
+}
+---
+
+<Base title={post.title}>
+  <BlogPost post={post} />
+</Base>

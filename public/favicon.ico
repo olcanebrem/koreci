@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 326 326">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #ffdfbd;
+      }
+
+      .cls-3 {
+        fill: #fbb;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-7 {
+        fill: #89cee8;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="190.06" y1="2.18" x2="-53.85" y2="246.17" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#f8fbfd"/>
+      <stop offset=".05" stop-color="#cae1f1"/>
+      <stop offset=".09" stop-color="#9fc8e6"/>
+      <stop offset=".14" stop-color="#7ab2dc"/>
+      <stop offset=".19" stop-color="#599fd3"/>
+      <stop offset=".25" stop-color="#3e90cc"/>
+      <stop offset=".32" stop-color="#2883c6"/>
+      <stop offset=".4" stop-color="#1779c2"/>
+      <stop offset=".49" stop-color="#0b72bf"/>
+      <stop offset=".63" stop-color="#046fbd"/>
+      <stop offset="1" stop-color="#036ebd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="316.63" y1="9.37" x2="127.28" y2="198.72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".03" stop-color="#fedcdc"/>
+      <stop offset=".06" stop-color="#fdb4b3"/>
+      <stop offset=".1" stop-color="#fc8e8e"/>
+      <stop offset=".15" stop-color="#fb6e6d"/>
+      <stop offset=".2" stop-color="#fa5352"/>
+      <stop offset=".25" stop-color="#f93d3c"/>
+      <stop offset=".32" stop-color="#f92c2b"/>
+      <stop offset=".4" stop-color="#f9201f"/>
+      <stop offset=".51" stop-color="#f91918"/>
+      <stop offset=".82" stop-color="#f91817"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="200.22" y1="153.93" x2="10.4" y2="297.95" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".02" stop-color="#feebe0"/>
+      <stop offset=".06" stop-color="#fed0b7"/>
+      <stop offset=".11" stop-color="#feb792"/>
+      <stop offset=".15" stop-color="#fea271"/>
+      <stop offset=".2" stop-color="#fe9056"/>
+      <stop offset=".26" stop-color="#fe8240"/>
+      <stop offset=".33" stop-color="#fe772f"/>
+      <stop offset=".42" stop-color="#fe6f23"/>
+      <stop offset=".53" stop-color="#fe6b1c"/>
+      <stop offset=".86" stop-color="#fe6a1b"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-4" width="326" height="326" rx="77.64" ry="77.64"/>
+  <g>
+    <path class="cls-1" d="M13,158c0-14.54.02-56.74.02-72.49C13.02,45.54,45.54,13.02,85.51,13.02h72.47c0,13.66.02,51.98.02,72.49v72.49H13Z"/>
+    <path class="cls-7" d="M152.98,18.02c0,16.42.02,49.11.02,67.49v67.49H18c0-17.53.02-53.28.02-67.49,0-37.21,30.28-67.49,67.49-67.49h67.47M162.98,8.02h-77.47C42.71,8.02,8.02,42.71,8.02,85.51c0,19.17-.02,77.49-.02,77.49h155v-77.49c0-25.25-.02-77.49-.02-77.49h0Z"/>
+  </g>
+  <g>
+    <path class="cls-5" d="M313,158c-14.13,0-54.47-.02-72.49-.02h-72.49v-72.49c0-17.46-.01-58.26-.02-72.49h72.51c39.97,0,72.49,32.52,72.49,72.49v72.51Z"/>
+    <path class="cls-3" d="M240.51,18c37.21,0,67.49,30.28,67.49,67.49v67.51c-17.01,0-51.28-.02-67.49-.02h-67.49v-67.49c0-15.72-.01-50.36-.02-67.49h67.51M240.51,8h-77.51s.02,56.16.02,77.49v77.49h77.49c22.04,0,77.49.02,77.49.02v-77.51c0-42.8-34.69-77.49-77.49-77.49h0Z"/>
+  </g>
+  <g>
+    <path class="cls-6" d="M85.01,314c-40.26,0-73.01-32.75-73.01-73.01,0-15.87.68-58.48.92-72.99,13.74,0,52.8-.02,72.09-.02h73.01v73.01c0,18.77-.01,58.94-.02,73.01h-72.99Z"/>
+    <path class="cls-2" d="M153.02,172.98v68.01c0,16.88-.01,51.06-.02,68.01h-67.99c-37.5,0-68.01-30.51-68.01-68.01,0-14.31.55-50.47.84-67.99,16.54,0,49.84-.02,67.17-.02h68.01M163.02,162.98h-78.01c-23.66,0-77.01.02-77.01.02,0,0-1,58.56-1,77.99,0,43.08,34.93,78.01,78.01,78.01h77.99s.02-55.03.02-78.01v-78.01h0Z"/>
+  </g>
+</svg>
