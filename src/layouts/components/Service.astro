@@ -18,7 +18,9 @@ const { homepage_tab, our_service } = service;
 <section class="section services">
   <div class="container">
     <About />
-    <HomepageTab client:load homepage_tab={homepage_tab} />
+
+    <!-- homepage_tab kaldırıldı -->
+    
     {
       our_service.map((item, index) => (
         <div class="row items-center ">

@@ -26,15 +26,11 @@ key_features:
     - icon: "bell"
       title: "Desen Çalışmaları"  # Quoted for consistency
       content: "programımızda öğrencilerimiz, temel çizim tekniklerinden ileri seviye desen çalışmalarına kadar kapsamlı bir eğitim alıyor. Karakalem, füzen ve farklı çizim malzemeleriyle insan anatomisi, natürmort, peyzaj ve mimari çizimler üzerinde çalışarak teknik becerilerini geliştiriyor. Eğitmenlerimiz eşliğinde gerçekleştirilen bu çalışmalar, öğrencilerimizin gözlem yeteneklerini güçlendirirken, ışık-gölge, perspektif ve proporsiyon gibi temel sanatsal prensipleri uygulamalı olarak öğrenmelerini sağlıyor."
-    - icon: "link"
-      title: "Renk Teorisi"  # Quoted for consistency
-      content: "derslerimizde öğrencilerimiz, renk bilgisinin temellerini ve renklerin sanatsal ifadedeki rolünü keşfediyor. Renk çemberi, renk armonisi, sıcak-soğuk renkler ve renk psikolojisi gibi konuları detaylı olarak ele alıyoruz. Öğrencilerimiz, farklı boya teknikleriyle renk karışımlarını deneyimlerken, ışık ve renk ilişkisini, renk kontrastlarını ve renk kompozisyonlarını uygulamalı olarak öğreniyor."
+    
     - icon: "bell"
       title: "Portfolyo Hazırlama"  # Quoted for consistency
       content: "derslerimizde öğrencilerimiz, güzel sanatlar fakültelerine giriş için gerekli olan portfolyolarını profesyonel bir şekilde hazırlamayı öğreniyor. Eğitmenlerimiz eşliğinde, her öğrencinin bireysel tarzını ve güçlü yönlerini yansıtan özgün portfolyolar oluşturuyoruz ve kazanmalarının oranını arttırıyoruz."
-    - icon: "bell"
-      title: "Dijital Sanat"  # Quoted for consistency
-      content: "Blender, Maya ve Adobe Creative Suite gibi endüstri standardı yazılımları kullanarak, öğrencilerimiz 2D ve 3D dijital sanat üretimi konusunda kapsamlı bir eğitim alıyor. Endüstri standardı 3D modelleme yazılımlarıyla üç boyutlu tasarım tekniklerini öğreniyorlar. "
+    
     - icon: "bell"
       title: "Kompozisyon Teknikleri"  # Quoted for consistency
       content: " derslerimizde öğrencilerimiz, görsel sanatların temel yapı taşlarını öğreniyor. Altın oran, denge, ritim, vurgu ve bütünlük gibi kompozisyon ilkelerini hem teorik hem de uygulamalı olarak ele alıyoruz. Öğrencilerimiz, farklı sanat akımlarından örneklerle kompozisyon tekniklerini analiz ediyor, kendi özgün eserlerinde bu prensipleri uygulama fırsatı buluyor."
