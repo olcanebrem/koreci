@@ -67,7 +67,7 @@ service:
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin."
       video:
         thumbnail: "/images/intro-thumbnail.png"
-        video_id: "g3-VxLQO7do"
+        video_id: "VVg2IAudqe4"
       button:
         enable: true
         label: "Know About Us"  # Quoted for safety
@@ -79,16 +79,16 @@ testimonial:
   testimonial_list:
     [
   {
-    "author": "Elif Ceren Yılmaz",
+    "author": "Batuhan Gedik",
     "avatar": "/images/users/user_1.jpg",
     "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi",
     "rating": "five",
     "content": "Atölye, yaratıcılığımı yeniden keşfetmemi sağladı."
   },
   {
-    "author": "Figen Demirtaş",
+    "author": "Burcu Seril",
     "avatar": "/images/users/user_2.jpg",
-    "organization": "Marmara Üniversitesi Güzel Sanatlar Fakültesi",
+    "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi",
     "rating": "five",
     "content": "Hobi olarak başladım ve mükemmel bir deneyim yaşadım. Herkese tavsiye ederim."
   },
@@ -100,30 +100,30 @@ testimonial:
     "content": "Ortam harika ve teknikler çok detaylı bir şekilde anlatıldı. Çok memnun kaldım."
   },
   {
-    "author": "Can Kayaoğlu",
+    "author": "Elif Ceren Yılmaz",
     "avatar": "/images/users/user_4.jpg",
     "organization": "Dokuz Eylül Üniversitesi Güzel Sanatlar Fakültesi",
     "rating": "five",
     "content": "Hocalar çok ilgili. Özellikle Faruk hocam bir numara"
   },
   {
-    "author": "Selin Özkan",
+    "author": "Özkan Kandemir",
     "avatar": "/images/users/user_5.jpg",
     "organization": "Akdeniz Üniversitesi Güzel Sanatlar Fakültesi",
     "rating": "five",
     "content": "Sanatla uğraşmak beni çok rahatlattı. İyi ki katıldım."
   },
   {
-    "author": "Deniz Şahin",
+    "author": "Cemre Deryatuna",
     "avatar": "/images/users/user_6.jpg",
-    "organization": "Çanakkale Onsekiz Mart Üniversitesi Güzel Sanatlar Fakültesi",
+    "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi & Çanakkale Onsekiz Mart Üniversitesi Güzel Sanatlar Fakültesi",
     "rating": "five",
     "content": "Beklentilerimin çok ötesinde bir deneyim oldu."
   },
   {
-    "author": "Gizem N. Arslan",
+    "author": "Helin Palalı",
     "avatar": "/images/users/user_7.jpg",
-    "organization": "Gazi Üniversitesi Güzel Sanatlar Fakültesi",
+    "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi & Gazi Üniversitesi Güzel Sanatlar Fakültesi",
     "rating": "five",
     "content": "Atölye, sanatla ilgili bakış açımı tamamen değiştirdi."
   },
@@ -135,18 +135,19 @@ testimonial:
     "content": "Sanatsal bir mola vermek için harika bir yer."
   },
   {
-    "author": "Özge Demir",
+    "author": "Serap P. Arın",
     "avatar": "/images/users/user_9.jpg",
-    "organization": "Selçuk Üniversitesi Güzel Sanatlar Fakültesi",
+    "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi",
     "rating": "five",
     "content": "Hoş bir ortam."
   },
    {
-    "author": "Kaan Y. Korkmaz",
+    "author": "Can Sarıoğlu",
     "avatar": "/images/users/user_10.jpg",
-    "organization": "Uludağ Üniversitesi Güzel Sanatlar Fakültesi",
+    "organization": "Mimar Sinan Güzel Sanatlar Üniversitesi & Uludağ Üniversitesi Güzel Sanatlar Fakültesi",
     "rating": "five",
     "content": "Böyle hocamız mı oldu da okumadık demeyiz."
   }
 ]
 ---
+//Marmara Üniversitesi Güzel Sanatlar Fakültesi

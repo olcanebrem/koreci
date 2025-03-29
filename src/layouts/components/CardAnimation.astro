@@ -5,20 +5,36 @@ import cloudinary from 'lib/cloudinary';
 // Cloudinary'den görselleri çek
 const result = await cloudinary.search
   .expression('folder:draw') // "draw" klasöründeki görselleri çek
-  .sort_by('public_id', 'desc') // Görselleri public_id'ye göre sırala
-  .max_results(12) // Maksimum 12 görsel çek
+  .sort_by('public_id', 'desc') // Sıralama önemli değil, rastgele karıştıracağız
+  .max_results(50) // Daha fazla görsel çekerek çeşitliliği artır
   .execute();
 
-const userImages = result.resources.map((img) => img.secure_url.replace('/upload/', '/upload/f_auto,q_auto:low,fl_strip_profile/')); // Görsel URL'lerini al
+// Rastgele sıralama fonksiyonu (Fisher-Yates Shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Görselleri rastgele sırala ve ilk 24 tanesini al
+const uniqueImages = shuffleArray(result.resources).slice(0, 24);
+
+// Her görseli optimize ederek URL listesini oluştur
+const userImages = uniqueImages.map((img) => 
+  img.secure_url.replace('/upload/', '/upload/f_auto,q_auto:low,fl_strip_profile/')
+);
+
 ---
 <div id="cardi-container" class="cardi-container">
-  <!-- Logo -->
+  {/* Logo */}
   <div class="cardi-layer" data-layer="logo">
     <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/f_webp,q_auto/v1742567930/koreci_applogo_hv475z.png" alt="Logo" />
   </div>
 
   {/* Maksimum 3 layer oluştur */}
-  {Array.from({ length: 3 }).map((_, layerIndex) => {
+  {Array.from({ length: 3 }).map((_, layerIndex) => { // length: 24 yerine 3, çünkü 3 layer var
     const totalCards = [8, 6, 8][layerIndex];
     const diameter = 300 + layerIndex * 260;
     const zIndexValue = 5 - layerIndex;
@@ -37,6 +53,7 @@ const userImages = result.resources.map((img) => img.secure_url.replace('/upload
           const positionAngle = angleStep * cardIndex;
           const tiltAngle = -positionAngle;
           const radius = 400 + layerIndex * 150;
+          const imageIndex = (layerIndex * 8 + cardIndex) % userImages.length; // Benzersiz görsel indeksleme
           return (
             <div
               class="cardi-wrapper"
@@ -44,7 +61,7 @@ const userImages = result.resources.map((img) => img.secure_url.replace('/upload
                 '--position-angle': `${positionAngle}deg`,
                 '--radius': `${radius}px`,
               }}
-              >
+            >
               <div
                 class="cardi"
                 style={{
@@ -54,7 +71,7 @@ const userImages = result.resources.map((img) => img.secure_url.replace('/upload
                 }}
               >
                 <img 
-                  src={userImages[cardIndex % userImages.length]} 
+                  src={userImages[imageIndex]} 
                   alt={`User ${cardIndex}`} 
                 />
               </div>
@@ -65,7 +82,6 @@ const userImages = result.resources.map((img) => img.secure_url.replace('/upload
     );
   })}
 </div>
-
 
 <script is:inline client:load>
   console.log('Script loaded!');
