@@ -1,44 +1,45 @@
 ---
 title: "About"
-page_title: "About our company"
+page_title: "Hakkımızda"
 meta_title: ""
 description: ""
 image: ""
 buttons:
   - label: "Sign In"
     link: "https://olcanebrem.com/"
-    enable: true
+    enable: false
   - label: "Learn More"
     link: "#"
     outline: true
-    enable: true
+    enable: false
 
 # counter
 counter:
-  - name: "Customers"
-    number: 25
+  - name: "Devlet"
+    number: 52
     measurement: M
     color: "#00B7EB"
-  - name: "Customers"
-    number: 440
+  - name: "Özel"
+    number: 26
     measurement: M
     color: "#5EE2A0"
-  - name: "Customers"
-    number: 50
+  - name: "Yurt Dışı"
+    number: 12
     measurement: K
     color: "#1E90FF"
-  - name: "Customers"
+  - name: "Sergi"
     number: 20
     measurement: K
     color: "#00B7EB"
 
 # Gallery
 gallery:
-  title: We started with one single goal Empower entrepreneurs
+  title: Yepyeni bir yüz!
   images:
-    - "/images/about/gallery-img-1.png"
-    - "/images/about/gallery-img-3.png"
-    - "/images/about/gallery-img-2.png"
+    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347561/AF1QipPNGjMkTwH8uk3ITEmKHFYKMHyXHKcii0F5IDxC_s0.jpg"
+    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347557/466962702_17966064230812745_7183673344313737850_n.jpg"
+    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347555/image_8.png"
+    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743348091/image_9.png"
 
 ## our works
 features:
@@ -54,12 +55,7 @@ features:
       content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
     - title: Excellence
       content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
+
 
 ## members
 members:
@@ -72,18 +68,7 @@ members:
     - name: Bukiakta Bansalo
       field: Product Manager
       image: "/images/users/user-2.png"
-    - name: Ortrin Okaster
-      field: Software Engineer
-      image: "/images/users/user-3.png"
-    - name: Eleanor Pena
-      field: Co-founder & COO
-      image: "/images/users/user-1.png"
-    - name: Bukiakta Bansalo
-      field: Product Manager
-      image: "/images/users/user-2.png"
-    - name: Ortrin Okaster
-      field: Software Engineer
-      image: "/images/users/user-3.png"
+   
 ---
 
 
