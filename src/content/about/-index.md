@@ -5,7 +5,7 @@ meta_title: ""
 description: ""
 image: ""
 buttons:
-  - label: "Download The Theme"
+  - label: "Sign In"
     link: "https://olcanebrem.com/"
     enable: true
   - label: "Learn More"
