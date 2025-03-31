@@ -52,14 +52,14 @@ service:
         icon: "bell"
         image: "/images/sells-by-country.png"
   our_service:
-    - title: "Bursluluk imkanlarından faydalanın"
+    - title: "Bizi Bakırköy'de ziyaret edin."
       description: "Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies ligula sed"  # Fixed typo
       image: "/images/collaboration.png"
       list:
         - "Supporting more than 119 country world"
         - "Open transaction with more than currencies"
         - "Customer Service with 79 languages"
-    - title: "Accountability that works for you"
+    - title: "Bursluluk imkanlarından faydalanın"
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin."
       video:
         thumbnail: "/images/intro-thumbnail.png"
