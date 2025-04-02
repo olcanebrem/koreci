@@ -187,13 +187,17 @@ const { title, button, image, content } = banner;
 </section>
 
 <style>
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 20s linear infinite;
-    gap: 1.5rem;
-    align-items: stretch;
-  }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+  gap: 1.5rem;
+  align-items: stretch;
+  /* Aşağıdaki 3 satır kritik performans iyileştirmesi */
+  will-change: transform; /* Tarayıcıya animasyon geleceğini haber verir */
+  transform: translate3d(0, 0, 0); /* GPU hızlandırmayı zorunlu kılar */
+  backface-visibility: hidden; /* Render performansını artırır */
+}
 
   .university-card {
     width: 300px;
