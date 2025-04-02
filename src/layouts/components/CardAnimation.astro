@@ -23,7 +23,7 @@ const uniqueImages = shuffleArray(result.resources).slice(0, 24);
 
 // Her görseli optimize ederek URL listesini oluştur
 const userImages = uniqueImages.map((img) => 
-  img.secure_url.replace('/upload/', '/upload/f_auto,q_auto:low,fl_strip_profile/')
+  img.secure_url.replace('/upload/', '/upload//w_auto:150,f_avif,q_auto:low,fl_strip_profile/')
 );
 
 ---
