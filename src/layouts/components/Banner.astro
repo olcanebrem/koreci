@@ -5,211 +5,253 @@ const { banner } = Astro.props;
 const { title, button, image, content } = banner;
 ---
 
-<section class="sectiontop banner relative ">
-  <!-- Marquee Kapsayıcı -->
-  <!-- İlk Marquee (Üstteki "Spots Open" Yazısı) -->
+<section class="sectiontop banner relative">
   <div class="relative mx-auto overflow-hidden py-2 max-w">
-    <!-- Gradient Overlay’ler -->
-   <!-- Marquee Yazı -->
-    <div id="marquee-content" class="text-red-500 flex items-center animate-marquee font-black font-display gap-4 tracking-widest uppercase whitespace-nowrap">  <!-- İçerik buraya dinamik olarak eklenecek -->
+    <div id="marquee-content" class="text-red-500 flex items-center animate-marquee font-black font-display gap-4 tracking-widest uppercase whitespace-nowrap">  
     </div>
   </div>
 
   <div class="container">
-    <!-- İkinci Marquee (Dört Tabloyu Kaydırma) -->
     <div class="relative mx-auto overflow-hidden py-12 max-w-7xl h-full">
-      <div class="flex animate-marquee gap-6">
-        <!-- Tablo 1 -->
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-3/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/yeditepe_logo">
+      <div class="flex gap-6 marquee-track" id="marquee">
+        
+        <!-- Yeditepe Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/yeditepe_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">İstanbul'da bulunan Yeditepe Üniversitesi, geniş akademik olanakları ve sanata verdiği önem ile tanınır.</p>
+          <div class="university-info">
+            <span class="university-name">Yeditepe Üniversitesi</span>
+            <span class="university-department">Yeditepe University, Faculty of Fine Arts</span>
           </div>
         </div>
 
-        <!-- Tablo 2 -->
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330500/msgs%C3%BC_logo.png">
+        <!-- Mimar Sinan Güzel Sanatlar Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330500/msgs%C3%BC_logo.png">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Türkiye'nin en köklü sanat okullarından biri olan MSGSÜ, sanat ve tasarım alanında güçlü bir eğitim sunar.</p>
+          <div class="university-info">
+            <span class="university-name">Mimar Sinan Güzel Sanatlar Üniversitesi</span>
+            <span class="university-department">Mimar Sinan Fine Arts University</span>
           </div>
         </div>
 
-        <!-- Tablo 3 -->
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/kocaeli_logo">
+        <!-- Kocaeli Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/kocaeli_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Kocaeli Üniversitesi, sanatsal üretimi destekleyen yenilikçi ve çağdaş bir eğitim anlayışına sahiptir.</p>
+          <div class="university-info">
+            <span class="university-name">Kocaeli Üniversitesi</span>
+            <span class="university-department">Kocaeli University</span>
           </div>
         </div>
 
-        <!-- Tablo 4 -->
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/marmara_logo">
+        <!-- Marmara Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/marmara_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Sanat eğitimi konusunda önemli bir yere sahip olan Marmara Üniversitesi, öğrencilerine geniş fırsatlar sunar.</p>
+          <div class="university-info">
+            <span class="university-name">Marmara Üniversitesi</span>
+            <span class="university-department">Marmara University, Faculty of Fine Arts</span>
           </div>
         </div>
 
-        <!-- Tekrarlayan Tablolar (Sürekli Kaydırma İçin) -->
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/aydın_logo">
+        <!-- Anadolu Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/anadolu_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Anadolu Üniversitesi, sanat ve tasarım alanında öncü kurumlardan biridir.</p>
+          <div class="university-info">
+            <span class="university-name">Anadolu Üniversitesi</span>
+            <span class="university-department">Anadolu University, Faculty of Fine Arts</span>
           </div>
         </div>
 
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/anadolu_logo">
+        <!-- Diğer üniversiteler aynı yapıda devam eder -->
+        <!-- Örnek: Dokuz Eylül Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743600621/dokuzeylul_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Dokuz Eylül Üniversitesi Güzel Sanatlar Fakültesi, köklü geçmişiyle sanat eğitiminde öne çıkar.</p>
+          <div class="university-info">
+            <span class="university-name">Dokuz Eylül Üniversitesi</span>
+            <span class="university-department">Dokuz Eylül University, Faculty of Fine Arts</span>
+          </div>
+        </div>
+<!-- Örnek: Dokuz Eylül Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/comu_logo">
+          </div>
+          <p class="description">COMU Güzel Sanatlar Fakültesi, köklü geçmişiyle sanat eğitiminde öne çıkar.</p>
+          <div class="university-info">
+            <span class="university-name">Çanakkale Onsekiz Mart Üniversitesi</span>
+            <span class="university-department">COMU, Faculty of Fine Arts</span>
+          </div>
+        </div>
+         <!-- Yeditepe Üniversitesi -->
+         <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/yeditepe_logo">
+          </div>
+          <p class="description">İstanbul'da bulunan Yeditepe Üniversitesi, geniş akademik olanakları ve sanata verdiği önem ile tanınır.</p>
+          <div class="university-info">
+            <span class="university-name">Yeditepe Üniversitesi</span>
+            <span class="university-department">Yeditepe University, Faculty of Fine Arts</span>
           </div>
         </div>
 
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/comu_logo">
+        <!-- Mimar Sinan Güzel Sanatlar Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330500/msgs%C3%BC_logo.png">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Türkiye'nin en köklü sanat okullarından biri olan MSGSÜ, sanat ve tasarım alanında güçlü bir eğitim sunar.</p>
+          <div class="university-info">
+            <span class="university-name">Mimar Sinan Güzel Sanatlar Üniversitesi</span>
+            <span class="university-department">Mimar Sinan Fine Arts University</span>
           </div>
         </div>
-        <div class="min-w-[300px] flex flex-col justify-between h-full text-white text-sm p-6 bg-gray-900 rounded-lg">
-          <div class="w-full flex justify-center">
-            <img 
-            class="w-2/4 max-w-[256px]"src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/kocaeli_logo">
+
+        <!-- Kocaeli Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/kocaeli_logo">
           </div>
-          <p class="text-[#7783ef] text-sm">
-            Mark has an exceptional eye for design, and collaborating with him has
-            been an absolute delight. I am looking forward to partnering with him on
-            upcoming projects. I wholeheartedly endorse him to anyone in search of
-            exceptional, top-notch work.
-          </p>
-          <div class="mt-6">
-            <span class="block font-semibold text-2xl pb-2">Lindsay Chen</span>
-            <span class="block text-gray-400">Founder of CodeCraft Studios</span>
+          <p class="description">Kocaeli Üniversitesi, sanatsal üretimi destekleyen yenilikçi ve çağdaş bir eğitim anlayışına sahiptir.</p>
+          <div class="university-info">
+            <span class="university-name">Kocaeli Üniversitesi</span>
+            <span class="university-department">Kocaeli University, Faculty of Fine Arts</span>
+          </div>
+        </div>
+
+        <!-- Marmara Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/marmara_logo">
+          </div>
+          <p class="description">Sanat eğitimi konusunda önemli bir yere sahip olan Marmara Üniversitesi, öğrencilerine geniş fırsatlar sunar.</p>
+          <div class="university-info">
+            <span class="university-name">Marmara Üniversitesi</span>
+            <span class="university-department">Marmara University, Faculty of Fine Arts</span>
+          </div>
+        </div>
+
+        <!-- Anadolu Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/anadolu_logo">
+          </div>
+          <p class="description">Anadolu Üniversitesi, sanat ve tasarım alanında öncü kurumlardan biridir.</p>
+          <div class="university-info">
+            <span class="university-name">Anadolu Üniversitesi</span>
+            <span class="university-department">Anadolu University, Faculty of Fine Arts</span>
+          </div>
+        </div>
+
+        <!-- Diğer üniversiteler aynı yapıda devam eder -->
+        <!-- Örnek: Dokuz Eylül Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/dokuzeylul_logo">
+          </div>
+          <p class="description">Dokuz Eylül Üniversitesi Güzel Sanatlar Fakültesi, köklü geçmişiyle sanat eğitiminde öne çıkar.</p>
+          <div class="university-info">
+            <span class="university-name">Dokuz Eylül Üniversitesi</span>
+            <span class="university-department">Dokuz Eylül University, Faculty of Fine Arts</span>
+          </div>
+        </div>
+<!-- Örnek: Dokuz Eylül Üniversitesi -->
+        <div class="university-card">
+          <div class="logo-container">
+            <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/comu_logo">
+          </div>
+          <p class="description">COMU Güzel Sanatlar Fakültesi, köklü geçmişiyle sanat eğitiminde öne çıkar.</p>
+          <div class="university-info">
+            <span class="university-name">Çanakkale Onsekiz Mart Üniversitesi</span>
+            <span class="university-department">COMU, Faculty of Fine Arts</span>
           </div>
         </div>
       </div>
     </div>
-
-   
-    
   </div>
 </section>
 
-<script>
-  function initializeMarquee() {
-    const marqueeContent = document.getElementById("marquee-content");
-    if (!marqueeContent) {
-      console.error('Marquee content element not found.');
-      return () => {}; // Temizleme fonksiyonu olarak boş bir fonksiyon döndür
-    }
-
-    // Marquee içeriğini oluşturacak fonksiyon
-    function populateMarquee() {
-      marqueeContent.innerHTML = ""; // Eski içeriği temizle
-      const createItem = () => {
-        const item = document.createElement("div");
-        item.className = "flex items-center gap-4";
-        item.innerHTML = `Kayıtlar açık <span class="hidden lg:inline">✺</span>`;
-        return item;
-      };
-
-      // Ekran genişliğine göre yeterli sayıda birim ekle
-      const itemCount = Math.ceil(window.innerWidth / 200) * 2; // Ekranı dolduracak kadar + fazladan
-      for (let i = 0; i < itemCount; i++) {
-        marqueeContent.appendChild(createItem());
-      }
-    }
-
-    // İlk yüklemede çalıştır
-    populateMarquee();
-
-    // Pencere boyutu değiştiğinde güncelle
-    const resizeHandler = () => {
-      populateMarquee();
-    };
-    window.addEventListener("resize", resizeHandler);
-
-    // Temizleme fonksiyonu
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
+<style>
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+    gap: 1.5rem;
+    align-items: stretch;
   }
 
-  // Sayfanın her yüklenmesinde (View Transitions dahil) çalıştır
-  document.addEventListener('astro:page-load', () => {
-    const cleanup = initializeMarquee();
-    // Sayfadan ayrıldığında temizleme yap
-    document.addEventListener('astro:before-preparation', cleanup, { once: true });
-  });
-</script>
+  .university-card {
+    width: 300px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    border-radius: 0.5rem;
+    color: white;
+    height: 100%;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .logo-container img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .description {
+    color: #7783ef;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    min-height: 60px;
+  }
+
+  .university-info {
+    margin-top: auto;
+  }
+
+  .university-name {
+    display: block;
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .university-department {
+    display: block;
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

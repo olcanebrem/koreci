@@ -39,7 +39,7 @@ key_features:
 service:
   homepage_tab:
     title: "Dijital dünyadan geri kalmayın!"
-    alt: "Prevent failure from to impacting your reputation"
+    alt: "Koreci Art Dijital"
     description: "Stüdyomuz size öğrenmeniz gerekenleri en güncel metodlarla uzman kadrosuyla birlikte aktarır."
     tab_list:
       - title: "Habit building essential choose habit"
@@ -53,14 +53,14 @@ service:
         image: "/images/sells-by-country.png"
   our_service:
     - title: "Bizi Bakırköy'de ziyaret edin."
-      description: "Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies ligula sed"  # Fixed typo
+      description: "Atölyemiz Özgürlük Meydanı'nda"  # Fixed typo
       image: "/images/collaboration.png"
       list:
         - "Supporting more than 119 country world"
         - "Open transaction with more than currencies"
         - "Customer Service with 79 languages"
     - title: "Bursluluk imkanlarından faydalanın"
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin."
+      description: "Reklamlardan fırsat kodlarımızı yakalayın. Sınavlara katılım sağlayın."
       video:
         thumbnail: "/images/intro-thumbnail.png"
         video_id: "VVg2IAudqe4"
