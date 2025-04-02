@@ -170,7 +170,7 @@ const { title, button, image, content } = banner;
             <span class="university-department">Dokuz Eylül University, Faculty of Fine Arts</span>
           </div>
         </div>
-<!-- Örnek: Dokuz Eylül Üniversitesi -->
+        <!-- Örnek: Dokuz Eylül Üniversitesi -->
         <div class="university-card">
           <div class="logo-container">
             <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/w_128,q_auto,f_auto/v1743330499/comu_logo">
@@ -187,13 +187,17 @@ const { title, button, image, content } = banner;
 </section>
 
 <style>
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 20s linear infinite;
-    gap: 1.5rem;
-    align-items: stretch;
-  }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+  gap: 1.5rem;
+  align-items: stretch;
+  /* Aşağıdaki 3 satır kritik performans iyileştirmesi */
+  will-change: transform; /* Tarayıcıya animasyon geleceğini haber verir */
+  transform: translate3d(0, 0, 0); /* GPU hızlandırmayı zorunlu kılar */
+  backface-visibility: hidden; /* Render performansını artırır */
+}
 
   .university-card {
     width: 300px;
