@@ -12,7 +12,7 @@
   GA4_ID = "G-7821XK2YXV"
   SITE_ENV = "production"
 
-[context.deploy-preview.environment]  # PR'lar ve develop branch
+[context.deploy-preview.environment]  # develop branch
   GTM_ID = "GTM-PW25W6KT"
   GA4_ID = "G-TEST012"
   SITE_ENV = "staging"

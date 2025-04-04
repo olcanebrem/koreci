@@ -46,7 +46,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         
         <script>
           const gtmId = import.meta.env.GTM_ID || 'GTM-sss'; // fallback
-        
+          console.log(window.gtmId);
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
             w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
