@@ -36,7 +36,7 @@ const { title, meta_title, description, image, noindex, canonical } =
 <html lang="en">
   <head>
         <!-- Google Tag Manager -->
-  <script>
+    <script>
     (function(w,d,s,l,i){
       w[l]=w[l]||[];
       w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
@@ -47,18 +47,9 @@ const { title, meta_title, description, image, noindex, canonical } =
       j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','{gtmId}');
-  </script>
+     </script>
   <!-- End Google Tag Manager -->
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-  <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM-NX6RPJ24}`}
-          height="0" 
-          width="0" 
-          style="display:none;visibility:hidden">
-  </iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <!-- End Google Tag Manager -->
+
     
     <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->
@@ -201,7 +192,14 @@ const { title, meta_title, description, image, noindex, canonical } =
       <!-- End Meta Pixel Code -->
   </head>
   <body>
-     
+     <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0" width="0"
+            style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
     <BackgroundGradient />
     <TwSizeIndicator />
     <Header />
