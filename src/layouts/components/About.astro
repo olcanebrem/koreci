@@ -1,25 +1,90 @@
+---
+// About.astro
+---
 
+<div class="about-container grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Sol Bölüm -->
+    <div class="about-left">
+      <h1>Hakkımızda</h1> 
+      <br/>
+      <h2>Koreci Sanat Okulu'na hoş geldiniz!,<br/> Sanatı ve yaratıcılığı çok yönlü yaklaşımlarla bütünleştirmeyi amaçlayan öncü bir sanat ve tasarım kurumuyuz.</h2>
+      <p>Yaratıcı atölyelerimiz, heyecan verici etkinliklerimiz ve özenle tasarlanmış özel ürünlerimizle sanatseverlere ilham vermeyi ve yaratıcılığın sınırlarını dijital inovasyonlarla zorlamayı hedefliyoruz.</p>
+  
+      <h3>Etkinliklerimiz</h3>
+      <p>Etkinliklerimiz arasında, sanat sergileri, sinema gösterimleri, konserler ve masterclasslar bulunuyor. Bu etkinlikler, sanatseverlerin bir araya gelerek ilham alabilecekleri ve sanatı daha derinlemesine keşfedebilecekleri fırsatlar sunuyor.</p>
+    </div>
+  
+    <!-- Bursluluk Sınavı Bildirisi -->
+    <div class="announcement-banner col-span-full bg-primary text-white p-8 rounded-lg shadow-lg my-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <!-- Sol Taraf - Afiş -->
+        <div class="poster-container">
+          <img 
+            src="/images/bursluluk-afis.jpg" 
+            alt="Bursluluk Sınavı Afişi" 
+            class="w-full h-auto rounded-md shadow-md"
+          />
+        </div>
+        
+        <!-- Sağ Taraf - QR Kod ve Bilgiler -->
+        <div class="qr-info flex flex-col items-center md:items-start">
+          <h2 class="text-2xl font-bold mb-4">2024 Bursluluk Sınavı Başvuruları Başladı!</h2>
+          <p class="mb-4">WhatsApp grubumuza katılarak başvuru süreci hakkında detaylı bilgi alabilirsiniz.</p>
+          
+          <img 
+            src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=https%3A%2F%2Fchat.whatsapp.com/GgP3KLeO1DvGp95eUEv3st" 
+            alt="WhatsApp QR" 
+            class="mb-4 w-40 h-40"
+          />
+          
+          <a 
+            href="https://chat.whatsapp.com/GgP3KLeO1DvGp95eUEv3st" 
+            class="btn bg-white text-primary font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition"
+            target="_blank"
+          >
+            Gruba Katıl
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Sağ Bölüm -->
+    <div class="about-right">
+      <h3>Koreci Sanat Studio</h3>
+      <p>Koreci Sanat Studio, sanatçılar için bir buluşma noktasıdır. Sanatçılar ve sanatçı adayları için alan kiralama hizmeti sunarak, onların yaratıcılıklarını serbestçe ifade edebilecekleri bir ortam sağlıyoruz.</p>
+  
+      <h3>Koreci Sanat Tekstil</h3>
+      <p>Deri ve tekstil tasarımı programlarımızda, öğrencilerimiz malzeme bilgisinden üretim tekniklerine kadar kapsamlı bir eğitim alıyor.</p>
+  
+      <h3>Koreci Sanat Creative</h3>
+      <p>Koreci Sanat Creative ise, dijital dönüşüm ve tasarım alanında sunduğumuz hizmetlerle öne çıkıyor.</p>
+  
+      <h3>Davet</h3>
+      <p>Sanatla dolu bir dünyaya adım atmak, yaratıcılığınızı geliştirmek ve dijital inovasyonlarla ilham almak için sizi Koreci Sanat'a davet ediyoruz.</p>
+    </div>
+  </div>
+  
+  <style>
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
     
-<div class="tab content gx-5 row items-center lg:mb-10 ">
-    <div >
-    <h1>Hakkımızda</h1> 
-    <br/>
-    <h2>Koreci Sanat Okulu'na hoş geldiniz!,<br/> Sanatı ve yaratıcılığı çok yönlü yaklaşımlarla bütünleştirmeyi amaçlayan öncü bir sanat ve tasarım kurumuyuz.</h2>
-    <p>Yaratıcı atölyelerimiz, heyecan verici etkinliklerimiz ve özenle tasarlanmış özel ürünlerimizle sanatseverlere ilham vermeyi ve yaratıcılığın sınırlarını dijital inovasyonlarla zorlamayı hedefliyoruz.</p>
-
-    <h3>Etkinliklerimiz</h3>
-    <p>Etkinliklerimiz arasında, sanat sergileri, sinema gösterimleri, konserler ve masterclasslar bulunuyor. Bu etkinlikler, sanatseverlerin bir araya gelerek ilham alabilecekleri ve sanatı daha derinlemesine keşfedebilecekleri fırsatlar sunuyor. Ayrıca, dijital sanat ve teknoloji odaklı workshop'larımızla, sanatın geleceğine yön veren inovasyonları keşfetmelerini sağlıyoruz.</p>
-
-    <h3>Koreci Sanat Studio</h3>
-    <p>Koreci Sanat Studio, sanatçılar için bir buluşma noktasıdır. Sanatçılar ve sanatçı adayları için alan kiralama hizmeti sunarak, onların yaratıcılıklarını serbestçe ifade edebilecekleri bir ortam sağlıyoruz. Bu stüdyolar, resimden heykeltraşlığa, dijital sanatlardan geleneksel sanatlara kadar geniş bir yelpazede çalışma imkanı sunuyor. Ayrıca, sanatçılarımızın dijital araçlarla tanışmalarını ve bu araçları kullanarak yeni eserler üretmelerini teşvik ediyoruz.</p>
-
-    <h3>Koreci Sanat Tekstil</h3>
-    <p>Deri ve tekstil tasarımı programlarımızda, öğrencilerimiz malzeme bilgisinden üretim tekniklerine kadar kapsamlı bir eğitim alıyor. Modern ve geleneksel deri işleme teknikleri, tekstil baskı yöntemleri, dokuma ve örme teknikleri gibi temel tekstil üretim yöntemlerini uygulamalı olarak öğreniyorlar. Öğrencilerimiz, sürdürülebilir moda ve tekstil tasarımı prensiplerini benimserken, geleneksel el sanatlarımızı modern tasarım anlayışıyla birleştirmeyi öğreniyor.</p>
-
-    <h3>Koreci Sanat Creative</h3>
-    <p>Koreci Sanat Creative ise, dijital dönüşüm ve tasarım alanında sunduğumuz hizmetlerle öne çıkıyor. Dijital ortamda sanatı ve tasarımı en iyi şekilde temsil ederek, marka ve projelerinize yaratıcı çözümler sunuyoruz. Yapay zeka, artırılmış gerçeklik (AR) ve sanal gerçeklik (VR) gibi teknolojileri kullanarak, sanatın geleceğini şekillendiriyoruz. Dijital sanat projeleri, interaktif sergiler ve sanal galeriler gibi yenilikçi çözümlerle, sanatı daha erişilebilir ve etkileşimli hale getiriyoruz.</p>
-
-    <h3>Davet</h3>
-    <p>Sanatla dolu bir dünyaya adım atmak, yaratıcılığınızı geliştirmek ve dijital inovasyonlarla ilham almak için sizi Koreci Sanat'a davet ediyoruz. Bizimle keşfedin ve yaratıcılığın sınırlarını teknolojiyle zorlayın.</p>
-    <div/>
-</div>
+    .announcement-banner {
+      background: linear-gradient(135deg, #4a6cf7 0%, #2541b2 100%);
+    }
+    
+    .btn {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .about-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
