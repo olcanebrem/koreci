@@ -10,6 +10,7 @@ import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
 import BackgroundGradient from "@/components/BackgroundGradient.astro";
 import Slider from '@/components/Slider.astro';
+const gtmId = import.meta.env.GTM_ID;
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -34,21 +35,29 @@ const { title, meta_title, description, image, noindex, canonical } =
 <!doctype html>
 <html lang="en">
   <head>
-        <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7821XK2YXV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-7821XK2YXV');
-    </script>
-      <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NX6RPJ24');</script>
+        <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{gtmId}');
+  </script>
+  <!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM-NX6RPJ24}`}
+          height="0" 
+          width="0" 
+          style="display:none;visibility:hidden">
+  </iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager -->
     
     <link rel="shortcut icon" href={config.site.favicon} />
@@ -192,10 +201,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       <!-- End Meta Pixel Code -->
   </head>
   <body>
-      <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NX6RPJ24"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+     
     <BackgroundGradient />
     <TwSizeIndicator />
     <Header />
