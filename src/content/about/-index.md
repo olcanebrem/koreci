@@ -62,12 +62,12 @@ members:
   title: This is who we are
   description: Donec sollicitudin molestie malesda. Donec sollitudin mol estie ultricies ligula sed magna dictum
   member_list:
-    - name: Eleanor Pena
-      field: Co-founder & COO
+    - name: Olcan Ebrem
+      field: Eğitmen
       image: "/images/users/user-1.png"
-    - name: Bukiakta Bansalo
-      field: Product Manager
-      image: "/images/users/user-2.png"
+    - name: Faruk Tanyeri
+      field: Eğitmen
+      image: "/images/users/user-4.png"
    
 ---
 
