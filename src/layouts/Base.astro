@@ -40,11 +40,12 @@ const { title, meta_title, description, image, noindex, canonical } =
         <!-- Google Tag Manager -->
         <script>
           window.SITE_ENV = import.meta.env.SITE_ENV || 'production';
+          console.log(window.SITE_ENV);
         </script>
         
         
         <script>
-          const gtmId = import.meta.env.GTM_ID || 'GTM-PW25W6KT'; // fallback
+          const gtmId = import.meta.env.GTM_ID || 'GTM-sss'; // fallback
         
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
