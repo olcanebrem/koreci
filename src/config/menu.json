@@ -39,10 +39,6 @@
         {
           "name": "Resim Kursu",
           "url": "/resim_kursu"
-        },
-        {
-          "name": "Hobi",
-          "url": "/comments"
         }
       ]
     },
@@ -62,33 +58,7 @@
       ]
     },
     
-    {
-      "name": "Yetenek Sınavları",
-      "url": "",
-      "hasChildren": false,
-      "children": [
-        {
-          "name": "Careers",
-          "url": "/careers"
-        },
-        {
-          "name": "Integrations",
-          "url": "/integrations"
-        },
-        {
-          "name": "Pricing",
-          "url": "/pricing"
-        },
-        {
-          "name": "Changelog",
-          "url": "/changelog"
-        },
-        {
-          "name": "Terms And Conditions",
-          "url": "/terms-and-conditions"
-        }
-      ]
-    },
+    
     {
       "name": "İletişim",
       "url": "/contact"
