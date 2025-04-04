@@ -53,12 +53,11 @@ service:
         image: "/images/sells-by-country.png"
   our_service:
     - title: "Bizi Bakırköy'de ziyaret edin."
-      description: "Atölyemiz Özgürlük Meydanı'nda"  # Fixed typo
+      description: ""  # Fixed typo
       image: "/images/collaboration.png"
       list:
-        - "Supporting more than 119 country world"
-        - "Open transaction with more than currencies"
-        - "Customer Service with 79 languages"
+        - "Bakırköy Marmaray Durağı"
+        - "Özgürlük Meydanı"
     - title: "Bursluluk imkanlarından faydalanın"
       description: "Reklamlardan fırsat kodlarımızı yakalayın. Sınavlara katılım sağlayın."
       video:
@@ -71,7 +70,7 @@ service:
 
 testimonial:
   title: "Hadi bizi bir de müşterilerimizden dinleyin."
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas Werat viverra id et aliquet. vulputate egestas sollicitudin."
+  description: "Kaydırarak gezin."
   testimonial_list:
     [
   {
