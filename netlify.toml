@@ -1,25 +1,18 @@
 [build]
-    command = "yarn build"
-    publish = "dist"
-    functions = "netlify/functions"
+  command = "yarn build"
+  publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
-    NODE_VERSION = "18"
-    GOOGLE_MAPS_API_KEY = "AIzaSyBIP2Zn6M8J58Z0AhQt6qubAfxZBWDYCJg"
-[cloudinary]
-    CLOUDINARY_CLOUD_NAME = "dbfehj6jo"
-
-
-[[headers]]
-for = "/*" # This defines which paths this specific [[headers]] block will cover.
-
+  NODE_VERSION = "18"
+  GOOGLE_MAPS_API_KEY = "AIzaSyBIP2Zn6M8J58Z0AhQt6qubAfxZBWDYCJg"
 
 [context.production.environment]  # main branch
-    GTM_ID = "GTM-NX6RPJ24"
-    GA4_ID = "G-7821XK2YXV"
-    SITE_ENV = "production"
+  GTM_ID = "GTM-NX6RPJ24"
+  GA4_ID = "G-7821XK2YXV"
+  SITE_ENV = "production"
 
 [context.deploy-preview.environment]  # PR'lar ve develop branch
-    GTM_ID = "GTM-PW25W6KT"
-    GA4_ID = "G-TEST012"
-    SITE_ENV = "staging"
+  GTM_ID = "GTM-PW25W6KT"
+  GA4_ID = "G-TEST012"
+  SITE_ENV = "staging"
