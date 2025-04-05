@@ -36,10 +36,8 @@ counter:
 gallery:
   title: Yepyeni bir yüz!
   images:
-    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347561/AF1QipPNGjMkTwH8uk3ITEmKHFYKMHyXHKcii0F5IDxC_s0.jpg"
-    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347557/466962702_17966064230812745_7183673344313737850_n.jpg"
-    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743347555/image_8.png"
-    - "https://res.cloudinary.com/dbfehj6jo/image/upload/f_auto/v1743348091/image_9.png"
+    - "images/logo.png"
+   
 
 ## our works
 features:
