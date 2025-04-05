@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import { isLoggedIn } from 'src/services/auth.js';
+import LogoutButton from "@/components/LogoutButton.astro";
+---
+<Base>
+  <h1 class="text-2xl font-bold">Dashboard</h1>
+  <p>Giriş başarılı! 🎉</p>
+
+  
+  
+  <button class="btn btn-primary mt-10 block w-full" id="logoutBtn"></button>
+
+  <script type="module">
+    import { isLoggedIn, logout } from '/src/services/auth.js';
+
+    (async () => {
+      const loggedIn = await isLoggedIn();
+      if (!loggedIn) {
+        window.location.href = '/signin';
+      }
+    })();
+
+    document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+      await logout();
+      window.location.href = '/'; // Logout sonrası yönlendirme
+    });
+  </script>
+</Base>

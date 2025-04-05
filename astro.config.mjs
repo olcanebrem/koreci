@@ -10,7 +10,9 @@ import config from "./src/config/config.json";
 
 // https://astro.build/config
 export default defineConfig({
-  
+  alias: {
+    '@': './src',
+  },
   output: 'static',
   site: config.site.base_url ? "http://localhost:4321" : "https://koreci.art",
   base: config.site.base_path ? config.site.base_path : "src/",
