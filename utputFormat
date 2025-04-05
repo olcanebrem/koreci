@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Date: Sat, 05 Apr 2025 01:03:15 GMT
+Content-Type: text/html
+Content-Length: 0
+Connection: keep-alive
+Cache-Control: no-cache
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Timing-Allow-Origin: https://app.netlify.com, https://www.netlify.com
+Vary: Origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: ALLOWALL
+X-Nf-Srv-Version: afb38b4
+X-Request-Id: 63e68950-1904-442e-aa6d-827d3f4ff069
+X-Runtime: 0.034759
+
