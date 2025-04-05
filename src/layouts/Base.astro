@@ -10,8 +10,9 @@ import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
 import BackgroundGradient from "@/components/BackgroundGradient.astro";
 import Slider from '@/components/Slider.astro';
-const env = import.meta.env.SITE_ENV; // 'production' ya da 'staging'
-const gtmId = "GTM-NX6RPJ24";
+const gtmId = import.meta.env.GTM_ID;
+const siteEnv = import.meta.env.SITE_ENV;
+
 
 
 // font families
@@ -39,25 +40,21 @@ const { title, meta_title, description, image, noindex, canonical } =
   <head>
         <!-- Google Tag Manager -->
         <script>
-          window.SITE_ENV = import.meta.env.SITE_ENV || 'production';
-          console.log(window.SITE_ENV);
+          window.SITE_ENV = '${siteEnv}';
+          window.GTM_ID = '${gtmId}';
         </script>
         
-        
         <script>
-          const gtmId = "GTM-NX6RPJ24"; // fallback
-          console.log(window.gtmId);
           (function(w,d,s,l,i){
-            w[l]=w[l]||[];
-            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
             var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),
-                dl=l!='dataLayer'?'&l='+l:'';
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
             j.async=true;
             j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
             f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer', gtmId);
+          })(window,document,'script','dataLayer', window.GTM_ID);
         </script>
+        
         
   <!-- End Google Tag Manager -->
 
