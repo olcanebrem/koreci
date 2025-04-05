@@ -7,7 +7,7 @@
     {
       "name": "Koreci",
       "url": "/about",
-      "hasChildren": true,
+      "hasChildren": false,
       "children": [
         {
           "name": "Hakkımızda",
@@ -32,31 +32,14 @@
           "name": "GSF Hazırlık Kursları",
           "url": "/gsf_hazirlik"
         },
-        {
-          "name": "Yurt Dışı Portfolyo Hazırlık",
-          "url": "/comments"
-        },
+        
         {
           "name": "Resim Kursu",
           "url": "/resim_kursu"
         }
       ]
     },
-    {
-      "name": "Galeri",
-      "url": "/gallery",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Fotoğraflar",
-          "url": "/photos"
-        },
-        {
-          "name": "Videolar",
-          "url": "/videos"
-        }
-      ]
-    },
+    
     
     
     {

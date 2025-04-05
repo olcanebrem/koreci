@@ -7,6 +7,7 @@
   NODE_VERSION = "18"
   GOOGLE_MAPS_API_KEY = "AIzaSyBIP2Zn6M8J58Z0AhQt6qubAfxZBWDYCJg"
 
+
 [context.production.environment]  # main branch
   GTM_ID = "GTM-NX6RPJ24"
   GA4_ID = "G-7821XK2YXV"
