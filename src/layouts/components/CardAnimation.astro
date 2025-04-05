@@ -1,241 +1,46 @@
----
-// Cloudinary'den resim URL'lerini alın
-import cloudinary from 'lib/cloudinary';
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yerel Görseller ile Animasyon</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
 
-// Cloudinary'den görselleri çek
-const result = await cloudinary.search
-  .expression('folder:draw') // "draw" klasöründeki görselleri çek
-  .sort_by('public_id', 'desc') // Sıralama önemli değil, rastgele karıştıracağız
-  .max_results(50) // Daha fazla görsel çekerek çeşitliliği artır
-  .execute();
+    .cardi-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-// Rastgele sıralama fonksiyonu (Fisher-Yates Shuffle)
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+    .cardi-wrapper {
+      position: absolute;
+      width: 150px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      animation: rotateCards 10s infinite linear;
+    }
 
-// Görselleri rastgele sırala ve ilk 24 tanesini al
-const uniqueImages = shuffleArray(result.resources).slice(0, 24);
+    .cardi {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: translateX(400px);
+    }
 
-// Her görseli optimize ederek URL listesini oluştur
-const userImages = uniqueImages.map((img) => 
-  img.secure_url.replace('/upload/', '/upload//w_auto:150,f_avif,q_auto:low,fl_strip_profile/')
-);
-
----
-<div id="cardi-container" class="cardi-container">
-  {/* Logo */}
-  <div class="cardi-layer" data-layer="logo">
-    <img src="https://res.cloudinary.com/dbfehj6jo/image/upload/f_webp,q_auto/v1742567930/koreci_applogo.png" alt="Logo" />
-  </div>
-
-  {/* Maksimum 3 layer oluştur */}
-  {Array.from({ length: 3 }).map((_, layerIndex) => { // length: 24 yerine 3, çünkü 3 layer var
-    const totalCards = [8, 6, 8][layerIndex];
-    const diameter = 300 + layerIndex * 260;
-    const zIndexValue = 5 - layerIndex;
-    return (
-      <div
-        class="cardi-layer"
-        data-layer={layerIndex}
-        style={{
-          '--diameter': `${diameter}px`,
-          '--layer': layerIndex,
-          '--z-index': zIndexValue,
-        }}
-      >
-        {Array.from({ length: totalCards }).map((_, cardIndex) => {
-          const angleStep = 360 / totalCards;
-          const positionAngle = angleStep * cardIndex;
-          const tiltAngle = -positionAngle;
-          const radius = 400 + layerIndex * 150;
-          const imageIndex = (layerIndex * 8 + cardIndex) % userImages.length; // Benzersiz görsel indeksleme
-          return (
-            <div
-              class="cardi-wrapper"
-              style={{
-                '--position-angle': `${positionAngle}deg`,
-                '--radius': `${radius}px`,
-              }}
-            >
-              <div
-                class="cardi"
-                style={{
-                  '--tilt-angle': `${tiltAngle}deg`,
-                  '--layer': layerIndex,
-                  '--z-index': zIndexValue,
-                }}
-              >
-                <img 
-                  src={userImages[imageIndex]} 
-                  alt={`User ${cardIndex}`} 
-                />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  })}
-</div>
-
-<script is:inline client:load>
-  console.log('Script loaded!');
-
-  function init() {
-    const container = document.getElementById('cardi-container');
-    if (!container) return;
-
-    const getVisibleLayers = () => {
-      const width = window.innerWidth;
-      if (width < 576) return 1;
-      if (width < 768) return 2;
-      if (width < 992) return 3;
-      return 3; // Max 3 layers
-    };
-
-    const updateLayout = () => {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  const scale = Math.max(0.4, Math.min(vw, vh) / 1200);
-  
-  // Layer sayısını belirle (responsive)
-  const visibleLayers = vw < 576 ? 1 : vw < 768 ? 2 : 3;
-  
-  // Her layer için güncelleme
-  [0, 1, 2].forEach(index => {
-    const layer = document.querySelector(`.cardi-layer[data-layer="${index}"]`);
-    if (!layer) return;
-    
-    // Layer görünürlüğü
-    layer.style.display = index < visibleLayers ? 'block' : 'none';
-    
-    if (index >= visibleLayers) return;
-    
-    // Layer çapı (diameter)
-    const diameter = Math.max(
-      400 + index * 100,
-      (600 + index * 260) * scale
-    );
-    
-    // Radius (yarıçap)
-    const radius = Math.max(
-      300 + index * 100,
-      diameter * 0.75
-    );
-    
-    layer.style.setProperty('--diameter', `${diameter}px`);
-    layer.style.setProperty('--base-radius', `${radius}px`);
-    
-    // Kart sayısını belirle (8-6-8 düzeni)
-    const cardCount = [8, 6, 8][index];
-    const angleStep = 360 / cardCount;
-    
-    // Kartları güncelle
-    const cards = layer.querySelectorAll('.cardi-wrapper');
-    cards.forEach((card, cardIndex) => {
-      if (cardIndex < cardCount) {
-        card.style.display = 'block';
-        card.style.setProperty('--position-angle', `${angleStep * cardIndex}deg`);
-        card.style.setProperty('--radius', `${radius}px`);
-        
-        // Kart boyutlarını güncelle
-        const cardSize = Math.max(
-          120 + index * 20,
-          225 * scale
-        );
-        card.style.width = `${cardSize}px`;
-        card.style.height = `${cardSize * 1.33}px`; // 300/225 oranı
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-  
-  // Logoyu güncelle
-  const logo = document.querySelector('.cardi-layer[data-layer="logo"] img');
-  if (logo) {
-    logo.style.width = `${Math.max(150, 300 * scale)}px`;
-  }
-};
-
-    updateLayout();
-    const resizeObserver = new ResizeObserver(updateLayout);
-    resizeObserver.observe(document.body);
-  }
-
-  init();
-</script>
-
-<style lang="scss">
-  /* Stil kısmı öncekiyle aynı kalacak, sadece media query'ler kaldırıldı */
-  .cardi-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-  }
-
-  .cardi-layer {
-    position: absolute;
-    width: var(--diameter, 300px);
-    height: var(--diameter, 300px);
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: rotateLayer calc(50s - (var(--layer, 0) * 3s)) infinite linear;
-    z-index: var(--z-index, 5);
-  }
-
-  .cardi-layer[data-layer="logo"] {
-    animation: none !important;
-    border: none !important;
-    width: auto !important;
-    height: auto !important;
-    
-    
-  }
-  
-
-  .cardi-wrapper {
-    position: absolute;
-    width: var(--card-size, 225px);
-    height: calc(var(--card-size, 225px) * 1.33);
-    transition: all 0.3s ease;
-    min-width: 150px; /* Minimum genişlik */
-    min-height: 200px; /* Minimum yükseklik */
-    top: 50%;
-    left: 50%;
-    transform: 
-      translate(-50%, -50%) 
-      rotate(var(--position-angle, 0deg)) 
-      translateX(var(--radius, 400px)) 
-      translate(-50%, -50%);
-    z-index: var(--z-index, 5);
-  }
-
-  .cardi {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    
-    transform: rotate(var(--tilt-angle, 0deg));
-    animation: rotateCardi calc(50s - (var(--layer, 0) * 1s)) infinite linear reverse;
-    transition: all 0.3s ease;
-
-    img {
+    .cardi img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -243,20 +48,51 @@ const userImages = uniqueImages.map((img) =>
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    &:hover {
-      transform: rotate(var(--tilt-angle, 0deg)) scale(1.2);
-      z-index: 10;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.785);
+    @keyframes rotateCards {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
     }
-  }
+  </style>
+</head>
+<body>
+  <div id="cardi-container" class="cardi-container"></div>
 
-  @keyframes rotateLayer {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
+  <script>
+    const userImages = [
+      '/images/cardi/image1.jpg',
+      '/images/cardi/image2.jpg',
+      '/images/cardi/image3.jpg',
+      '/images/cardi/image4.jpg',
+      '/images/cardi/image5.jpg',
+      '/images/cardi/image6.jpg',
+      '/images/cardi/image7.jpg',
+      '/images/cardi/image8.jpg',
+    ];
 
-  @keyframes rotateCardi {
-    from { transform: rotate(var(--tilt-angle, 0deg)); }
-    to { transform: rotate(calc(var(--tilt-angle, 0deg) + 360deg)); }
-  }
-</style>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('cardi-container');
+      if (!container) return;
+
+      const totalCards = 8;
+      let html = '';
+      for (let i = 0; i < totalCards; i++) {
+        const angleStep = 360 / totalCards;
+        const positionAngle = angleStep * i;
+        const imageIndex = i % userImages.length;
+        html += `
+          <div class="cardi-wrapper" style="--position-angle: ${positionAngle}deg;">
+            <div class="cardi">
+              <img src="${userImages[imageIndex]}" alt="User ${i}" />
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    });
+  </script>
+</body>
+</html>
