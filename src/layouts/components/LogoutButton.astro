@@ -1,0 +1,17 @@
+---
+// /src/components/LogoutButton.astro
+import { logout } from 'src/services/auth.js';
+---
+
+<button id="logoutButton">Çıkış Yap</button>
+
+<script>
+  document.getElementById('logoutButton').addEventListener('click', async () => {
+    try {
+      await logout();
+      window.location.href = '/login'; // Çıkış yapıldığında login’e yönlendir
+    } catch (error) {
+      alert('Çıkış başarısız: ' + error.message);
+    }
+  });
+</script>

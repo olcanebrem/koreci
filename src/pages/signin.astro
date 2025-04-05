@@ -1,6 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import SigninSlider from "@/layouts/function-components/SigninSlider.jsx";
+import SigninSlider from "@/layouts/function-components/SigninSlider";
 ---
 
 <Base>
@@ -25,8 +25,8 @@ import SigninSlider from "@/layouts/function-components/SigninSlider.jsx";
               >
             </div>
 
-            <form action="#">
-              <div class="form-group">
+            <form id="SigninForm">
+              <div class="signinForm">
                 <label for="email" class="form-label">Email Address</label>
                 <input
                   type="email"
@@ -55,12 +55,29 @@ import SigninSlider from "@/layouts/function-components/SigninSlider.jsx";
                 <br/>Or <a class="text-dark" href="/signup">Sign up</a> to create an account.
               </p>
             </form>
+
+            <script type="module">
+              import { login } from "/src/services/auth.js";
+              document.getElementById('SigninForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                try {
+                  await login(email, password);
+                  window.location.href = '/dashboard'; // Giriş başarılıysa yönlendir
+                } catch (error) {
+                  alert('Giriş başarısız: ' + error.message);
+                }
+              });
+            </script>
+
           </div>
         </div>
         <SigninSlider
-          client:load
-          title="Turn your All ideas into<br /> your reality"
+        client:load
+        title="Turn your All ideas into<br /> your reality"
         />
+        
       </div>
     </div>
   </section>

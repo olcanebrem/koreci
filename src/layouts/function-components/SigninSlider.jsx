@@ -11,19 +11,19 @@ const SigninSlider = ({ title }) => {
   const [swiper, setSwiper] = useState(null);
   const paginationRef = useRef(null);
   return (
-    <div className="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6 lg:block">
-      <img
-        className="absolute left-0 top-0 h-full w-full"
-        src="/images/login-banner-bg.png"
-        alt=""
-      />
+    <div className="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6 lg:block relative"> {/* Add relative here */}
+  <img
+    className="absolute left-0 top-0 h-full w-full z-0" // Add z-0
+    src="/images/login-banner-bg.png"
+    alt=""
+  />
       <div className="w-full text-center">
         <h2
           className="h3 text-white"
           dangerouslySetInnerHTML={{ __html: marked.parse(title) }}
         />
         <div className="auth-banner-carousel">
-          <Swiper
+        <Swiper
             pagination={{
               type: "bullets",
               el: paginationRef.current,
@@ -33,9 +33,9 @@ const SigninSlider = ({ title }) => {
             onSwiper={(swiper) => {
               setSwiper(swiper);
             }}
-            // loop={true}
             modules={[Pagination, Autoplay]}
             slidesPerView={1}
+            touchEventsTarget="container" // Add this line
           >
             <SwiperSlide key={"feature-" + 0}>
               <img
