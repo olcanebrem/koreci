@@ -1,46 +1,8 @@
 ---
 
-// Burada önceden hazırlanan yerel görselleri manuel olarak ekleyebilirsiniz
-const localImages = [
-  '/images/cardi/image1.jpg',
-  '/images/cardi/image2.jpg',
-  '/images/cardi/image3.jpg',
-  '/images/cardi/image4.jpg',
-  '/images/cardi/image5.jpg',
-  '/images/cardi/image6.jpg',
-  '/images/cardi/image7.jpg',
-  '/images/cardi/image8.jpg',
-  '/images/cardi/image9.jpg',
-  '/images/cardi/image10.jpg',
-  '/images/cardi/image11.jpg',
-  '/images/cardi/image12.jpg',
-  '/images/cardi/image13.jpg',
-  '/images/cardi/image14.jpg',
-  '/images/cardi/image15.jpg',
-  '/images/cardi/image16.jpg',
-  '/images/cardi/image17.jpg',
-  '/images/cardi/image18.jpg',
-  '/images/cardi/image19.jpg',
-  '/images/cardi/image20.jpg',
-  '/images/cardi/image21.jpg',
-  '/images/cardi/image22.jpg',
-  '/images/cardi/image23.jpg',
-  '/images/cardi/image24.jpg',
-];
-
-
-// Rastgele sıralama fonksiyonu (Fisher-Yates Shuffle)
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// Görselleri rastgele sırala ve ilk 24 tanesini al
-const uniqueImages = shuffleArray(localImages).slice(0, 24);
-const userImages = uniqueImages;
+// local dosya isimlerini tanımla (sadece isim, uzantı yok)
+const userImages = Array.from({ length: 24 }, (_, i) => `image${i + 1}`);
+const layerConfig = [8, 6, 8];
 ---
 
 <div id="cardi-container" class="cardi-container">
@@ -49,9 +11,7 @@ const userImages = uniqueImages;
     <img src="/images/cardi/logo.png" alt="Logo" />
   </div>
 
-  <!-- Maksimum 3 layer oluştur -->
-  {Array.from({ length: 3 }).map((_, layerIndex) => { // length: 3 çünkü 3 layer var
-    const totalCards = [8, 6, 8][layerIndex]; // Kart sayısı
+  {layerConfig.map((totalCards, layerIndex) => {
     const diameter = 300 + layerIndex * 260;
     const zIndexValue = 5 - layerIndex;
     return (
@@ -69,7 +29,8 @@ const userImages = uniqueImages;
           const positionAngle = angleStep * cardIndex;
           const tiltAngle = -positionAngle;
           const radius = 400 + layerIndex * 150;
-          const imageIndex = (layerIndex * 8 + cardIndex) % userImages.length; // Görsel indeksi
+          const imageIndex = (layerIndex * 8 + cardIndex) % userImages.length;
+          const imageName = userImages[imageIndex];
           return (
             <div
               class="cardi-wrapper"
@@ -86,10 +47,11 @@ const userImages = uniqueImages;
                   '--z-index': zIndexValue,
                 }}
               >
-                <img 
-                  src={userImages[imageIndex]} 
-                  alt={`User ${cardIndex}`} 
-                />
+                <picture>
+                  <source srcset={`/images/cardi/${imageName}.avif`} type="image/avif" />
+                  <source srcset={`/images/cardi/${imageName}.webp`} type="image/webp" />
+                  <img src={`/images/cardi/${imageName}.jpg`} alt={`User ${cardIndex}`} loading="lazy" />
+                </picture>
               </div>
             </div>
           );
@@ -98,6 +60,7 @@ const userImages = uniqueImages;
     );
   })}
 </div>
+
 
 
 
