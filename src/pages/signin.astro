@@ -5,6 +5,16 @@ import SigninSlider from "@/layouts/function-components/SigninSlider";
 
 <Base>
   <section>
+    <script type="module">
+      import { isLoggedIn } from "/src/services/auth.js";
+    
+      isLoggedIn().then((loggedIn) => {
+        if (loggedIn) {
+          window.location.href = '/dashboard'; // Zaten giriş yaptıysa yönlendir
+        }
+      });
+    </script>
+    
     <div class="container max-w-full">
       <div class="row">
         <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
@@ -12,11 +22,17 @@ import SigninSlider from "@/layouts/function-components/SigninSlider";
             <img class="bb-8" src="/favicon.svg" alt="" />
             <h1 class="mb-4">Sign In</h1>
             <p>Donec sollicitudin molestie malesda sollitudin</p>
-            <div class="signin-options mt-10">
-              <a class="btn btn-outline-white block w-full text-dark" href="#"
-                >Sign In With Google</a
-              >
-            </div>
+            
+              
+              <div class="signin-options mt-10">
+                <a id="google-login-btn" class="btn btn-outline-white block w-full text-dark" href="#">Sign In With Google</a>
+                <script type="module">
+                  import { setupGoogleLogin } from '/src/services/auth.js';
+                  setupGoogleLogin(); // burada çağırırsın
+                </script>
+                
+              </div>
+            
             <div
               class="relative my-8 text-center after:absolute after:left-0 after:top-1/2 after:z-[0] after:w-full after:border-b after:border-border after:content-['']"
             >

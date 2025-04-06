@@ -2,6 +2,21 @@
 // /src/services/auth.js
 import { account, ID } from './appwrite.js';
 
+export function setupGoogleLogin() {
+  const googleBtn = document.getElementById("google-login-btn");
+  if (googleBtn) {
+    googleBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      account.createOAuth2Session(
+        "google",
+        "http://localhost:4321/dashboard",
+        "http://localhost:4321/login"
+      ).catch((error) => console.error("OAuth2 hatası:", error));
+    });
+  }
+}
+
+
 export async function login(email, password) {
   try {
     const session = await account.createEmailPasswordSession(email, password);
