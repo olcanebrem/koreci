@@ -3,13 +3,50 @@ import Base from "@/layouts/Base.astro";
 import { isLoggedIn } from 'src/services/auth.js';
 import LogoutButton from "@/components/LogoutButton.astro";
 ---
-<Base>
-  <h1 class="text-2xl font-bold">Dashboard</h1>
-  <p>Giriş başarılı! 🎉</p>
 
-  
-  
-  <button class="btn btn-primary mt-10 block w-full" id="logoutBtn"></button>
+<Base>
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 dark:bg-gray-900 p-4">
+      <h2 class="text-lg font-semibold mb-4">Hesap Menüsü</h2>
+      <nav class="flex flex-col gap-2 text-sm">
+        <span class="text-muted font-semibold uppercase">Profil</span>
+        <a href="/dashboard/profile" class="hover:underline">Genel Bilgiler</a>
+        <a href="/dashboard/avatar" class="hover:underline">Profil Fotoğrafı</a>
+        <a href="/dashboard/preferences" class="hover:underline">Tercihler</a>
+
+        <span class="mt-4 text-muted font-semibold uppercase">Hesap</span>
+        <a href="/dashboard/security" class="hover:underline">Şifre Değiştir</a>
+        <a href="/dashboard/sessions" class="hover:underline">Aktif Oturumlar</a>
+        <a href="/dashboard/delete" class="hover:underline text-red-500">Hesabı Sil</a>
+
+        <span class="mt-4 text-muted font-semibold uppercase">Bildirimler</span>
+        <a href="/dashboard/notifications" class="hover:underline">Bildirim Ayarları</a>
+        <a href="/dashboard/email-preferences" class="hover:underline">E-posta Tercihleri</a>
+
+        <span class="mt-4 text-muted font-semibold uppercase">Görünüm</span>
+        <a href="/dashboard/theme" class="hover:underline">Tema Ayarları</a>
+        <a href="/dashboard/language" class="hover:underline">Dil Seçimi</a>
+
+        <span class="mt-4 text-muted font-semibold uppercase">Etkinlik</span>
+        <a href="/dashboard/logs" class="hover:underline">Giriş Kayıtları</a>
+        <a href="/dashboard/history" class="hover:underline">İşlem Geçmişi</a>
+      </nav>
+
+      <button class="btn btn-primary mt-10 w-full" id="logoutBtn">Çıkış Yap</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-2">Dashboard</h1>
+      <p class="text-muted mb-4">Giriş başarılı! 🎉</p>
+      
+      <!-- Buraya aktif içerik gelecek -->
+      <div class="border rounded-xl p-4 bg-white dark:bg-gray-800 shadow">
+        <p>Hoş geldiniz! Sol menüden bir işlem seçin.</p>
+      </div>
+    </main>
+  </div>
 
   <script type="module">
     import { isLoggedIn, logout } from '/src/services/auth.js';

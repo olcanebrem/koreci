@@ -9,6 +9,20 @@ Allow: /blog/              # Blog gibi önemli dizinlere izin ver
 Allow: /urunler/           # Ürün sayfalarına izin ver
 Allow: /contact/           # Ürün sayfalarına izin ver
 
+Sitemap: https://www.koreci.art/sitemap.xml
+
+User-agent: *
+Disallow: /features/
+Disallow: /blank/
+Disallow: /how-it-works/
+Disallow: /pricing/
+Disallow: /integrations/
+Disallow: /categories/
+Disallow: /careers/
+Disallow: /galeri/
+Disallow: /api/
+Disallow: /blog/
+
 # Meşru arama motoru botlarına izin ver
 User-agent: Googlebot
 Allow: /
@@ -30,14 +44,7 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-Sitemap: https://www.koreci.art/sitemap.xml  # Site haritasını belirt
-
 # Meşru Arama Motoru Botlarına İzin Ver
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
 
 User-agent: Yahoo
 Allow: /
@@ -46,11 +53,6 @@ User-agent: DuckDuckBot
 Allow: /
 
 # Kötü Niyetli ve Spam Botları Engelle
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
