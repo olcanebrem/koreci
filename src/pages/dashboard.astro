@@ -2,6 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import { isLoggedIn } from 'src/services/auth.js';
 import LogoutButton from "@/components/LogoutButton.astro";
+import { Button } from "@/components/ui/button"; // Button bileşenini burada kullanıyoruz
 ---
 
 <Base>
@@ -9,41 +10,80 @@ import LogoutButton from "@/components/LogoutButton.astro";
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-100 dark:bg-gray-900 p-4">
       <h2 class="text-lg font-semibold mb-4">Hesap Menüsü</h2>
-      <nav class="flex flex-col gap-2 text-sm">
-        <span class="text-muted font-semibold uppercase">Profil</span>
-        <a href="/dashboard/profile" class="hover:underline">Genel Bilgiler</a>
-        <a href="/dashboard/avatar" class="hover:underline">Profil Fotoğrafı</a>
-        <a href="/dashboard/preferences" class="hover:underline">Tercihler</a>
 
-        <span class="mt-4 text-muted font-semibold uppercase">Hesap</span>
-        <a href="/dashboard/security" class="hover:underline">Şifre Değiştir</a>
-        <a href="/dashboard/sessions" class="hover:underline">Aktif Oturumlar</a>
-        <a href="/dashboard/delete" class="hover:underline text-red-500">Hesabı Sil</a>
+      <!-- Accordion -->
+      <div class="space-y-2">
+        <!-- Profil -->
+        <div class="bg-gray-200 dark:bg-gray-800 rounded-md">
+          <button class="w-full text-left font-semibold text-sm p-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700">
+            Profil
+          </button>
+          <div class="space-y-1 pl-4">
+            <a href="/dashboard/profile" class="text-sm hover:underline">Genel Bilgiler</a>
+            <a href="/dashboard/avatar" class="text-sm hover:underline">Profil Fotoğrafı</a>
+            <a href="/dashboard/preferences" class="text-sm hover:underline">Tercihler</a>
+          </div>
+        </div>
 
-        <span class="mt-4 text-muted font-semibold uppercase">Bildirimler</span>
-        <a href="/dashboard/notifications" class="hover:underline">Bildirim Ayarları</a>
-        <a href="/dashboard/email-preferences" class="hover:underline">E-posta Tercihleri</a>
+        <!-- Hesap -->
+        <div class="bg-gray-200 dark:bg-gray-800 rounded-md">
+          <button class="w-full text-left font-semibold text-sm p-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700">
+            Hesap
+          </button>
+          <div class="space-y-1 pl-4">
+            <a href="/dashboard/security" class="text-sm hover:underline">Şifre Değiştir</a>
+            <a href="/dashboard/sessions" class="text-sm hover:underline">Aktif Oturumlar</a>
+            <a href="/dashboard/delete" class="text-sm text-red-500 hover:underline">Hesabı Sil</a>
+          </div>
+        </div>
 
-        <span class="mt-4 text-muted font-semibold uppercase">Görünüm</span>
-        <a href="/dashboard/theme" class="hover:underline">Tema Ayarları</a>
-        <a href="/dashboard/language" class="hover:underline">Dil Seçimi</a>
+        <!-- Bildirimler -->
+        <div class="bg-gray-200 dark:bg-gray-800 rounded-md">
+          <button class="w-full text-left font-semibold text-sm p-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700">
+            Bildirimler
+          </button>
+          <div class="space-y-1 pl-4">
+            <a href="/dashboard/notifications" class="text-sm hover:underline">Bildirim Ayarları</a>
+            <a href="/dashboard/email-preferences" class="text-sm hover:underline">E-posta Tercihleri</a>
+          </div>
+        </div>
 
-        <span class="mt-4 text-muted font-semibold uppercase">Etkinlik</span>
-        <a href="/dashboard/logs" class="hover:underline">Giriş Kayıtları</a>
-        <a href="/dashboard/history" class="hover:underline">İşlem Geçmişi</a>
-      </nav>
+        <!-- Görünüm -->
+        <div class="bg-gray-200 dark:bg-gray-800 rounded-md">
+          <button class="w-full text-left font-semibold text-sm p-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700">
+            Görünüm
+          </button>
+          <div class="space-y-1 pl-4">
+            <a href="/dashboard/theme" class="text-sm hover:underline">Tema Ayarları</a>
+            <a href="/dashboard/language" class="text-sm hover:underline">Dil Seçimi</a>
+          </div>
+        </div>
+
+        <!-- Etkinlik -->
+        <div class="bg-gray-200 dark:bg-gray-800 rounded-md">
+          <button class="w-full text-left font-semibold text-sm p-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-700">
+            Etkinlik
+          </button>
+          <div class="space-y-1 pl-4">
+            <a href="/dashboard/logs" class="text-sm hover:underline">Giriş Kayıtları</a>
+            <a href="/dashboard/history" class="text-sm hover:underline">İşlem Geçmişi</a>
+          </div>
+        </div>
+      </div>
 
       <button class="btn btn-primary mt-10 w-full" id="logoutBtn">Çıkış Yap</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main flex-1 p-6">
-      <h1 class="text-2xl font-bold mb-2">Dashboard</h1>
-      <p class="text-muted mb-4">Giriş başarılı! 🎉</p>
-      
-      <!-- Buraya aktif içerik gelecek -->
-      <div class="border rounded-xl p-4 bg-white dark:bg-gray-800 shadow">
-        <p>Hoş geldiniz! Sol menüden bir işlem seçin.</p>
+      <div class="container mx-auto bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold mb-2">Dashboard</h1>
+        <p class="text-muted mb-4">Giriş başarılı! 🎉</p>
+
+        <!-- Buraya aktif içerik gelecek -->
+        <div class="border rounded-xl p-4 bg-gray-50 dark:bg-gray-700">
+          <p>Hoş geldiniz! Sol menüden bir işlem seçin.</p>
+        </div>
       </div>
     </main>
   </div>
@@ -54,13 +94,13 @@ import LogoutButton from "@/components/LogoutButton.astro";
     (async () => {
       const loggedIn = await isLoggedIn();
       if (!loggedIn) {
-        window.location.href = '/signin';
+        window.location.href = '/signin'; // Login olmamış kullanıcıyı signin sayfasına yönlendir
       }
     })();
 
     document.getElementById('logoutBtn')?.addEventListener('click', async () => {
       await logout();
-      window.location.href = '/'; // Logout sonrası yönlendirme
+      window.location.href = '/'; // Logout sonrası anasayfaya yönlendirme
     });
   </script>
 </Base>
