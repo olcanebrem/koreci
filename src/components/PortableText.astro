@@ -1,0 +1,21 @@
+---
+import { PortableText as PortableTextRenderer } from '@portabletext/react'
+import { Fragment } from 'astro/jsx-runtime'
+
+const { value } = Astro.props
+---
+
+<Fragment>
+  <PortableTextRenderer
+    value={value}
+    components={{
+      types: {},
+      marks: {},
+      block: {
+        h1: ({ children }) => <h1 class="text-3xl font-bold my-4">{children}</h1>,
+        h2: ({ children }) => <h2 class="text-2xl font-semibold my-3">{children}</h2>,
+        normal: ({ children }) => <p class="mb-4 text-gray-800">{children}</p>,
+      },
+    }}
+  />
+</Fragment>

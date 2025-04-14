@@ -1,4 +1,19 @@
 ---
+import PortableText from '../components/PortableText.astro'
+import { fetchSanity } from '@/lib/sanity'
+import { urlFor } from '@/lib/sanityImage'
+
+const { slug } = Astro.params
+
+const query = `*[_type == "post" && slug.current == "${slug}"][0]{
+  title,
+  content,
+  mainImage
+}`
+
+const post = await fetchSanity(query)
+const imageUrl = urlFor(post.mainImage).width(1000).url()
+
 import dateFormat from "@/lib/utils/dateFormat";
 import readingTime from "@/lib/utils/readingTime";
 
@@ -82,3 +97,13 @@ const { Content } = await render(post);
     </div>
   </div>
 </section>
+
+<article class="max-w-3xl mx-auto py-8">
+  <h1 class="text-3xl font-bold mb-4">{post.title}</h1>
+
+  {imageUrl && (
+    <img src={imageUrl} alt={post.title} class="rounded-xl shadow-lg mb-6" />
+  )}
+
+  <PortableText value={post.content} />
+</article>
