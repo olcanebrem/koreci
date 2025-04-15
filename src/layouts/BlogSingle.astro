@@ -1,5 +1,5 @@
 ---
-import PortableText from '../components/PortableText.astro'
+import PortableText from '../components/PortableText'
 import { fetchSanity } from '@/lib/sanity'
 import { urlFor } from '@/lib/sanityImage'
 
@@ -11,8 +11,8 @@ const query = `*[_type == "post" && slug.current == "${slug}"][0]{
   mainImage
 }`
 
-const post = await fetchSanity(query)
-const imageUrl = urlFor(post.mainImage).width(1000).url()
+const sanityPost = await fetchSanity(query)
+const imageUrl = urlFor(sanityPost.mainImage).width(1000).url()
 
 import dateFormat from "@/lib/utils/dateFormat";
 import readingTime from "@/lib/utils/readingTime";
@@ -99,11 +99,11 @@ const { Content } = await render(post);
 </section>
 
 <article class="max-w-3xl mx-auto py-8">
-  <h1 class="text-3xl font-bold mb-4">{post.title}</h1>
+  <h1 class="text-3xl font-bold mb-4">{sanityPost.title}</h1>
 
   {imageUrl && (
-    <img src={imageUrl} alt={post.title} class="rounded-xl shadow-lg mb-6" />
+    <img src={imageUrl} alt={sanityPost.title} class="rounded-xl shadow-lg mb-6" />
   )}
 
-  <PortableText value={post.content} />
+  <PortableText value={sanityPost.content} />
 </article>

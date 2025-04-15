@@ -7,6 +7,7 @@ import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
+import sanity from "@sanity/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +24,11 @@ export default defineConfig({
       config: {
         applyBaseStyles: false,
       },
+    }),
+    sanity({
+      projectId: "way24s2d",
+      dataset: "production",
+      useCdn: false, // for static builds
     }),
     
       
