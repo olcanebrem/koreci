@@ -5,14 +5,17 @@ import { urlFor } from '@/lib/sanityImage'
 
 const { slug } = Astro.params
 
-const query = `*[_type == "post" && slug.current == "${slug}"][0]{
+const query = `*[_type == "post" && slug.current == "faal"][0]{
   title,
   content,
   mainImage
 }`
 
 const sanityPost = await fetchSanity(query)
-const imageUrl = urlFor(sanityPost.mainImage).width(1000).url()
+const imageUrl = sanityPost?.mainImage
+  ? urlFor(sanityPost.mainImage).width(1000).url()
+  : null
+
 
 import dateFormat from "@/lib/utils/dateFormat";
 import readingTime from "@/lib/utils/readingTime";
@@ -100,10 +103,16 @@ const { Content } = await render(post);
 
 <article class="max-w-3xl mx-auto py-8">
   <h1 class="text-3xl font-bold mb-4">{sanityPost.title}</h1>
-
+  {!sanityPost && <p>Post bulunamadı</p>}
+  {sanityPost && (
+    <>
+      <h1>{sanityPost.title}</h1>
+      <PortableText value={sanityPost.content} />
+    </>
+  )}
   {imageUrl && (
     <img src={imageUrl} alt={sanityPost.title} class="rounded-xl shadow-lg mb-6" />
   )}
-
+  
   <PortableText value={sanityPost.content} />
 </article>
