@@ -1,0 +1,59 @@
+---
+import { plainify } from "@/lib/utils/textConverter";
+
+const { posts, currentPage, totalPages } = Astro.props;
+const summaryLength = 150;
+---
+
+<div class="row">
+  {posts.map((item) => (
+    <div class="mb-8 md:col-6 lg:col-4">
+      <div class="card">
+        {item.mainImageUrl && (
+          <img
+            class="card-img aspect-video"
+            src={item.mainImageUrl}
+            alt={item.title}
+            width="335"
+            height="210"
+          />
+        )}
+        <div class="card-content">
+          <h3 class="h4 card-title">
+            <a href={`/blog/${item.slug.current}`}>{item.title}</a>
+          </h3>
+
+          {item.body && (
+            <p class="mb-4 text-text">
+              {plainify(item.body.slice(0, summaryLength))}...
+            </p>
+          )}
+
+          <div class="card-footer mt-6 flex space-x-4 text-xs text-[#666]">
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+{totalPages > 1 && (
+  <nav class="pagination mt-10 flex justify-center gap-4">
+    {currentPage > 1 && (
+      <a
+        class="text-sm text-gray-600 hover:text-black"
+        href={`/blog/${currentPage - 1 === 1 ? "" : currentPage - 1}`}
+      >
+        ← Önceki
+      </a>
+    )}
+    {currentPage < totalPages && (
+      <a
+        class="text-sm text-gray-600 hover:text-black"
+        href={`/blog/${currentPage + 1}`}
+      >
+        Sonraki →
+      </a>
+    )}
+  </nav>
+)}

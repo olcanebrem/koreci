@@ -2,6 +2,12 @@ const PROJECT_ID = import.meta.env.SANITY_PROJECT_ID // Örnek: abc123
 const DATASET = 'production'
 const API_VERSION = import.meta.env.SANITY_API_VERSION;// ya da latest
 
+import { createClient } from '@sanity/client';
+const client = createClient({
+  projectId: PROJECT_ID, // Sanity projenizin ID'si
+  dataset: 'production',       // Dataset adı
+  useCdn: true,                // Caching için true
+});
 export async function fetchSanity(query: string, params: Record<string, any> = {}) {
   const url = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}?query=${encodeURIComponent(
     query
@@ -20,3 +26,26 @@ export async function fetchSanity(query: string, params: Record<string, any> = {
 
   
 }
+// Tüm postları al
+export const getAllPosts = async () => {
+  const query = `*[_type == "post"]{slug, title}`;
+  const posts = await client.fetch(query);
+  return posts;
+};
+
+// Slug'a göre tek bir post al
+export const getSinglePost = async (slug) => {
+  const query = `*[_type == "post" && slug.current == $slug][0]{
+    title,
+    body,
+    publishedAt,
+    slug,
+    mainImage {
+      asset->{url}
+    }
+  }`;
+
+  const params = { slug };
+  const post = await client.fetch(query, params);
+  return post;
+};

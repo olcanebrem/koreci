@@ -1,0 +1,42 @@
+---
+import { fetchSanity } from '@/lib/sanity'
+import Blog from "@/components/Blog.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import Pagination from "@/layouts/components/Pagination.astro";
+
+
+export async function getStaticPaths() {
+  const query = `count(*[_type == "post"])`;
+  const totalPosts = await fetchSanity(query);
+  const perPage = 6; // veya config.settings.pagination
+  const totalPages = Math.ceil(totalPosts / perPage);
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { slug: (i + 1).toString() },
+  }));
+}
+
+
+---
+
+<Base
+>
+  <section class="page-hero pt-16">
+    <div class="container">
+      <PageHeader page_data={page_data} />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="h4 mb-4">Recent Posts</h2>
+      <Blog posts={currentPosts} />
+      <Pagination
+        section={"blog"}
+        totalPages={totalPages}
+        currentPage={currentPage}
+      />
+    </div>
+  </section>
+</Base>

@@ -1,47 +1,21 @@
 ---
-import Blog from "@/components/Blog.astro";
-import PageHeader from "@/components/PageHeader.astro";
-import BlogCategories from "@/components/blog/BlogCategories.astro";
-import FeaturedBlog from "@/components/blog/FeaturedBlog.astro";
-import config from "@/config/config.json";
+import { getAllPosts } from "@/lib/sanity";
+import BlogList from "@/components/BlogList.astro";
 import Base from "@/layouts/Base.astro";
-import Pagination from "@/layouts/components/Pagination.astro";
-import Cta from "@/layouts/partials/Cta.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { sortByDate } from "@/lib/utils/sortFunctions";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
 
-const blogIndex = (await getEntry("blog", "-index")) as CollectionEntry<"blog">;
-const posts = await getSinglePage("blog");
-const categories = await getTaxonomy("blog", "categories");
-const sortedPosts = sortByDate(posts);
-const featuredPost = sortedPosts.filter((item) => item.data.featured);
-const recentPost = sortedPosts.filter((item) => !item.data.featured);
-const totalPages = Math.ceil(recentPost.length / config.settings.pagination);
-const currentPosts = recentPost.slice(0, config.settings.pagination);
+const pageSize = 6;
+const page = 1;
+
+const allPosts = await getAllPosts();
+const paginatedPosts = allPosts.slice((page - 1) * pageSize, page * pageSize);
+const totalPages = Math.ceil(allPosts.length / pageSize);
 ---
 
-<Base
-  title={blogIndex.data.title}
-  meta_title={blogIndex.data.meta_title}
-  description={blogIndex.data.description}
-  image={blogIndex.data.image}
->
-  <section class="page-hero pt-16">
-    <div class="container">
-      <PageHeader page_data={blogIndex.data} />
-    </div>
-  </section>
+<Base title="Blog - KoreciDev">
   <section class="section">
     <div class="container">
-      <FeaturedBlog posts={featuredPost} />
-      <BlogCategories categories={categories} />
-      <h2 class="h4 mb-4">Recent Posts</h2>
-      <Blog posts={currentPosts} />
-      <Pagination section={"blog"} currentPage={1} totalPages={totalPages} />
+      <h1 class="h2 mb-8 text-center">Blog</h1>
+      <BlogList posts={paginatedPosts} currentPage={page} totalPages={totalPages} />
     </div>
   </section>
-  <Cta />
 </Base>
