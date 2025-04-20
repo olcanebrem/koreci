@@ -2,8 +2,15 @@
 import config from "@/config/config.json";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
+// import Datestr from "../../partials/Datestr.astro"; // Remove incorrect import
 // import type { CollectionEntry } from "astro:content"; // Remove astro:content type
 const { summary_length } = config.settings;
+
+// Define the structure for a category based on Sanity data
+interface SanityCategory {
+  title?: string;
+  slug?: { current?: string };
+}
 
 // Define a basic type matching the Sanity data passed from [page].astro
 interface SanityPost {
@@ -14,13 +21,23 @@ interface SanityPost {
   isFeatured?: boolean;
   body: any[]; // Array of blocks
   mainImage?: { asset?: { url?: string } };
-  // categories?: string[]; // Assuming categories are not fetched currently
+  categories?: SanityCategory[]; // Update categories type
 }
 
 type Props = {
   posts: SanityPost[]; // Update prop type
 };
 const { posts } = Astro.props;
+
+// Helper function to format date (can be moved to a utils file later)
+const formatDate = (dateString?: string) => {
+  if (!dateString) return "";
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
 
 // Helper to get first text block for summary
 const getSummaryText = (body: any[]): string => {
@@ -39,27 +56,35 @@ const getSummaryText = (body: any[]): string => {
         <div class="card">
           {/* Use Sanity image data. Use regular img tag if astro:assets Image causes issues */}
           {post.mainImage?.asset?.url && (
-            <img
-              class="card-img aspect-video object-cover"
-              width="235"
-              height="304"
-              src={post.mainImage.asset.url}
-              alt={post.title}
-              loading="lazy"
-            />
+            <a href={`/blog/${post.slug?.current}`} class="rounded-lg block overflow-hidden">
+              <img
+                class="card-img aspect-video object-cover transition duration-300 hover:scale-105"
+                width="235"
+                height="304"
+                src={post.mainImage.asset.url}
+                alt={post.title}
+                loading="lazy"
+              />
+            </a>
           )}
-          <div class="card-content">
-            {/* Remove category rendering for now */}
-            {/* <div class="card-tags space-x-1">
-              {post.categories?.map((category) => (
-                <a class="tag" href={`/categories/${slugify(category)}`}>
-                  {humanize(category)}
-                </a>
-              ))}
-            </div> */}
-            <h3 class="h4 card-title">
-              {/* Use slug.current for the link */}
-              <a href={`/blog/${post.slug?.current}`}>{post.title}</a>
+          <div class="card-content flex flex-col flex-grow p-4">
+            {/* Render categories */}
+            {post.categories && post.categories.length > 0 && (
+              <div class="card-tags space-x-1 mb-2">
+                {post.categories.map((category) => {
+                  const categoryTitle = category.title ?? "Uncategorized";
+                  const categorySlug = category.slug?.current || slugify(categoryTitle);
+                  const categoryUrl = `/categories/${categorySlug}`;
+                  return (
+                    <a class="tag" href={categoryUrl}>
+                      {humanize(categoryTitle)}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+            <h3 class="h4 card-title mb-2">
+              <a class="hover:text-primary" href={`/blog/${post.slug?.current}`}>{post.title}</a>
             </h3>
             {/* Use helper to get summary text from Sanity body */}
             {post.body && (
@@ -68,8 +93,14 @@ const getSummaryText = (body: any[]): string => {
               </p>
             )}
 
-            <div class="card-footer mt-6 flex space-x-4">
-              {/* Footer content can be added here if needed later */}
+            <div class="card-footer mt-auto flex items-center space-x-4">
+              {/* Display formatted date */}
+              {post.publishedAt && (
+                <time datetime={post.publishedAt} class="text-sm text-gray-600">
+                  {formatDate(post.publishedAt)}
+                </time>
+              )}
+              {/* Add other footer content if needed */}
             </div>
           </div>
         </div>
