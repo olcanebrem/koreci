@@ -13,6 +13,7 @@ const query = `*[_type == "post"] | order(publishedAt desc){
   _id,
   title,
   slug,
+  publishedAt,
   body,
   tag,
   "mainImageUrl": mainImage.asset->url
