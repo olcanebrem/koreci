@@ -27,7 +27,7 @@ const featuredPosts: SanityPost[] = allPosts.filter((post) => !post.featured) as
 
 // Recent Posts
 const recentPosts = allPosts.filter((post) => !post.featured);
-const currentRecentPosts: SanityPost[] = recentPosts.slice(0, pageSize) as SanityPost[];
+const currentRecentPosts = recentPosts.slice(0, 2);
 
 // Categories (Extract unique names for BlogCategories)
 const allCategoryTitles = allPosts.flatMap((post) => post.categories?.map((cat) => cat.title).filter(Boolean) ?? []);
@@ -60,9 +60,9 @@ const blogPageData = {
       <BlogCategories categories={uniqueCategoryNames} />
       <h1 class="h2 mb-8 text-center">Blog Posts</h1>
       <BlogList posts={paginatedPosts} currentPage={page} totalPages={totalPages} />
+      <Pagination section="blog" currentPage={1} totalPages={totalPages} />
       <h2 class="h4 mb-4">Recent Posts</h2>
       <RecentPosts posts={currentRecentPosts} />
-      <Pagination section="blog" currentPage={1} totalPages={totalPages} />
     </div>
   </section>
 </Base>
