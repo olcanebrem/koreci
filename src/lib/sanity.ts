@@ -28,13 +28,32 @@ export async function fetchSanity(query: string, params: Record<string, any> = {
 }
 // Tüm postları al
 export const getAllPosts = async () => {
-  const query = `*[_type == "post"]{slug, title}`;
+  const query = `*[_type == "post"] | order(publishedAt desc) {
+    slug, 
+    title,
+    publishedAt, // Add publishedAt for sorting
+    isFeatured, // Add isFeatured for filtering
+    body[]{ // Keep body for summary
+      ...,
+      _key,
+      children[]{ 
+        ...,
+        _key, 
+        text
+      }
+    },
+    mainImage { // Keep mainImage
+      asset->{
+        url
+      }
+    }
+  }`; // Sort by publishedAt descending
   const posts = await client.fetch(query);
   return posts;
 };
 
 // Slug'a göre tek bir post al
-export const getSinglePost = async (slug) => {
+export const getSinglePost = async (slug: string) => {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title,
     body[]{

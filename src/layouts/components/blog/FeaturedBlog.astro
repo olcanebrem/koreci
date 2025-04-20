@@ -2,13 +2,33 @@
 import config from "@/config/config.json";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
+// import type { CollectionEntry } from "astro:content"; // Remove astro:content type
 const { summary_length } = config.settings;
 
+// Define a basic type matching the Sanity data passed from [page].astro
+interface SanityPost {
+  _id?: string;
+  slug: { current: string };
+  title: string;
+  publishedAt?: string;
+  isFeatured?: boolean;
+  body: any[]; // Array of blocks
+  mainImage?: { asset?: { url?: string } };
+  // categories?: string[]; // Assuming categories are not fetched currently
+}
+
 type Props = {
-  posts: CollectionEntry<"blog">[];
+  posts: SanityPost[]; // Update prop type
 };
 const { posts } = Astro.props;
+
+// Helper to get first text block for summary
+const getSummaryText = (body: any[]): string => {
+  if (!body || !Array.isArray(body)) return "";
+  const firstBlock = body.find(block => block._type === 'block' && block.children);
+  const firstChild = firstBlock?.children?.find((child: any) => child._type === 'span' && child.text);
+  return firstChild?.text || "";
+};
 ---
 
 <h2 class="h4 mb-4">Featured Posts</h2>
@@ -17,31 +37,39 @@ const { posts } = Astro.props;
     posts.map((post) => (
       <div class="mb-8 md:col-6">
         <div class="card">
-          <Image
-            class="card-img"
-            width={235}
-            height={304}
-            src={post.data.image!}
-            alt={post.data.title}
-          />
+          {/* Use Sanity image data. Use regular img tag if astro:assets Image causes issues */}
+          {post.mainImage?.asset?.url && (
+            <img
+              class="card-img aspect-video object-cover"
+              width="235"
+              height="304"
+              src={post.mainImage.asset.url}
+              alt={post.title}
+              loading="lazy"
+            />
+          )}
           <div class="card-content">
-            <div class="card-tags space-x-1">
-              {post.data.categories.map((category) => (
+            {/* Remove category rendering for now */}
+            {/* <div class="card-tags space-x-1">
+              {post.categories?.map((category) => (
                 <a class="tag" href={`/categories/${slugify(category)}`}>
                   {humanize(category)}
                 </a>
               ))}
-            </div>
+            </div> */}
             <h3 class="h4 card-title">
-              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              {/* Use slug.current for the link */}
+              <a href={`/blog/${post.slug?.current}`}>{post.title}</a>
             </h3>
+            {/* Use helper to get summary text from Sanity body */}
             {post.body && (
               <p class="mb-4 text-text">
-                {plainify(post.body?.slice(0, Number(summary_length)))}...
+                {plainify(getSummaryText(post.body).slice(0, Number(summary_length)))}...
               </p>
             )}
 
             <div class="card-footer mt-6 flex space-x-4">
+              {/* Footer content can be added here if needed later */}
             </div>
           </div>
         </div>

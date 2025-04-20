@@ -1,0 +1,87 @@
+---
+import type { PaginateFunction, Page } from 'astro';
+import { getAllPosts } from "@/lib/sanity";
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/components/PageHeader.astro"; // Assuming path
+import FeaturedBlog from "@/components/blog/FeaturedBlog.astro"; // Assuming path
+import BlogList from "@/layouts/components/BlogList.astro"; // Using BlogList from previous steps
+import Pagination from "@/layouts/components/Pagination.astro"; // Assuming path
+import config from "@/config/config.json"; // Assuming path for pagination size
+
+// Define a basic type for Sanity posts based on getAllPosts query
+interface SanityPost {
+  _id?: string; // Add _id if available/needed
+  slug: { current: string };
+  title: string;
+  publishedAt?: string; // Optional if not always present
+  isFeatured?: boolean; // Optional
+  body: any[]; // Keep body as any for simplicity, refine if needed
+  mainImage?: { asset?: { url?: string } }; // Optional structure
+}
+
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+  const allPosts: SanityPost[] = await getAllPosts();
+
+  // Separate featured posts (assuming isFeatured field exists)
+  const featuredPosts = allPosts.filter((post: SanityPost) => post.isFeatured);
+  // Use non-featured posts for pagination
+  const recentPosts = allPosts.filter((post: SanityPost) => !post.isFeatured);
+
+  // Paginate the recent posts
+  return paginate(recentPosts, {
+    pageSize: config.settings.pagination, // Use pagination size from config
+    props: { featuredPosts }, // Pass featured posts to each page
+  });
+}
+
+interface Props {
+  page: Page<SanityPost>;
+  featuredPosts: SanityPost[];
+}
+
+// Explicitly type Astro.props
+const { page, featuredPosts } = Astro.props as Props;
+
+// Example page data for Base layout (replace with actual data source if needed)
+const blogIndexData = {
+  title: "Blog",
+  meta_title: "My Sanity Powered Blog",
+  description: "Latest articles and news.",
+  image: "/images/default-blog-image.jpg", // Placeholder image
+};
+---
+
+<Base
+  title={blogIndexData.title}
+  meta_title={blogIndexData.meta_title}
+  description={blogIndexData.description}
+  image={blogIndexData.image}
+>
+  <section class="page-hero pt-16">
+    <div class="container">
+      {/* Assuming PageHeader takes simple title/description */}
+      <PageHeader page_data={{ title: blogIndexData.title, description: blogIndexData.description }} />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      {/* Render featured posts only on the first page */}
+      {page.currentPage === 1 && featuredPosts.length > 0 && <FeaturedBlog posts={featuredPosts} />}
+
+      {/* Omit BlogCategories for now */}
+      {/* <BlogCategories categories={categories} /> */}
+
+      <h2 class="h4 mb-4">Recent Posts</h2>
+      {/* Pass paginated posts to BlogList */}
+      <BlogList posts={page.data} />
+
+      {/* Use Astro's built-in pagination props */}
+      <Pagination
+        section="blog" 
+        currentPage={page.currentPage}
+        totalPages={page.totalPages}
+        url={page.url}
+      />
+    </div>
+  </section>
+</Base> 

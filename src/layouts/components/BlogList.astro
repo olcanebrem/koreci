@@ -6,35 +6,43 @@ const summaryLength = 150;
 ---
 
 <div class="row">
-  {posts.map((item) => (
-    <div class="mb-8 md:col-6 lg:col-4">
-      <div class="card">
-        {item.mainImageUrl && (
-          <img
-            class="card-img aspect-video"
-            src={item.mainImageUrl}
-            alt={item.title}
-            width="335"
-            height="210"
-          />
-        )}
-        <div class="card-content">
-          <h3 class="h4 card-title">
-            <a href={`/blog/${item.slug.current}`}>{item.title}</a>
-          </h3>
-
-          {item.body && (
-            <p class="mb-4 text-text">
-              {plainify(item.body.slice(0, summaryLength))}...
-            </p>
+  {posts.map((item: any) => {
+    return (
+      <div class="mb-8 md:col-6 lg:col-4">
+        <div class="card">
+          {/* Check if mainImage and its asset and url exist */}
+          {item.mainImage?.asset?.url && (
+            <img
+              class="card-img aspect-video object-cover"
+              src={item.mainImage.asset.url}
+              alt={item.title}
+              width="335"
+              height="210"
+              loading="lazy"
+            />
           )}
+          <div class="card-content">
+            <h3 class="h4 card-title">
+              {/* Ensure slug exists before creating link */}
+              <a href={`/blog/${item.slug?.current}`}>{item.title}</a>
+            </h3>
 
-          <div class="card-footer mt-6 flex space-x-4 text-xs text-[#666]">
+            {/* Assuming body is an array of blocks like in Sanity */}
+            {item.body && (
+              <p class="mb-4 text-text">
+                {/* Use plainify on the first text block if available */}
+                {plainify(item.body[0]?.children[0]?.text?.slice(0, summaryLength) || '')}...
+              </p>
+            )}
+
+            <div class="card-footer mt-6 flex space-x-4 text-xs text-[#666]">
+              {/* Footer content can be added here if needed later */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  ))}
+    );
+  })}
 </div>
 
 {totalPages > 1 && (
