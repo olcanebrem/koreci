@@ -29,11 +29,12 @@ export async function fetchSanity(query: string, params: Record<string, any> = {
 // Tüm postları al
 export const getAllPosts = async () => {
   const query = `*[_type == "post"] | order(publishedAt desc) {
+    _id, // Include _id for consistency
     slug, 
     title,
-    publishedAt, // Add publishedAt for sorting
-    isFeatured, // Add isFeatured for filtering
-    body[]{ // Keep body for summary
+    publishedAt,
+    featured, // Fetch the featured flag (ensure name matches your schema)
+    body[]{ // Keep body for summary and potential reading time
       ...,
       _key,
       children[]{ 
@@ -42,12 +43,16 @@ export const getAllPosts = async () => {
         text
       }
     },
-    mainImage { // Keep mainImage
+    mainImage { 
       asset->{
         url
       }
+    },
+    categories[]->{ // Follow category references
+      title,       // Get category title
+      slug         // Get category slug
     }
-  }`; // Sort by publishedAt descending
+  }`;
   const posts = await client.fetch(query);
   return posts;
 };

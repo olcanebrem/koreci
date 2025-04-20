@@ -2,20 +2,67 @@
 import { getAllPosts } from "@/lib/sanity";
 import BlogList from "@/components/BlogList.astro";
 import Base from "@/layouts/Base.astro";
+import RecentPosts from "../../components/blog/RecentPosts.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import BlogCategories from "@/components/blog/BlogCategories.astro";
+import FeaturedBlog from "@/components/blog/FeaturedBlog.astro";
+import config from "@/config/config.json";
+import Pagination from "@/layouts/components/Pagination.astro";
+import type { SanityPost, SanityCategory } from "@/types/sanity";
 
-const pageSize = 6;
+// Fetch all posts from Sanity
+const allPostsData = await getAllPosts();
+const allPosts: SanityPost[] = allPostsData as SanityPost[];
+
+// --- Data derived from Sanity ---
+
+// Pagination Logic
+const pageSize = config.settings.pagination || 6;
 const page = 1;
-
-const allPosts = await getAllPosts();
 const paginatedPosts = allPosts.slice((page - 1) * pageSize, page * pageSize);
 const totalPages = Math.ceil(allPosts.length / pageSize);
+
+// Featured Posts
+const featuredPosts: SanityPost[] = allPosts.filter((post) => !post.featured) as SanityPost[];
+
+// Recent Posts
+const recentPosts = allPosts.filter((post) => !post.featured);
+const currentRecentPosts: SanityPost[] = recentPosts.slice(0, pageSize) as SanityPost[];
+
+// Categories (Extract unique names for BlogCategories)
+const allCategoryTitles = allPosts.flatMap((post) => post.categories?.map((cat) => cat.title).filter(Boolean) ?? []);
+const uniqueCategoryNames = [...new Set(allCategoryTitles)];
+
+// Page Metadata
+const blogPageData = {
+  title: config.site.title || "Blog",
+  meta_title: config.site.title ? `${config.site.title} - Blog` : "Blog",
+  description: "Blog posts",
+  image: "/images/og-image.png",
+};
+
 ---
 
-<Base title="Blog - KoreciDev">
+<Base
+  title={blogPageData.title}
+  meta_title={blogPageData.meta_title}
+  description={blogPageData.description}
+  image={blogPageData.image}
+>
+  <section class="page-hero pt-16">
+    <div class="container">
+      <PageHeader page_data={{ title: blogPageData.title, description: blogPageData.description }} />
+    </div>
+  </section>
   <section class="section">
     <div class="container">
-      <h1 class="h2 mb-8 text-center">Blog</h1>
+      <FeaturedBlog posts={featuredPosts} />
+      <BlogCategories categories={uniqueCategoryNames} />
+      <h1 class="h2 mb-8 text-center">Blog Posts</h1>
       <BlogList posts={paginatedPosts} currentPage={page} totalPages={totalPages} />
+      <h2 class="h4 mb-4">Recent Posts</h2>
+      <RecentPosts posts={currentRecentPosts} />
+      <Pagination section="blog" currentPage={1} totalPages={totalPages} />
     </div>
   </section>
 </Base>
