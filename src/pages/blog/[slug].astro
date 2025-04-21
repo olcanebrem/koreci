@@ -1,0 +1,39 @@
+---
+import BlogSingle from "@/layouts/BlogSingle.astro";
+import { getSinglePost, fetchSanity } from "@/lib/sanity";
+import Base from "@/layouts/Base.astro";
+
+interface Post {
+  slug: {
+    current: string;
+  };
+}
+
+export async function getStaticPaths() {
+  const query = `*[_type == "post"]{slug}`;
+  const posts = await fetchSanity(query) as Post[];
+
+  return posts.map((post: Post) => ({
+    params: { slug: post.slug.current },
+    props: { slug: post.slug.current }
+  }));
+}
+
+const { slug } = Astro.props;
+const post = await getSinglePost(slug);
+const { title, meta_title, description, mainImage } = post;
+---
+
+
+
+
+
+<Base
+  title={meta_title || title}
+  meta_title={meta_title}
+  description={description}
+  image={mainImage?.asset?.url}
+  publishedAt={post.publishedAt}
+>
+  <BlogSingle post={post} />
+</Base>

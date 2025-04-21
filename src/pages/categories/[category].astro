@@ -1,53 +1,77 @@
 ---
-import Blog from "@/components/Blog.astro";
-import BlogCategories from "@/components/blog/BlogCategories.astro";
-import PageHeader from "@/components/PageHeader.astro";
+import { getAllPosts } from "@/lib/sanity";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { getTaxonomy } from "@/lib/taxonomyParser.astro";
-import taxonomyFilter from "@/lib/utils/taxonomyFilter";
-import { humanize, slugify } from "@/lib/utils/textConverter";
+import PageHeader from "@/components/PageHeader.astro";
+import BlogList from "@/components/BlogList.astro"; // Use BlogList to display posts
+import type { SanityPost, SanityCategory } from "@/types/sanity";
 
-const categories = await getTaxonomy("blog", "categories");
 export async function getStaticPaths() {
-  const categories = await getTaxonomy("blog", "categories");
-  return categories.map((item) => {
-    const category = slugify(item);
-    return {
-      params: { category },
-      props: {
-        item,
-      },
-    };
+  const allPosts: SanityPost[] = await getAllPosts();
+
+  const uniqueCategories = new Map<string, { slug: string; title: string }>();
+
+  allPosts.forEach((post) => {
+    post.categories?.forEach((category) => {
+      if (category?.slug?.current && category.title && !uniqueCategories.has(category.slug.current)) {
+        uniqueCategories.set(category.slug.current, {
+          slug: category.slug.current,
+          title: category.title,
+        });
+      }
+    });
   });
+
+  const paths = Array.from(uniqueCategories.values()).map((category) => ({
+    params: { category: category.slug },
+    // Optionally pass props to the page component, like the title
+    // props: { categoryTitle: category.title },
+  }));
+
+  return paths;
 }
 
 const { category } = Astro.params;
-const { item } = Astro.props;
+// const { categoryTitle } = Astro.props; // Get title from props if passed from getStaticPaths
 
-const posts = await getSinglePage("blog");
-const filterByTags = taxonomyFilter(posts, "categories", category);
-const page_data = {
-  index_title: "Categories",
-  slug: item,
+// Fetch all posts again to filter (simplest approach for now)
+const allPosts: SanityPost[] = await getAllPosts();
+
+// Filter posts for the current category slug
+const categoryPosts = allPosts.filter((post) =>
+  post.categories?.some((cat) => cat?.slug?.current === category)
+);
+
+// Determine the category title (find the first post in the category and get its title)
+// This assumes posts exist for the category, which should be true due to getStaticPaths
+const categoryTitle = categoryPosts[0]?.categories?.find(cat => cat?.slug?.current === category)?.title || category;
+
+// Basic page metadata
+const pageData = {
+  title: `${categoryTitle} Posts`,
+  description: `Posts categorized under ${categoryTitle}`,
+  // Add image if desired
 };
 ---
 
-<Base title={category as string}>
-  <section class="page-hero pb-8 pt-16">
+<Base
+  title={pageData.title}
+  meta_title={pageData.title} 
+  description={pageData.description}
+>
+  <section class="page-hero pt-16">
     <div class="container">
-      <div class="page-hero-content mx-auto max-w-[883px] text-center">
-        <PageHeader page_data={page_data} />
-        <h1 class="h2 mb-14 text-center">
-          Showing posts from <span class="text-primary">{humanize(item)}</span> category
-        </h1>
-      </div>
+      {/* Use a generic title or pass categoryTitle */}
+      <PageHeader page_data={{ title: `Category: ${categoryTitle}` }} />
     </div>
   </section>
   <section class="section">
     <div class="container">
-      <BlogCategories categories={categories} />
-      <Blog posts={filterByTags} />
+      {categoryPosts.length > 0 ? (
+        <BlogList posts={categoryPosts} />
+      ) : (
+        <p class="text-center">No posts found in this category.</p>
+      )}
+      {/* Add Pagination here if needed later */}
     </div>
   </section>
 </Base>

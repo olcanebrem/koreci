@@ -1,82 +1,81 @@
 ---
-import dateFormat from "@/lib/utils/dateFormat";
-import readingTime from "@/lib/utils/readingTime";
-
 import { humanize, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
 import {
-  FaRegCalendarAlt,
-  FaRegClock,
   FaRegFolder,
   FaRegUserCircle,
+  FaRegCalendarAlt,
+  FaRegClock,
 } from "react-icons/fa";
-
-type Props = {
-  post: CollectionEntry<"blog">;
-};
+import { dateFormat } from "@/lib/utils/dateFormat";
+import { readingTime } from "@/lib/utils/readingTime";
+import PortableTextRenderer from "../components/PortableTextRenderer";
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+
+const getYoutubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+};
 ---
 
 <section class="section blog-single">
   <div class="container">
     <div class="row justify-center">
       <div class="lg:col-10">
-        <Image
-          class="rounded-xl aspect-video object-contain"
-          src={post.data.image!}
-          alt=""
-          width={920}
-          height={450}
-        />
+        {post.mainImage?.asset?.url && (
+          <Image
+            class="rounded-xl aspect-video object-contain"
+            src={post.mainImage.asset.url}
+            alt={post.title}
+            width={920}
+            height={450}
+            loading="lazy"
+          />
+        )}
       </div>
       <div class="mt-10 max-w-[810px] lg:col-9">
-        <h1 class="h2">
-          {post.data.title}
-        </h1>
+        <h1 class="h2">{post.title}</h1>
         <div class="mb-5 mt-6 flex items-center space-x-2">
           <ul class="mb-4">
             <li class="mr-4 inline-block">
-              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-              {humanize(post.data.author!)}
+              <FaRegUserCircle className="mr-2 -mt-1 inline-block" />
+              {humanize(post.author || "Anonymous")}
             </li>
-
-            <li class="mr-4 inline-block">
-              <FaRegCalendarAlt className={"mr-2 -mt-1 inline-block"} />
-              {dateFormat(post.data.date!)}
-            </li>
-
-            {
-              post.body && (
-                <li class="mr-4 inline-block">
-                  <FaRegClock className={"mr-2 -mt-1 inline-block"} />
-                  {readingTime(post.body)}
-                </li>
-              )
-            }
-
-            <li class="mr-4 inline-block">
-              <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-              {
-                post.data.categories.map((category, index) => (
-                  <a
-                    href={`/categories/${slugify(category)}`}
-                    class="hover:text-primary"
-                  >
-                    {humanize(category)}
-                    {index !== post.data.categories.length - 1 && ","}
-                  </a>
-                ))
-              }
-            </li>
+            {post.publishedAt && (
+              <li class="mr-4 inline-block">
+                <FaRegCalendarAlt className="mr-2 -mt-1 inline-block" />
+                {dateFormat(post.publishedAt)}
+              </li>
+            )}
+            {post.body && (
+              <li class="mr-4 inline-block">
+                <FaRegClock className="mr-2 -mt-1 inline-block" />
+                {readingTime(post.body)}
+              </li>
+            )}
+            {post.categories && (
+              <li class="mr-4 inline-block">
+                <FaRegFolder className="mr-2 -mt-1 inline-block" />
+                {post.categories.map((category: string, index: number) => (
+                  <>
+                    <a
+                      href={`/categories/${slugify(category)}`}
+                      class="hover:text-primary"
+                    >
+                      {humanize(category)}
+                    </a>
+                    {index !== post.categories.length - 1 && ", "}
+                  </>
+                ))}
+              </li>
+            )}
           </ul>
         </div>
-
         <div class="content">
-          <Content />
+          <PortableTextRenderer value={post.body} />
+          
         </div>
       </div>
     </div>
